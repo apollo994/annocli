@@ -1,0 +1,4803 @@
+{
+  "total": 405,
+  "offset": 0,
+  "limit": 5,
+  "results": [
+    {
+      "annotation_id": "f628158077010762f66c13935b5630a3",
+      "assembly_accession": "GCA_001624475.1",
+      "assembly_name": "CBA_J_v1",
+      "organism_name": "Mus musculus",
+      "taxid": "10090",
+      "taxon_lineage": [
+        "10090",
+        "862507",
+        "10088",
+        "39107",
+        "10066",
+        "337687",
+        "1963758",
+        "9989",
+        "314147",
+        "314146",
+        "1437010",
+        "9347",
+        "32525",
+        "40674",
+        "32524",
+        "32523",
+        "1338369",
+        "8287",
+        "117571",
+        "117570",
+        "7776",
+        "7742",
+        "89593",
+        "7711",
+        "33511",
+        "33213",
+        "6072",
+        "33208",
+        "33154",
+        "2759",
+        "131567"
+      ],
+      "source_file_info": {
+        "database": "Ensembl",
+        "provider": "community",
+        "release_date": "2018-01-01T00:00:00",
+        "url_path": "https://ftp.ebi.ac.uk/pub/ensemblorganisms/Mus_musculus/GCA_001624475.1/community/geneset/2018_01/genes.gff3.gz",
+        "last_modified": "2024-10-21T00:00:00",
+        "uncompressed_md5": "9367bb816bd3b748a3dbdc367e23ac18"
+      },
+      "indexed_file_info": {
+        "bgzipped_path": "/10090/GCA_001624475.1/Ensembl_9367bb816bd3b748a3dbdc367e23ac18.gff.gz",
+        "csi_path": "/10090/GCA_001624475.1/Ensembl_9367bb816bd3b748a3dbdc367e23ac18.gff.gz.csi",
+        "uncompressed_md5": "f628158077010762f66c13935b5630a3",
+        "file_size": 15610102,
+        "processed_at": "2025-10-07T18:45:51.489000",
+        "pipeline": {
+          "name": "sort_bgzip_tabix",
+          "version": "1.0.0",
+          "method": "sort | bgzip | tabix"
+        }
+      },
+      "features_summary": {
+        "attribute_keys": [
+          "Alias",
+          "ID",
+          "version",
+          "ccdsid",
+          "description",
+          "tag",
+          "rank",
+          "biotype",
+          "Name",
+          "transcript_id",
+          "exon_id",
+          "Parent",
+          "gene_id",
+          "constitutive",
+          "protein_id"
+        ],
+        "types": [
+          "C_gene_segment",
+          "gene_segment",
+          "J_gene_segment",
+          "lnc_RNA",
+          "pseudogene",
+          "scaffold",
+          "snRNA",
+          "rRNA",
+          "transcript",
+          "CDS",
+          "pseudogenic_transcript",
+          "snoRNA",
+          "mRNA",
+          "unconfirmed_transcript",
+          "miRNA",
+          "V_gene_segment",
+          "chromosome",
+          "five_prime_UTR",
+          "D_gene_segment",
+          "three_prime_UTR",
+          "scRNA",
+          "tRNA",
+          "exon",
+          "bidirectional_promoter_lncRNA",
+          "ncRNA",
+          "three_prime_overlapping_ncrna",
+          "gene",
+          "ncRNA_gene"
+        ],
+        "sources": [
+          "mouse_genomes_project",
+          "CBA_J_v1"
+        ],
+        "biotypes": [
+          "IG_C_pseudogene",
+          "protein_coding",
+          "lincRNA",
+          "3prime_overlapping_ncRNA",
+          "TR_C_gene",
+          "IG_J_gene",
+          "retained_intron",
+          "unprocessed_pseudogene",
+          "IG_V_gene",
+          "TR_V_gene",
+          "pseudogene",
+          "IG_LV_gene",
+          "unitary_pseudogene",
+          "sense_intronic",
+          "sense_overlapping",
+          "snRNA",
+          "IG_C_gene",
+          "IG_D_pseudogene",
+          "unknown_likely_coding",
+          "rRNA",
+          "TR_V_pseudogene",
+          "IG_D_gene",
+          "transcribed_unitary_pseudogene",
+          "TEC",
+          "snoRNA",
+          "ribozyme",
+          "scaRNA",
+          "misc_RNA",
+          "non_stop_decay",
+          "IG_V_pseudogene",
+          "TR_J_gene",
+          "TR_J_pseudogene",
+          "miRNA",
+          "transcribed_processed_pseudogene",
+          "processed_transcript",
+          "translated_processed_pseudogene",
+          "Mt_tRNA",
+          "TR_D_gene",
+          "macro_lncRNA",
+          "polymorphic_pseudogene",
+          "antisense",
+          "bidirectional_promoter_lncRNA",
+          "sRNA",
+          "processed_pseudogene",
+          "nonsense_mediated_decay",
+          "transcribed_unprocessed_pseudogene"
+        ],
+        "types_missing_id": [
+          "exon",
+          "three_prime_UTR",
+          "five_prime_UTR"
+        ],
+        "root_type_counts": {
+          "chromosome": 20,
+          "gene": 22685,
+          "ncRNA_gene": 11023,
+          "pseudogene": 6269,
+          "bidirectional_promoter_lncRNA": 12,
+          "scaffold": 5445
+        },
+        "has_biotype": true,
+        "has_cds": true,
+        "has_exon": true
+      },
+      "features_statistics": {
+        "gene_category_stats": {
+          "coding": {
+            "total_count": 20589,
+            "length_stats": {
+              "min": 11,
+              "max": 2928224,
+              "mean": 55350.2
+            },
+            "biotype_counts": {
+              "ig_c_gene": 13,
+              "ig_d_gene": 5,
+              "ig_j_gene": 14,
+              "ig_lv_gene": 2,
+              "ig_v_gene": 113,
+              "polymorphic_pseudogene": 22,
+              "protein_coding": 20252,
+              "tr_c_gene": 5,
+              "tr_d_gene": 4,
+              "tr_j_gene": 69,
+              "tr_v_gene": 73,
+              "unknown_likely_coding": 17
+            },
+            "transcript_type_counts": {
+              "C_gene_segment": 25,
+              "D_gene_segment": 9,
+              "J_gene_segment": 83,
+              "V_gene_segment": 247,
+              "gene_segment": 2,
+              "lnc_RNA": 27239,
+              "mRNA": 50316,
+              "ncRNA": 1,
+              "pseudogenic_transcript": 19,
+              "transcript": 1294,
+              "unconfirmed_transcript": 8
+            }
+          },
+          "pseudogene": {
+            "total_count": 6269,
+            "length_stats": {
+              "min": 10,
+              "max": 1948071,
+              "mean": 4444.83
+            },
+            "biotype_counts": {
+              "ig_c_pseudogene": 1,
+              "ig_d_pseudogene": 1,
+              "ig_v_pseudogene": 85,
+              "processed_pseudogene": 4957,
+              "pseudogene": 122,
+              "tr_j_pseudogene": 10,
+              "tr_v_pseudogene": 26,
+              "transcribed_processed_pseudogene": 137,
+              "transcribed_unitary_pseudogene": 1,
+              "transcribed_unprocessed_pseudogene": 73,
+              "unitary_pseudogene": 13,
+              "unprocessed_pseudogene": 843
+            },
+            "transcript_type_counts": {
+              "lnc_RNA": 223,
+              "pseudogenic_transcript": 6264,
+              "unconfirmed_transcript": 1
+            }
+          },
+          "non_coding": {
+            "total_count": 13131,
+            "length_stats": {
+              "min": 35,
+              "max": 2350233,
+              "mean": 10025.66
+            },
+            "biotype_counts": {
+              "3prime_overlapping_ncrna": 2,
+              "antisense": 2101,
+              "bidirectional_promoter_lncrna": 12,
+              "lincrna": 2803,
+              "macro_lncrna": 1,
+              "mirna": 1756,
+              "misc_rna": 549,
+              "mt_trna": 10,
+              "processed_transcript": 708,
+              "ribozyme": 19,
+              "rrna": 287,
+              "scarna": 50,
+              "sense_intronic": 243,
+              "sense_overlapping": 22,
+              "snorna": 1252,
+              "snrna": 1220,
+              "srna": 2,
+              "tec": 2094
+            },
+            "transcript_type_counts": {
+              "lnc_RNA": 8584,
+              "miRNA": 1756,
+              "ncRNA": 551,
+              "pseudogenic_transcript": 17,
+              "rRNA": 287,
+              "scRNA": 50,
+              "snRNA": 1222,
+              "snoRNA": 1252,
+              "tRNA": 10,
+              "three_prime_overlapping_ncrna": 3,
+              "transcript": 22,
+              "unconfirmed_transcript": 2147
+            }
+          }
+        },
+        "transcript_type_stats": {
+          "mRNA": {
+            "length_stats": {
+              "min": 57,
+              "max": 2928224,
+              "mean": 54591.47
+            },
+            "total_count": 50316,
+            "biotype_counts": {
+              "non_stop_decay": 15,
+              "nonsense_mediated_decay": 5017,
+              "polymorphic_pseudogene": 21,
+              "protein_coding": 45263
+            },
+            "associated_genes": {
+              "total_count": 20092,
+              "gene_categories": {
+                "coding": 20092
+              }
+            },
+            "exon_stats": {
+              "total_count": 482326,
+              "length": {
+                "min": 1,
+                "max": 17504,
+                "mean": 246.58
+              },
+              "concatenated_length": {
+                "min": 24,
+                "max": 105938,
+                "mean": 2363.68
+              }
+            },
+            "cds_stats": {
+              "total_count": 428541,
+              "length": {
+                "min": 1,
+                "max": 17106,
+                "mean": 157.74
+              },
+              "concatenated_length": {
+                "min": 3,
+                "max": 104753,
+                "mean": 1343.46
+              }
+            }
+          },
+          "lnc_RNA": {
+            "length_stats": {
+              "min": 11,
+              "max": 2368861,
+              "mean": 21781.7
+            },
+            "total_count": 36046,
+            "biotype_counts": {
+              "antisense": 3039,
+              "lincRNA": 4023,
+              "macro_lncRNA": 2,
+              "processed_transcript": 12613,
+              "retained_intron": 16038,
+              "ribozyme": 19,
+              "sense_intronic": 266,
+              "sense_overlapping": 46
+            },
+            "associated_genes": {
+              "total_count": 15474,
+              "gene_categories": {
+                "coding": 9430,
+                "non_coding": 5896,
+                "pseudogene": 148
+              }
+            },
+            "exon_stats": {
+              "total_count": 149339,
+              "length": {
+                "min": 1,
+                "max": 42769,
+                "mean": 302.56
+              },
+              "concatenated_length": {
+                "min": 11,
+                "max": 80285,
+                "mean": 1253.51
+              }
+            }
+          },
+          "pseudogenic_transcript": {
+            "length_stats": {
+              "min": 10,
+              "max": 1948071,
+              "mean": 4169.34
+            },
+            "total_count": 6300,
+            "biotype_counts": {
+              "IG_C_pseudogene": 1,
+              "IG_D_pseudogene": 1,
+              "IG_V_pseudogene": 85,
+              "TR_J_pseudogene": 10,
+              "TR_V_pseudogene": 26,
+              "processed_pseudogene": 4958,
+              "pseudogene": 139,
+              "transcribed_processed_pseudogene": 137,
+              "transcribed_unitary_pseudogene": 1,
+              "transcribed_unprocessed_pseudogene": 70,
+              "translated_processed_pseudogene": 11,
+              "unitary_pseudogene": 13,
+              "unprocessed_pseudogene": 848
+            },
+            "associated_genes": {
+              "total_count": 6296,
+              "gene_categories": {
+                "coding": 19,
+                "non_coding": 17,
+                "pseudogene": 6260
+              }
+            },
+            "exon_stats": {
+              "total_count": 9335,
+              "length": {
+                "min": 1,
+                "max": 7353,
+                "mean": 455.7
+              },
+              "concatenated_length": {
+                "min": 10,
+                "max": 10538,
+                "mean": 675.24
+              }
+            }
+          },
+          "unconfirmed_transcript": {
+            "length_stats": {
+              "min": 43,
+              "max": 232317,
+              "mean": 2684.42
+            },
+            "total_count": 2156,
+            "biotype_counts": {
+              "TEC": 2156
+            },
+            "associated_genes": {
+              "total_count": 2125,
+              "gene_categories": {
+                "coding": 8,
+                "non_coding": 2116,
+                "pseudogene": 1
+              }
+            },
+            "exon_stats": {
+              "total_count": 2549,
+              "length": {
+                "min": 1,
+                "max": 19930,
+                "mean": 1721.92
+              },
+              "concatenated_length": {
+                "min": 43,
+                "max": 73006,
+                "mean": 2035.8
+              }
+            }
+          },
+          "miRNA": {
+            "length_stats": {
+              "min": 39,
+              "max": 2350233,
+              "mean": 1490.35
+            },
+            "total_count": 1756,
+            "biotype_counts": {
+              "miRNA": 1756
+            },
+            "associated_genes": {
+              "total_count": 1756,
+              "gene_categories": {
+                "non_coding": 1756
+              }
+            },
+            "exon_stats": {
+              "total_count": 1774,
+              "length": {
+                "min": 2,
+                "max": 463,
+                "mean": 87.72
+              },
+              "concatenated_length": {
+                "min": 39,
+                "max": 463,
+                "mean": 88.62
+              }
+            }
+          },
+          "transcript": {
+            "length_stats": {
+              "min": 750,
+              "max": 1004157,
+              "mean": 78924.45
+            },
+            "total_count": 1316,
+            "biotype_counts": {
+              "bidirectional_promoter_lncRNA": 22,
+              "unknown_likely_coding": 1294
+            },
+            "associated_genes": {
+              "total_count": 1242,
+              "gene_categories": {
+                "coding": 1227,
+                "non_coding": 15
+              }
+            },
+            "exon_stats": {
+              "total_count": 23904,
+              "length": {
+                "min": 3,
+                "max": 12805,
+                "mean": 195.58
+              },
+              "concatenated_length": {
+                "min": 213,
+                "max": 100575,
+                "mean": 3552.51
+              }
+            },
+            "cds_stats": {
+              "total_count": 23143,
+              "length": {
+                "min": 1,
+                "max": 11555,
+                "mean": 161.08
+              },
+              "concatenated_length": {
+                "min": 210,
+                "max": 100572,
+                "mean": 2880.88
+              }
+            }
+          },
+          "snoRNA": {
+            "length_stats": {
+              "min": 35,
+              "max": 7765,
+              "mean": 133.06
+            },
+            "total_count": 1252,
+            "biotype_counts": {
+              "snoRNA": 1252
+            },
+            "associated_genes": {
+              "total_count": 1252,
+              "gene_categories": {
+                "non_coding": 1252
+              }
+            },
+            "exon_stats": {
+              "total_count": 1259,
+              "length": {
+                "min": 12,
+                "max": 325,
+                "mean": 121.09
+              },
+              "concatenated_length": {
+                "min": 35,
+                "max": 325,
+                "mean": 121.76
+              }
+            }
+          },
+          "snRNA": {
+            "length_stats": {
+              "min": 54,
+              "max": 13445,
+              "mean": 142.97
+            },
+            "total_count": 1222,
+            "biotype_counts": {
+              "sRNA": 2,
+              "snRNA": 1220
+            },
+            "associated_genes": {
+              "total_count": 1222,
+              "gene_categories": {
+                "non_coding": 1222
+              }
+            },
+            "exon_stats": {
+              "total_count": 1232,
+              "length": {
+                "min": 1,
+                "max": 200,
+                "mean": 112.51
+              },
+              "concatenated_length": {
+                "min": 54,
+                "max": 200,
+                "mean": 113.43
+              }
+            }
+          },
+          "ncRNA": {
+            "length_stats": {
+              "min": 56,
+              "max": 3811,
+              "mean": 249.3
+            },
+            "total_count": 552,
+            "biotype_counts": {
+              "misc_RNA": 552
+            },
+            "associated_genes": {
+              "total_count": 552,
+              "gene_categories": {
+                "coding": 1,
+                "non_coding": 551
+              }
+            },
+            "exon_stats": {
+              "total_count": 555,
+              "length": {
+                "min": 27,
+                "max": 466,
+                "mean": 233.08
+              },
+              "concatenated_length": {
+                "min": 56,
+                "max": 466,
+                "mean": 234.35
+              }
+            }
+          },
+          "rRNA": {
+            "length_stats": {
+              "min": 37,
+              "max": 6395,
+              "mean": 133.74
+            },
+            "total_count": 287,
+            "biotype_counts": {
+              "rRNA": 287
+            },
+            "associated_genes": {
+              "total_count": 287,
+              "gene_categories": {
+                "non_coding": 287
+              }
+            },
+            "exon_stats": {
+              "total_count": 288,
+              "length": {
+                "min": 8,
+                "max": 148,
+                "mean": 111.49
+              },
+              "concatenated_length": {
+                "min": 37,
+                "max": 148,
+                "mean": 111.88
+              }
+            }
+          },
+          "V_gene_segment": {
+            "length_stats": {
+              "min": 90,
+              "max": 1069215,
+              "mean": 16660.83
+            },
+            "total_count": 247,
+            "biotype_counts": {
+              "IG_V_gene": 154,
+              "TR_V_gene": 93
+            },
+            "associated_genes": {
+              "total_count": 186,
+              "gene_categories": {
+                "coding": 186
+              }
+            },
+            "exon_stats": {
+              "total_count": 488,
+              "length": {
+                "min": 2,
+                "max": 351,
+                "mean": 179.55
+              },
+              "concatenated_length": {
+                "min": 90,
+                "max": 566,
+                "mean": 354.74
+              }
+            },
+            "cds_stats": {
+              "total_count": 485,
+              "length": {
+                "min": 2,
+                "max": 351,
+                "mean": 172.54
+              },
+              "concatenated_length": {
+                "min": 90,
+                "max": 419,
+                "mean": 338.8
+              }
+            }
+          },
+          "J_gene_segment": {
+            "length_stats": {
+              "min": 38,
+              "max": 66,
+              "mean": 55.83
+            },
+            "total_count": 83,
+            "biotype_counts": {
+              "IG_J_gene": 14,
+              "TR_J_gene": 69
+            },
+            "associated_genes": {
+              "total_count": 83,
+              "gene_categories": {
+                "coding": 83
+              }
+            },
+            "exon_stats": {
+              "total_count": 83,
+              "length": {
+                "min": 38,
+                "max": 66,
+                "mean": 55.83
+              }
+            },
+            "cds_stats": {
+              "total_count": 83,
+              "length": {
+                "min": 37,
+                "max": 65,
+                "mean": 54.54
+              },
+              "concatenated_length": {
+                "min": 37,
+                "max": 65,
+                "mean": 54.54
+              }
+            }
+          },
+          "scRNA": {
+            "length_stats": {
+              "min": 76,
+              "max": 414,
+              "mean": 160.98
+            },
+            "total_count": 50,
+            "biotype_counts": {
+              "scaRNA": 50
+            },
+            "associated_genes": {
+              "total_count": 50,
+              "gene_categories": {
+                "non_coding": 50
+              }
+            },
+            "exon_stats": {
+              "total_count": 50,
+              "length": {
+                "min": 76,
+                "max": 414,
+                "mean": 160.98
+              }
+            }
+          },
+          "C_gene_segment": {
+            "length_stats": {
+              "min": 314,
+              "max": 9647,
+              "mean": 3210.12
+            },
+            "total_count": 25,
+            "biotype_counts": {
+              "IG_C_gene": 18,
+              "TR_C_gene": 7
+            },
+            "associated_genes": {
+              "total_count": 18,
+              "gene_categories": {
+                "coding": 18
+              }
+            },
+            "exon_stats": {
+              "total_count": 85,
+              "length": {
+                "min": 18,
+                "max": 2484,
+                "mean": 334.85
+              },
+              "concatenated_length": {
+                "min": 314,
+                "max": 3791,
+                "mean": 1138.48
+              }
+            },
+            "cds_stats": {
+              "total_count": 81,
+              "length": {
+                "min": 6,
+                "max": 392,
+                "mean": 224.48
+              },
+              "concatenated_length": {
+                "min": 309,
+                "max": 1425,
+                "mean": 727.32
+              }
+            }
+          },
+          "tRNA": {
+            "length_stats": {
+              "min": 53,
+              "max": 71,
+              "mean": 66.6
+            },
+            "total_count": 10,
+            "biotype_counts": {
+              "Mt_tRNA": 10
+            },
+            "associated_genes": {
+              "total_count": 10,
+              "gene_categories": {
+                "non_coding": 10
+              }
+            },
+            "exon_stats": {
+              "total_count": 10,
+              "length": {
+                "min": 53,
+                "max": 71,
+                "mean": 66.6
+              }
+            }
+          },
+          "D_gene_segment": {
+            "length_stats": {
+              "min": 9,
+              "max": 23,
+              "mean": 14.22
+            },
+            "total_count": 9,
+            "biotype_counts": {
+              "IG_D_gene": 5,
+              "TR_D_gene": 4
+            },
+            "associated_genes": {
+              "total_count": 9,
+              "gene_categories": {
+                "coding": 9
+              }
+            },
+            "exon_stats": {
+              "total_count": 9,
+              "length": {
+                "min": 9,
+                "max": 23,
+                "mean": 14.22
+              }
+            },
+            "cds_stats": {
+              "total_count": 9,
+              "length": {
+                "min": 9,
+                "max": 23,
+                "mean": 14.22
+              },
+              "concatenated_length": {
+                "min": 9,
+                "max": 23,
+                "mean": 14.22
+              }
+            }
+          },
+          "three_prime_overlapping_ncrna": {
+            "length_stats": {
+              "min": 3773,
+              "max": 33634,
+              "mean": 13727.67
+            },
+            "total_count": 3,
+            "biotype_counts": {
+              "3prime_overlapping_ncRNA": 3
+            },
+            "associated_genes": {
+              "total_count": 2,
+              "gene_categories": {
+                "non_coding": 2
+              }
+            },
+            "exon_stats": {
+              "total_count": 6,
+              "length": {
+                "min": 126,
+                "max": 680,
+                "mean": 379.0
+              },
+              "concatenated_length": {
+                "min": 511,
+                "max": 883,
+                "mean": 758.0
+              }
+            }
+          },
+          "gene_segment": {
+            "length_stats": {
+              "min": 294,
+              "max": 461,
+              "mean": 377.5
+            },
+            "total_count": 2,
+            "biotype_counts": {
+              "IG_LV_gene": 2
+            },
+            "associated_genes": {
+              "total_count": 2,
+              "gene_categories": {
+                "coding": 2
+              }
+            },
+            "exon_stats": {
+              "total_count": 3,
+              "length": {
+                "min": 55,
+                "max": 297,
+                "mean": 215.33
+              },
+              "concatenated_length": {
+                "min": 294,
+                "max": 352,
+                "mean": 323.0
+              }
+            },
+            "cds_stats": {
+              "total_count": 3,
+              "length": {
+                "min": 55,
+                "max": 297,
+                "mean": 215.33
+              },
+              "concatenated_length": {
+                "min": 294,
+                "max": 352,
+                "mean": 323.0
+              }
+            }
+          }
+        }
+      },
+      "mapped_regions": [
+        "1",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "X"
+      ]
+    },
+    {
+      "annotation_id": "5a5982d4207be9f7d6bc8457a02b20af",
+      "assembly_accession": "GCA_001624675.1",
+      "assembly_name": "NOD_ShiLtJ_v1",
+      "organism_name": "Mus musculus",
+      "taxid": "10090",
+      "taxon_lineage": [
+        "10090",
+        "862507",
+        "10088",
+        "39107",
+        "10066",
+        "337687",
+        "1963758",
+        "9989",
+        "314147",
+        "314146",
+        "1437010",
+        "9347",
+        "32525",
+        "40674",
+        "32524",
+        "32523",
+        "1338369",
+        "8287",
+        "117571",
+        "117570",
+        "7776",
+        "7742",
+        "89593",
+        "7711",
+        "33511",
+        "33213",
+        "6072",
+        "33208",
+        "33154",
+        "2759",
+        "131567"
+      ],
+      "source_file_info": {
+        "database": "Ensembl",
+        "provider": "community",
+        "release_date": "2018-01-01T00:00:00",
+        "url_path": "https://ftp.ebi.ac.uk/pub/ensemblorganisms/Mus_musculus/GCA_001624675.1/community/geneset/2018_01/genes.gff3.gz",
+        "last_modified": "2024-11-02T00:00:00",
+        "uncompressed_md5": "5108cadc30e0ca932a1463eb11cf9505"
+      },
+      "indexed_file_info": {
+        "bgzipped_path": "/10090/GCA_001624675.1/Ensembl_5108cadc30e0ca932a1463eb11cf9505.gff.gz",
+        "csi_path": "/10090/GCA_001624675.1/Ensembl_5108cadc30e0ca932a1463eb11cf9505.gff.gz.csi",
+        "uncompressed_md5": "5a5982d4207be9f7d6bc8457a02b20af",
+        "file_size": 15772194,
+        "processed_at": "2025-10-07T18:45:51.489000",
+        "pipeline": {
+          "name": "sort_bgzip_tabix",
+          "version": "1.0.0",
+          "method": "sort | bgzip | tabix"
+        }
+      },
+      "features_summary": {
+        "attribute_keys": [
+          "Alias",
+          "ID",
+          "version",
+          "ccdsid",
+          "description",
+          "tag",
+          "rank",
+          "biotype",
+          "Name",
+          "transcript_id",
+          "exon_id",
+          "Parent",
+          "gene_id",
+          "constitutive",
+          "protein_id"
+        ],
+        "types": [
+          "C_gene_segment",
+          "gene_segment",
+          "J_gene_segment",
+          "lnc_RNA",
+          "pseudogene",
+          "scaffold",
+          "snRNA",
+          "rRNA",
+          "transcript",
+          "CDS",
+          "pseudogenic_transcript",
+          "snoRNA",
+          "mRNA",
+          "unconfirmed_transcript",
+          "miRNA",
+          "V_gene_segment",
+          "chromosome",
+          "five_prime_UTR",
+          "D_gene_segment",
+          "three_prime_UTR",
+          "scRNA",
+          "tRNA",
+          "exon",
+          "bidirectional_promoter_lncRNA",
+          "ncRNA",
+          "three_prime_overlapping_ncrna",
+          "gene",
+          "ncRNA_gene"
+        ],
+        "sources": [
+          "NOD_ShiLtJ_v1",
+          "mouse_genomes_project"
+        ],
+        "biotypes": [
+          "IG_C_pseudogene",
+          "protein_coding",
+          "lincRNA",
+          "3prime_overlapping_ncRNA",
+          "translated_unprocessed_pseudogene",
+          "TR_C_gene",
+          "IG_J_gene",
+          "retained_intron",
+          "IG_V_gene",
+          "unprocessed_pseudogene",
+          "TR_V_gene",
+          "pseudogene",
+          "IG_LV_gene",
+          "unitary_pseudogene",
+          "sense_intronic",
+          "sense_overlapping",
+          "snRNA",
+          "IG_C_gene",
+          "IG_D_pseudogene",
+          "unknown_likely_coding",
+          "rRNA",
+          "TR_V_pseudogene",
+          "IG_D_gene",
+          "transcribed_unitary_pseudogene",
+          "TEC",
+          "snoRNA",
+          "ribozyme",
+          "scaRNA",
+          "misc_RNA",
+          "non_stop_decay",
+          "IG_V_pseudogene",
+          "TR_J_gene",
+          "TR_J_pseudogene",
+          "miRNA",
+          "transcribed_processed_pseudogene",
+          "processed_transcript",
+          "translated_processed_pseudogene",
+          "Mt_tRNA",
+          "TR_D_gene",
+          "macro_lncRNA",
+          "polymorphic_pseudogene",
+          "antisense",
+          "bidirectional_promoter_lncRNA",
+          "sRNA",
+          "processed_pseudogene",
+          "nonsense_mediated_decay",
+          "transcribed_unprocessed_pseudogene"
+        ],
+        "types_missing_id": [
+          "exon",
+          "three_prime_UTR",
+          "five_prime_UTR"
+        ],
+        "root_type_counts": {
+          "chromosome": 20,
+          "gene": 22673,
+          "ncRNA_gene": 11024,
+          "pseudogene": 6367,
+          "bidirectional_promoter_lncRNA": 12,
+          "scaffold": 5523
+        },
+        "has_biotype": true,
+        "has_cds": true,
+        "has_exon": true
+      },
+      "features_statistics": {
+        "gene_category_stats": {
+          "coding": {
+            "total_count": 20606,
+            "length_stats": {
+              "min": 10,
+              "max": 2906237,
+              "mean": 55608.92
+            },
+            "biotype_counts": {
+              "ig_c_gene": 12,
+              "ig_d_gene": 6,
+              "ig_j_gene": 14,
+              "ig_lv_gene": 1,
+              "ig_v_gene": 116,
+              "polymorphic_pseudogene": 25,
+              "protein_coding": 20243,
+              "tr_c_gene": 8,
+              "tr_d_gene": 4,
+              "tr_j_gene": 69,
+              "tr_v_gene": 90,
+              "unknown_likely_coding": 18
+            },
+            "transcript_type_counts": {
+              "C_gene_segment": 26,
+              "D_gene_segment": 10,
+              "J_gene_segment": 83,
+              "V_gene_segment": 274,
+              "gene_segment": 1,
+              "lnc_RNA": 27129,
+              "mRNA": 50193,
+              "ncRNA": 1,
+              "pseudogenic_transcript": 22,
+              "transcript": 1387,
+              "unconfirmed_transcript": 8
+            }
+          },
+          "pseudogene": {
+            "total_count": 6367,
+            "length_stats": {
+              "min": 10,
+              "max": 2758829,
+              "mean": 6154.24
+            },
+            "biotype_counts": {
+              "ig_c_pseudogene": 1,
+              "ig_d_pseudogene": 3,
+              "ig_v_pseudogene": 89,
+              "processed_pseudogene": 5056,
+              "pseudogene": 124,
+              "tr_j_pseudogene": 10,
+              "tr_v_pseudogene": 26,
+              "transcribed_processed_pseudogene": 140,
+              "transcribed_unitary_pseudogene": 1,
+              "transcribed_unprocessed_pseudogene": 76,
+              "translated_unprocessed_pseudogene": 1,
+              "unitary_pseudogene": 14,
+              "unprocessed_pseudogene": 826
+            },
+            "transcript_type_counts": {
+              "lnc_RNA": 228,
+              "pseudogenic_transcript": 6358,
+              "unconfirmed_transcript": 1
+            }
+          },
+          "non_coding": {
+            "total_count": 13103,
+            "length_stats": {
+              "min": 12,
+              "max": 2743151,
+              "mean": 10207.06
+            },
+            "biotype_counts": {
+              "3prime_overlapping_ncrna": 2,
+              "antisense": 2104,
+              "bidirectional_promoter_lncrna": 12,
+              "ig_d_gene": 1,
+              "lincrna": 2801,
+              "macro_lncrna": 1,
+              "mirna": 1745,
+              "misc_rna": 552,
+              "mt_trna": 9,
+              "polymorphic_pseudogene": 1,
+              "processed_transcript": 703,
+              "ribozyme": 22,
+              "rrna": 288,
+              "scarna": 49,
+              "sense_intronic": 243,
+              "sense_overlapping": 22,
+              "snorna": 1260,
+              "snrna": 1223,
+              "srna": 2,
+              "tec": 2063
+            },
+            "transcript_type_counts": {
+              "lnc_RNA": 8560,
+              "miRNA": 1745,
+              "ncRNA": 554,
+              "pseudogenic_transcript": 17,
+              "rRNA": 288,
+              "scRNA": 49,
+              "snRNA": 1225,
+              "snoRNA": 1260,
+              "tRNA": 9,
+              "three_prime_overlapping_ncrna": 3,
+              "transcript": 22,
+              "unconfirmed_transcript": 2109
+            }
+          }
+        },
+        "transcript_type_stats": {
+          "mRNA": {
+            "length_stats": {
+              "min": 57,
+              "max": 2906237,
+              "mean": 54572.94
+            },
+            "total_count": 50193,
+            "biotype_counts": {
+              "non_stop_decay": 15,
+              "nonsense_mediated_decay": 5012,
+              "polymorphic_pseudogene": 23,
+              "protein_coding": 45143
+            },
+            "associated_genes": {
+              "total_count": 20059,
+              "gene_categories": {
+                "coding": 20059
+              }
+            },
+            "exon_stats": {
+              "total_count": 481311,
+              "length": {
+                "min": 1,
+                "max": 20722,
+                "mean": 246.41
+              },
+              "concatenated_length": {
+                "min": 24,
+                "max": 101511,
+                "mean": 2362.84
+              }
+            },
+            "cds_stats": {
+              "total_count": 426371,
+              "length": {
+                "min": 1,
+                "max": 17106,
+                "mean": 157.89
+              },
+              "concatenated_length": {
+                "min": 3,
+                "max": 100237,
+                "mean": 1341.24
+              }
+            }
+          },
+          "lnc_RNA": {
+            "length_stats": {
+              "min": 11,
+              "max": 2743151,
+              "mean": 21722.53
+            },
+            "total_count": 35917,
+            "biotype_counts": {
+              "antisense": 3037,
+              "lincRNA": 4008,
+              "macro_lncRNA": 2,
+              "processed_transcript": 12569,
+              "retained_intron": 15967,
+              "ribozyme": 22,
+              "sense_intronic": 266,
+              "sense_overlapping": 46
+            },
+            "associated_genes": {
+              "total_count": 15478,
+              "gene_categories": {
+                "coding": 9432,
+                "non_coding": 5897,
+                "pseudogene": 149
+              }
+            },
+            "exon_stats": {
+              "total_count": 149346,
+              "length": {
+                "min": 1,
+                "max": 21776,
+                "mean": 300.85
+              },
+              "concatenated_length": {
+                "min": 11,
+                "max": 71508,
+                "mean": 1250.96
+              }
+            }
+          },
+          "pseudogenic_transcript": {
+            "length_stats": {
+              "min": 10,
+              "max": 2758829,
+              "mean": 5667.88
+            },
+            "total_count": 6397,
+            "biotype_counts": {
+              "IG_C_pseudogene": 1,
+              "IG_D_pseudogene": 3,
+              "IG_V_pseudogene": 89,
+              "TR_J_pseudogene": 10,
+              "TR_V_pseudogene": 26,
+              "processed_pseudogene": 5057,
+              "pseudogene": 141,
+              "transcribed_processed_pseudogene": 138,
+              "transcribed_unitary_pseudogene": 1,
+              "transcribed_unprocessed_pseudogene": 73,
+              "translated_processed_pseudogene": 11,
+              "translated_unprocessed_pseudogene": 1,
+              "unitary_pseudogene": 14,
+              "unprocessed_pseudogene": 832
+            },
+            "associated_genes": {
+              "total_count": 6393,
+              "gene_categories": {
+                "coding": 22,
+                "non_coding": 17,
+                "pseudogene": 6354
+              }
+            },
+            "exon_stats": {
+              "total_count": 9484,
+              "length": {
+                "min": 1,
+                "max": 7497,
+                "mean": 453.95
+              },
+              "concatenated_length": {
+                "min": 10,
+                "max": 10682,
+                "mean": 673.02
+              }
+            }
+          },
+          "unconfirmed_transcript": {
+            "length_stats": {
+              "min": 59,
+              "max": 263357,
+              "mean": 2772.94
+            },
+            "total_count": 2118,
+            "biotype_counts": {
+              "TEC": 2118
+            },
+            "associated_genes": {
+              "total_count": 2091,
+              "gene_categories": {
+                "coding": 8,
+                "non_coding": 2082,
+                "pseudogene": 1
+              }
+            },
+            "exon_stats": {
+              "total_count": 2632,
+              "length": {
+                "min": 2,
+                "max": 17316,
+                "mean": 1628.44
+              },
+              "concatenated_length": {
+                "min": 59,
+                "max": 72750,
+                "mean": 2023.63
+              }
+            }
+          },
+          "miRNA": {
+            "length_stats": {
+              "min": 39,
+              "max": 49950,
+              "mean": 124.39
+            },
+            "total_count": 1745,
+            "biotype_counts": {
+              "miRNA": 1745
+            },
+            "associated_genes": {
+              "total_count": 1745,
+              "gene_categories": {
+                "non_coding": 1745
+              }
+            },
+            "exon_stats": {
+              "total_count": 1764,
+              "length": {
+                "min": 3,
+                "max": 232,
+                "mean": 87.78
+              },
+              "concatenated_length": {
+                "min": 39,
+                "max": 232,
+                "mean": 88.73
+              }
+            }
+          },
+          "transcript": {
+            "length_stats": {
+              "min": 903,
+              "max": 1054903,
+              "mean": 75330.65
+            },
+            "total_count": 1409,
+            "biotype_counts": {
+              "bidirectional_promoter_lncRNA": 22,
+              "unknown_likely_coding": 1387
+            },
+            "associated_genes": {
+              "total_count": 1347,
+              "gene_categories": {
+                "coding": 1332,
+                "non_coding": 15
+              }
+            },
+            "exon_stats": {
+              "total_count": 24762,
+              "length": {
+                "min": 3,
+                "max": 12805,
+                "mean": 209.23
+              },
+              "concatenated_length": {
+                "min": 235,
+                "max": 101007,
+                "mean": 3677.13
+              }
+            },
+            "cds_stats": {
+              "total_count": 23851,
+              "length": {
+                "min": 1,
+                "max": 11555,
+                "mean": 162.52
+              },
+              "concatenated_length": {
+                "min": 186,
+                "max": 100815,
+                "mean": 2794.75
+              }
+            }
+          },
+          "snoRNA": {
+            "length_stats": {
+              "min": 35,
+              "max": 12730,
+              "mean": 139.73
+            },
+            "total_count": 1260,
+            "biotype_counts": {
+              "snoRNA": 1260
+            },
+            "associated_genes": {
+              "total_count": 1260,
+              "gene_categories": {
+                "non_coding": 1260
+              }
+            },
+            "exon_stats": {
+              "total_count": 1265,
+              "length": {
+                "min": 1,
+                "max": 325,
+                "mean": 121.27
+              },
+              "concatenated_length": {
+                "min": 35,
+                "max": 325,
+                "mean": 121.75
+              }
+            }
+          },
+          "snRNA": {
+            "length_stats": {
+              "min": 54,
+              "max": 1498,
+              "mean": 118.3
+            },
+            "total_count": 1225,
+            "biotype_counts": {
+              "sRNA": 2,
+              "snRNA": 1223
+            },
+            "associated_genes": {
+              "total_count": 1225,
+              "gene_categories": {
+                "non_coding": 1225
+              }
+            },
+            "exon_stats": {
+              "total_count": 1236,
+              "length": {
+                "min": 2,
+                "max": 200,
+                "mean": 112.56
+              },
+              "concatenated_length": {
+                "min": 54,
+                "max": 200,
+                "mean": 113.57
+              }
+            }
+          },
+          "ncRNA": {
+            "length_stats": {
+              "min": 56,
+              "max": 1838,
+              "mean": 240.11
+            },
+            "total_count": 555,
+            "biotype_counts": {
+              "misc_RNA": 555
+            },
+            "associated_genes": {
+              "total_count": 555,
+              "gene_categories": {
+                "coding": 1,
+                "non_coding": 554
+              }
+            },
+            "exon_stats": {
+              "total_count": 558,
+              "length": {
+                "min": 18,
+                "max": 466,
+                "mean": 233.12
+              },
+              "concatenated_length": {
+                "min": 56,
+                "max": 466,
+                "mean": 234.38
+              }
+            }
+          },
+          "rRNA": {
+            "length_stats": {
+              "min": 37,
+              "max": 216,
+              "mean": 112.41
+            },
+            "total_count": 288,
+            "biotype_counts": {
+              "rRNA": 288
+            },
+            "associated_genes": {
+              "total_count": 288,
+              "gene_categories": {
+                "non_coding": 288
+              }
+            },
+            "exon_stats": {
+              "total_count": 290,
+              "length": {
+                "min": 3,
+                "max": 148,
+                "mean": 111.16
+              },
+              "concatenated_length": {
+                "min": 37,
+                "max": 148,
+                "mean": 111.93
+              }
+            }
+          },
+          "V_gene_segment": {
+            "length_stats": {
+              "min": 90,
+              "max": 531059,
+              "mean": 9181.77
+            },
+            "total_count": 274,
+            "biotype_counts": {
+              "IG_V_gene": 162,
+              "TR_V_gene": 112
+            },
+            "associated_genes": {
+              "total_count": 206,
+              "gene_categories": {
+                "coding": 206
+              }
+            },
+            "exon_stats": {
+              "total_count": 540,
+              "length": {
+                "min": 2,
+                "max": 351,
+                "mean": 181.44
+              },
+              "concatenated_length": {
+                "min": 90,
+                "max": 584,
+                "mean": 357.58
+              }
+            },
+            "cds_stats": {
+              "total_count": 536,
+              "length": {
+                "min": 2,
+                "max": 351,
+                "mean": 173.63
+              },
+              "concatenated_length": {
+                "min": 90,
+                "max": 419,
+                "mean": 339.65
+              }
+            }
+          },
+          "J_gene_segment": {
+            "length_stats": {
+              "min": 38,
+              "max": 66,
+              "mean": 55.83
+            },
+            "total_count": 83,
+            "biotype_counts": {
+              "IG_J_gene": 14,
+              "TR_J_gene": 69
+            },
+            "associated_genes": {
+              "total_count": 83,
+              "gene_categories": {
+                "coding": 83
+              }
+            },
+            "exon_stats": {
+              "total_count": 83,
+              "length": {
+                "min": 38,
+                "max": 66,
+                "mean": 55.83
+              }
+            },
+            "cds_stats": {
+              "total_count": 83,
+              "length": {
+                "min": 37,
+                "max": 65,
+                "mean": 54.54
+              },
+              "concatenated_length": {
+                "min": 37,
+                "max": 65,
+                "mean": 54.54
+              }
+            }
+          },
+          "scRNA": {
+            "length_stats": {
+              "min": 76,
+              "max": 414,
+              "mean": 161.69
+            },
+            "total_count": 49,
+            "biotype_counts": {
+              "scaRNA": 49
+            },
+            "associated_genes": {
+              "total_count": 49,
+              "gene_categories": {
+                "non_coding": 49
+              }
+            },
+            "exon_stats": {
+              "total_count": 49,
+              "length": {
+                "min": 76,
+                "max": 414,
+                "mean": 161.69
+              }
+            }
+          },
+          "C_gene_segment": {
+            "length_stats": {
+              "min": 314,
+              "max": 11663,
+              "mean": 3656.31
+            },
+            "total_count": 26,
+            "biotype_counts": {
+              "IG_C_gene": 17,
+              "TR_C_gene": 9
+            },
+            "associated_genes": {
+              "total_count": 20,
+              "gene_categories": {
+                "coding": 20
+              }
+            },
+            "exon_stats": {
+              "total_count": 92,
+              "length": {
+                "min": 18,
+                "max": 2097,
+                "mean": 318.34
+              },
+              "concatenated_length": {
+                "min": 314,
+                "max": 3816,
+                "mean": 1126.42
+              }
+            },
+            "cds_stats": {
+              "total_count": 87,
+              "length": {
+                "min": 6,
+                "max": 392,
+                "mean": 210.34
+              },
+              "concatenated_length": {
+                "min": 309,
+                "max": 1425,
+                "mean": 703.85
+              }
+            }
+          },
+          "D_gene_segment": {
+            "length_stats": {
+              "min": 9,
+              "max": 25,
+              "mean": 15.3
+            },
+            "total_count": 10,
+            "biotype_counts": {
+              "IG_D_gene": 6,
+              "TR_D_gene": 4
+            },
+            "associated_genes": {
+              "total_count": 10,
+              "gene_categories": {
+                "coding": 10
+              }
+            },
+            "exon_stats": {
+              "total_count": 10,
+              "length": {
+                "min": 9,
+                "max": 25,
+                "mean": 15.3
+              }
+            },
+            "cds_stats": {
+              "total_count": 10,
+              "length": {
+                "min": 9,
+                "max": 25,
+                "mean": 15.3
+              },
+              "concatenated_length": {
+                "min": 9,
+                "max": 25,
+                "mean": 15.3
+              }
+            }
+          },
+          "tRNA": {
+            "length_stats": {
+              "min": 53,
+              "max": 166,
+              "mean": 77.0
+            },
+            "total_count": 9,
+            "biotype_counts": {
+              "Mt_tRNA": 9
+            },
+            "associated_genes": {
+              "total_count": 9,
+              "gene_categories": {
+                "non_coding": 9
+              }
+            },
+            "exon_stats": {
+              "total_count": 10,
+              "length": {
+                "min": 27,
+                "max": 71,
+                "mean": 59.6
+              },
+              "concatenated_length": {
+                "min": 53,
+                "max": 71,
+                "mean": 66.22
+              }
+            }
+          },
+          "three_prime_overlapping_ncrna": {
+            "length_stats": {
+              "min": 3773,
+              "max": 35668,
+              "mean": 14405.67
+            },
+            "total_count": 3,
+            "biotype_counts": {
+              "3prime_overlapping_ncRNA": 3
+            },
+            "associated_genes": {
+              "total_count": 2,
+              "gene_categories": {
+                "non_coding": 2
+              }
+            },
+            "exon_stats": {
+              "total_count": 6,
+              "length": {
+                "min": 126,
+                "max": 680,
+                "mean": 379.0
+              },
+              "concatenated_length": {
+                "min": 511,
+                "max": 883,
+                "mean": 758.0
+              }
+            }
+          },
+          "gene_segment": {
+            "length_stats": {
+              "min": 461,
+              "max": 461,
+              "mean": 461.0
+            },
+            "total_count": 1,
+            "biotype_counts": {
+              "IG_LV_gene": 1
+            },
+            "associated_genes": {
+              "total_count": 1,
+              "gene_categories": {
+                "coding": 1
+              }
+            },
+            "exon_stats": {
+              "total_count": 2,
+              "length": {
+                "min": 55,
+                "max": 297,
+                "mean": 176.0
+              },
+              "concatenated_length": {
+                "min": 352,
+                "max": 352,
+                "mean": 352.0
+              }
+            },
+            "cds_stats": {
+              "total_count": 2,
+              "length": {
+                "min": 55,
+                "max": 297,
+                "mean": 176.0
+              },
+              "concatenated_length": {
+                "min": 352,
+                "max": 352,
+                "mean": 352.0
+              }
+            }
+          }
+        }
+      },
+      "mapped_regions": [
+        "1",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "X"
+      ]
+    },
+    {
+      "annotation_id": "845380a5a9804cbda0a80e1515e9eec6",
+      "assembly_accession": "GCA_001632615.1",
+      "assembly_name": "LP_J_v1",
+      "organism_name": "Mus musculus",
+      "taxid": "10090",
+      "taxon_lineage": [
+        "10090",
+        "862507",
+        "10088",
+        "39107",
+        "10066",
+        "337687",
+        "1963758",
+        "9989",
+        "314147",
+        "314146",
+        "1437010",
+        "9347",
+        "32525",
+        "40674",
+        "32524",
+        "32523",
+        "1338369",
+        "8287",
+        "117571",
+        "117570",
+        "7776",
+        "7742",
+        "89593",
+        "7711",
+        "33511",
+        "33213",
+        "6072",
+        "33208",
+        "33154",
+        "2759",
+        "131567"
+      ],
+      "source_file_info": {
+        "database": "Ensembl",
+        "provider": "community",
+        "release_date": "2018-01-01T00:00:00",
+        "url_path": "https://ftp.ebi.ac.uk/pub/ensemblorganisms/Mus_musculus/GCA_001632615.1/community/geneset/2018_01/genes.gff3.gz",
+        "last_modified": "2024-11-02T00:00:00",
+        "uncompressed_md5": "0e86adc8d23d7fc407b57f266d0d67d4"
+      },
+      "indexed_file_info": {
+        "bgzipped_path": "/10090/GCA_001632615.1/Ensembl_0e86adc8d23d7fc407b57f266d0d67d4.gff.gz",
+        "csi_path": "/10090/GCA_001632615.1/Ensembl_0e86adc8d23d7fc407b57f266d0d67d4.gff.gz.csi",
+        "uncompressed_md5": "845380a5a9804cbda0a80e1515e9eec6",
+        "file_size": 15567761,
+        "processed_at": "2025-10-07T18:45:51.489000",
+        "pipeline": {
+          "name": "sort_bgzip_tabix",
+          "version": "1.0.0",
+          "method": "sort | bgzip | tabix"
+        }
+      },
+      "features_summary": {
+        "attribute_keys": [
+          "Alias",
+          "ID",
+          "version",
+          "ccdsid",
+          "description",
+          "tag",
+          "rank",
+          "biotype",
+          "Name",
+          "transcript_id",
+          "exon_id",
+          "Parent",
+          "gene_id",
+          "constitutive",
+          "protein_id"
+        ],
+        "types": [
+          "C_gene_segment",
+          "gene_segment",
+          "J_gene_segment",
+          "lnc_RNA",
+          "pseudogene",
+          "scaffold",
+          "snRNA",
+          "rRNA",
+          "transcript",
+          "CDS",
+          "pseudogenic_transcript",
+          "snoRNA",
+          "mRNA",
+          "unconfirmed_transcript",
+          "miRNA",
+          "V_gene_segment",
+          "chromosome",
+          "five_prime_UTR",
+          "D_gene_segment",
+          "three_prime_UTR",
+          "scRNA",
+          "tRNA",
+          "exon",
+          "bidirectional_promoter_lncRNA",
+          "ncRNA",
+          "three_prime_overlapping_ncrna",
+          "gene",
+          "ncRNA_gene"
+        ],
+        "sources": [
+          "LP_J_v1",
+          "mouse_genomes_project"
+        ],
+        "biotypes": [
+          "IG_C_pseudogene",
+          "protein_coding",
+          "lincRNA",
+          "3prime_overlapping_ncRNA",
+          "translated_unprocessed_pseudogene",
+          "TR_C_gene",
+          "IG_J_gene",
+          "retained_intron",
+          "unprocessed_pseudogene",
+          "IG_V_gene",
+          "TR_V_gene",
+          "pseudogene",
+          "IG_LV_gene",
+          "unitary_pseudogene",
+          "sense_intronic",
+          "sense_overlapping",
+          "snRNA",
+          "IG_C_gene",
+          "IG_D_pseudogene",
+          "unknown_likely_coding",
+          "rRNA",
+          "TR_V_pseudogene",
+          "IG_D_gene",
+          "transcribed_unitary_pseudogene",
+          "TEC",
+          "snoRNA",
+          "ribozyme",
+          "scaRNA",
+          "misc_RNA",
+          "non_stop_decay",
+          "IG_V_pseudogene",
+          "TR_J_gene",
+          "TR_J_pseudogene",
+          "miRNA",
+          "transcribed_processed_pseudogene",
+          "processed_transcript",
+          "translated_processed_pseudogene",
+          "Mt_tRNA",
+          "TR_D_gene",
+          "macro_lncRNA",
+          "polymorphic_pseudogene",
+          "antisense",
+          "bidirectional_promoter_lncRNA",
+          "sRNA",
+          "processed_pseudogene",
+          "nonsense_mediated_decay",
+          "transcribed_unprocessed_pseudogene"
+        ],
+        "types_missing_id": [
+          "exon",
+          "three_prime_UTR",
+          "five_prime_UTR"
+        ],
+        "root_type_counts": {
+          "chromosome": 20,
+          "gene": 22812,
+          "ncRNA_gene": 11079,
+          "pseudogene": 6376,
+          "bidirectional_promoter_lncRNA": 12,
+          "scaffold": 3478
+        },
+        "has_biotype": true,
+        "has_cds": true,
+        "has_exon": true
+      },
+      "features_statistics": {
+        "gene_category_stats": {
+          "coding": {
+            "total_count": 20717,
+            "length_stats": {
+              "min": 10,
+              "max": 2925527,
+              "mean": 52554.14
+            },
+            "biotype_counts": {
+              "ig_c_gene": 13,
+              "ig_d_gene": 8,
+              "ig_j_gene": 14,
+              "ig_lv_gene": 2,
+              "ig_v_gene": 141,
+              "polymorphic_pseudogene": 25,
+              "protein_coding": 20323,
+              "tr_c_gene": 7,
+              "tr_d_gene": 4,
+              "tr_j_gene": 68,
+              "tr_v_gene": 95,
+              "unknown_likely_coding": 17
+            },
+            "transcript_type_counts": {
+              "C_gene_segment": 27,
+              "D_gene_segment": 12,
+              "J_gene_segment": 82,
+              "V_gene_segment": 307,
+              "gene_segment": 2,
+              "lnc_RNA": 27225,
+              "mRNA": 50376,
+              "ncRNA": 1,
+              "pseudogenic_transcript": 20,
+              "transcript": 1254,
+              "unconfirmed_transcript": 8
+            }
+          },
+          "pseudogene": {
+            "total_count": 6376,
+            "length_stats": {
+              "min": 10,
+              "max": 2689222,
+              "mean": 5829.47
+            },
+            "biotype_counts": {
+              "ig_c_pseudogene": 1,
+              "ig_d_pseudogene": 4,
+              "ig_v_pseudogene": 109,
+              "processed_pseudogene": 5020,
+              "pseudogene": 117,
+              "tr_j_pseudogene": 10,
+              "tr_v_pseudogene": 29,
+              "transcribed_processed_pseudogene": 137,
+              "transcribed_unitary_pseudogene": 1,
+              "transcribed_unprocessed_pseudogene": 77,
+              "translated_unprocessed_pseudogene": 1,
+              "unitary_pseudogene": 13,
+              "unprocessed_pseudogene": 857
+            },
+            "transcript_type_counts": {
+              "lnc_RNA": 228,
+              "pseudogenic_transcript": 6365
+            }
+          },
+          "non_coding": {
+            "total_count": 13186,
+            "length_stats": {
+              "min": 35,
+              "max": 2726169,
+              "mean": 9620.67
+            },
+            "biotype_counts": {
+              "3prime_overlapping_ncrna": 2,
+              "antisense": 2115,
+              "bidirectional_promoter_lncrna": 12,
+              "lincrna": 2814,
+              "macro_lncrna": 1,
+              "mirna": 1766,
+              "misc_rna": 549,
+              "mt_trna": 10,
+              "processed_transcript": 713,
+              "ribozyme": 21,
+              "rrna": 286,
+              "scarna": 50,
+              "sense_intronic": 243,
+              "sense_overlapping": 21,
+              "snorna": 1257,
+              "snrna": 1231,
+              "srna": 2,
+              "tec": 2093
+            },
+            "transcript_type_counts": {
+              "lnc_RNA": 8643,
+              "miRNA": 1766,
+              "ncRNA": 551,
+              "pseudogenic_transcript": 16,
+              "rRNA": 286,
+              "scRNA": 50,
+              "snRNA": 1233,
+              "snoRNA": 1257,
+              "tRNA": 10,
+              "three_prime_overlapping_ncrna": 3,
+              "transcript": 22,
+              "unconfirmed_transcript": 2148
+            }
+          }
+        },
+        "transcript_type_stats": {
+          "mRNA": {
+            "length_stats": {
+              "min": 57,
+              "max": 2925527,
+              "mean": 51874.31
+            },
+            "total_count": 50376,
+            "biotype_counts": {
+              "non_stop_decay": 15,
+              "nonsense_mediated_decay": 5001,
+              "polymorphic_pseudogene": 25,
+              "protein_coding": 45335
+            },
+            "associated_genes": {
+              "total_count": 20164,
+              "gene_categories": {
+                "coding": 20164
+              }
+            },
+            "exon_stats": {
+              "total_count": 482925,
+              "length": {
+                "min": 1,
+                "max": 26111,
+                "mean": 246.06
+              },
+              "concatenated_length": {
+                "min": 24,
+                "max": 103716,
+                "mean": 2358.83
+              }
+            },
+            "cds_stats": {
+              "total_count": 429128,
+              "length": {
+                "min": 1,
+                "max": 17106,
+                "mean": 157.9
+              },
+              "concatenated_length": {
+                "min": 3,
+                "max": 102531,
+                "mean": 1345.08
+              }
+            }
+          },
+          "lnc_RNA": {
+            "length_stats": {
+              "min": 11,
+              "max": 2726169,
+              "mean": 20852.57
+            },
+            "total_count": 36096,
+            "biotype_counts": {
+              "antisense": 3063,
+              "lincRNA": 4046,
+              "macro_lncRNA": 2,
+              "processed_transcript": 12606,
+              "retained_intron": 16047,
+              "ribozyme": 21,
+              "sense_intronic": 266,
+              "sense_overlapping": 45
+            },
+            "associated_genes": {
+              "total_count": 15522,
+              "gene_categories": {
+                "coding": 9440,
+                "non_coding": 5927,
+                "pseudogene": 155
+              }
+            },
+            "exon_stats": {
+              "total_count": 149793,
+              "length": {
+                "min": 1,
+                "max": 46197,
+                "mean": 302.19
+              },
+              "concatenated_length": {
+                "min": 11,
+                "max": 79350,
+                "mean": 1254.05
+              }
+            }
+          },
+          "pseudogenic_transcript": {
+            "length_stats": {
+              "min": 10,
+              "max": 2689222,
+              "mean": 5428.91
+            },
+            "total_count": 6401,
+            "biotype_counts": {
+              "IG_C_pseudogene": 1,
+              "IG_D_pseudogene": 4,
+              "IG_V_pseudogene": 109,
+              "TR_J_pseudogene": 10,
+              "TR_V_pseudogene": 29,
+              "processed_pseudogene": 5021,
+              "pseudogene": 133,
+              "transcribed_processed_pseudogene": 137,
+              "transcribed_unitary_pseudogene": 1,
+              "transcribed_unprocessed_pseudogene": 70,
+              "translated_processed_pseudogene": 10,
+              "translated_unprocessed_pseudogene": 1,
+              "unitary_pseudogene": 13,
+              "unprocessed_pseudogene": 862
+            },
+            "associated_genes": {
+              "total_count": 6398,
+              "gene_categories": {
+                "coding": 20,
+                "non_coding": 16,
+                "pseudogene": 6362
+              }
+            },
+            "exon_stats": {
+              "total_count": 9566,
+              "length": {
+                "min": 1,
+                "max": 5088,
+                "mean": 452.16
+              },
+              "concatenated_length": {
+                "min": 10,
+                "max": 10682,
+                "mean": 675.73
+              }
+            }
+          },
+          "unconfirmed_transcript": {
+            "length_stats": {
+              "min": 43,
+              "max": 206815,
+              "mean": 2591.33
+            },
+            "total_count": 2156,
+            "biotype_counts": {
+              "TEC": 2156
+            },
+            "associated_genes": {
+              "total_count": 2125,
+              "gene_categories": {
+                "coding": 8,
+                "non_coding": 2117
+              }
+            },
+            "exon_stats": {
+              "total_count": 2544,
+              "length": {
+                "min": 1,
+                "max": 38032,
+                "mean": 1727.77
+              },
+              "concatenated_length": {
+                "min": 43,
+                "max": 73303,
+                "mean": 2038.7
+              }
+            }
+          },
+          "miRNA": {
+            "length_stats": {
+              "min": 39,
+              "max": 2804,
+              "mean": 94.58
+            },
+            "total_count": 1766,
+            "biotype_counts": {
+              "miRNA": 1766
+            },
+            "associated_genes": {
+              "total_count": 1766,
+              "gene_categories": {
+                "non_coding": 1766
+              }
+            },
+            "exon_stats": {
+              "total_count": 1784,
+              "length": {
+                "min": 3,
+                "max": 442,
+                "mean": 87.74
+              },
+              "concatenated_length": {
+                "min": 39,
+                "max": 442,
+                "mean": 88.63
+              }
+            }
+          },
+          "transcript": {
+            "length_stats": {
+              "min": 751,
+              "max": 949275,
+              "mean": 73798.06
+            },
+            "total_count": 1276,
+            "biotype_counts": {
+              "bidirectional_promoter_lncRNA": 22,
+              "unknown_likely_coding": 1254
+            },
+            "associated_genes": {
+              "total_count": 1210,
+              "gene_categories": {
+                "coding": 1195,
+                "non_coding": 15
+              }
+            },
+            "exon_stats": {
+              "total_count": 23180,
+              "length": {
+                "min": 3,
+                "max": 12805,
+                "mean": 192.91
+              },
+              "concatenated_length": {
+                "min": 189,
+                "max": 100986,
+                "mean": 3504.35
+              }
+            },
+            "cds_stats": {
+              "total_count": 22431,
+              "length": {
+                "min": 1,
+                "max": 11555,
+                "mean": 160.43
+              },
+              "concatenated_length": {
+                "min": 186,
+                "max": 100983,
+                "mean": 2869.79
+              }
+            }
+          },
+          "snoRNA": {
+            "length_stats": {
+              "min": 35,
+              "max": 268454,
+              "mean": 337.1
+            },
+            "total_count": 1257,
+            "biotype_counts": {
+              "snoRNA": 1257
+            },
+            "associated_genes": {
+              "total_count": 1257,
+              "gene_categories": {
+                "non_coding": 1257
+              }
+            },
+            "exon_stats": {
+              "total_count": 1264,
+              "length": {
+                "min": 2,
+                "max": 325,
+                "mean": 120.99
+              },
+              "concatenated_length": {
+                "min": 35,
+                "max": 325,
+                "mean": 121.66
+              }
+            }
+          },
+          "snRNA": {
+            "length_stats": {
+              "min": 54,
+              "max": 7772,
+              "mean": 123.47
+            },
+            "total_count": 1233,
+            "biotype_counts": {
+              "sRNA": 2,
+              "snRNA": 1231
+            },
+            "associated_genes": {
+              "total_count": 1233,
+              "gene_categories": {
+                "non_coding": 1233
+              }
+            },
+            "exon_stats": {
+              "total_count": 1238,
+              "length": {
+                "min": 1,
+                "max": 213,
+                "mean": 113.28
+              },
+              "concatenated_length": {
+                "min": 54,
+                "max": 213,
+                "mean": 113.74
+              }
+            }
+          },
+          "ncRNA": {
+            "length_stats": {
+              "min": 56,
+              "max": 2603,
+              "mean": 239.78
+            },
+            "total_count": 552,
+            "biotype_counts": {
+              "misc_RNA": 552
+            },
+            "associated_genes": {
+              "total_count": 552,
+              "gene_categories": {
+                "coding": 1,
+                "non_coding": 551
+              }
+            },
+            "exon_stats": {
+              "total_count": 557,
+              "length": {
+                "min": 4,
+                "max": 466,
+                "mean": 232.26
+              },
+              "concatenated_length": {
+                "min": 56,
+                "max": 466,
+                "mean": 234.36
+              }
+            }
+          },
+          "V_gene_segment": {
+            "length_stats": {
+              "min": 250,
+              "max": 270587,
+              "mean": 4567.0
+            },
+            "total_count": 307,
+            "biotype_counts": {
+              "IG_V_gene": 190,
+              "TR_V_gene": 117
+            },
+            "associated_genes": {
+              "total_count": 236,
+              "gene_categories": {
+                "coding": 236
+              }
+            },
+            "exon_stats": {
+              "total_count": 622,
+              "length": {
+                "min": 4,
+                "max": 351,
+                "mean": 175.49
+              },
+              "concatenated_length": {
+                "min": 215,
+                "max": 566,
+                "mean": 355.55
+              }
+            },
+            "cds_stats": {
+              "total_count": 618,
+              "length": {
+                "min": 4,
+                "max": 351,
+                "mean": 168.01
+              },
+              "concatenated_length": {
+                "min": 180,
+                "max": 419,
+                "mean": 338.21
+              }
+            }
+          },
+          "rRNA": {
+            "length_stats": {
+              "min": 37,
+              "max": 148,
+              "mean": 111.95
+            },
+            "total_count": 286,
+            "biotype_counts": {
+              "rRNA": 286
+            },
+            "associated_genes": {
+              "total_count": 286,
+              "gene_categories": {
+                "non_coding": 286
+              }
+            },
+            "exon_stats": {
+              "total_count": 286,
+              "length": {
+                "min": 37,
+                "max": 148,
+                "mean": 111.95
+              }
+            }
+          },
+          "J_gene_segment": {
+            "length_stats": {
+              "min": 38,
+              "max": 66,
+              "mean": 55.78
+            },
+            "total_count": 82,
+            "biotype_counts": {
+              "IG_J_gene": 14,
+              "TR_J_gene": 68
+            },
+            "associated_genes": {
+              "total_count": 82,
+              "gene_categories": {
+                "coding": 82
+              }
+            },
+            "exon_stats": {
+              "total_count": 82,
+              "length": {
+                "min": 38,
+                "max": 66,
+                "mean": 55.78
+              }
+            },
+            "cds_stats": {
+              "total_count": 82,
+              "length": {
+                "min": 37,
+                "max": 65,
+                "mean": 54.5
+              },
+              "concatenated_length": {
+                "min": 37,
+                "max": 65,
+                "mean": 54.5
+              }
+            }
+          },
+          "scRNA": {
+            "length_stats": {
+              "min": 76,
+              "max": 1377,
+              "mean": 185.62
+            },
+            "total_count": 50,
+            "biotype_counts": {
+              "scaRNA": 50
+            },
+            "associated_genes": {
+              "total_count": 50,
+              "gene_categories": {
+                "non_coding": 50
+              }
+            },
+            "exon_stats": {
+              "total_count": 51,
+              "length": {
+                "min": 42,
+                "max": 414,
+                "mean": 157.86
+              },
+              "concatenated_length": {
+                "min": 76,
+                "max": 414,
+                "mean": 161.02
+              }
+            }
+          },
+          "C_gene_segment": {
+            "length_stats": {
+              "min": 314,
+              "max": 9901,
+              "mean": 2908.85
+            },
+            "total_count": 27,
+            "biotype_counts": {
+              "IG_C_gene": 18,
+              "TR_C_gene": 9
+            },
+            "associated_genes": {
+              "total_count": 20,
+              "gene_categories": {
+                "coding": 20
+              }
+            },
+            "exon_stats": {
+              "total_count": 90,
+              "length": {
+                "min": 12,
+                "max": 3326,
+                "mean": 334.09
+              },
+              "concatenated_length": {
+                "min": 314,
+                "max": 3788,
+                "mean": 1113.63
+              }
+            },
+            "cds_stats": {
+              "total_count": 87,
+              "length": {
+                "min": 6,
+                "max": 392,
+                "mean": 220.45
+              },
+              "concatenated_length": {
+                "min": 309,
+                "max": 1425,
+                "mean": 710.33
+              }
+            }
+          },
+          "D_gene_segment": {
+            "length_stats": {
+              "min": 9,
+              "max": 29,
+              "mean": 15.83
+            },
+            "total_count": 12,
+            "biotype_counts": {
+              "IG_D_gene": 8,
+              "TR_D_gene": 4
+            },
+            "associated_genes": {
+              "total_count": 12,
+              "gene_categories": {
+                "coding": 12
+              }
+            },
+            "exon_stats": {
+              "total_count": 12,
+              "length": {
+                "min": 9,
+                "max": 29,
+                "mean": 15.83
+              }
+            },
+            "cds_stats": {
+              "total_count": 12,
+              "length": {
+                "min": 9,
+                "max": 29,
+                "mean": 15.83
+              },
+              "concatenated_length": {
+                "min": 9,
+                "max": 29,
+                "mean": 15.83
+              }
+            }
+          },
+          "tRNA": {
+            "length_stats": {
+              "min": 53,
+              "max": 71,
+              "mean": 66.6
+            },
+            "total_count": 10,
+            "biotype_counts": {
+              "Mt_tRNA": 10
+            },
+            "associated_genes": {
+              "total_count": 10,
+              "gene_categories": {
+                "non_coding": 10
+              }
+            },
+            "exon_stats": {
+              "total_count": 10,
+              "length": {
+                "min": 53,
+                "max": 71,
+                "mean": 66.6
+              }
+            }
+          },
+          "three_prime_overlapping_ncrna": {
+            "length_stats": {
+              "min": 3773,
+              "max": 36379,
+              "mean": 14642.67
+            },
+            "total_count": 3,
+            "biotype_counts": {
+              "3prime_overlapping_ncRNA": 3
+            },
+            "associated_genes": {
+              "total_count": 2,
+              "gene_categories": {
+                "non_coding": 2
+              }
+            },
+            "exon_stats": {
+              "total_count": 6,
+              "length": {
+                "min": 126,
+                "max": 680,
+                "mean": 379.0
+              },
+              "concatenated_length": {
+                "min": 511,
+                "max": 883,
+                "mean": 758.0
+              }
+            }
+          },
+          "gene_segment": {
+            "length_stats": {
+              "min": 294,
+              "max": 461,
+              "mean": 377.5
+            },
+            "total_count": 2,
+            "biotype_counts": {
+              "IG_LV_gene": 2
+            },
+            "associated_genes": {
+              "total_count": 2,
+              "gene_categories": {
+                "coding": 2
+              }
+            },
+            "exon_stats": {
+              "total_count": 3,
+              "length": {
+                "min": 55,
+                "max": 297,
+                "mean": 215.33
+              },
+              "concatenated_length": {
+                "min": 294,
+                "max": 352,
+                "mean": 323.0
+              }
+            },
+            "cds_stats": {
+              "total_count": 3,
+              "length": {
+                "min": 55,
+                "max": 297,
+                "mean": 215.33
+              },
+              "concatenated_length": {
+                "min": 294,
+                "max": 352,
+                "mean": 323.0
+              }
+            }
+          }
+        }
+      },
+      "mapped_regions": [
+        "1",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "X"
+      ]
+    },
+    {
+      "annotation_id": "55282f7d773c9ab9481833e227ef9180",
+      "assembly_accession": "GCA_001632525.1",
+      "assembly_name": "BALB_cJ_v1",
+      "organism_name": "Mus musculus",
+      "taxid": "10090",
+      "taxon_lineage": [
+        "10090",
+        "862507",
+        "10088",
+        "39107",
+        "10066",
+        "337687",
+        "1963758",
+        "9989",
+        "314147",
+        "314146",
+        "1437010",
+        "9347",
+        "32525",
+        "40674",
+        "32524",
+        "32523",
+        "1338369",
+        "8287",
+        "117571",
+        "117570",
+        "7776",
+        "7742",
+        "89593",
+        "7711",
+        "33511",
+        "33213",
+        "6072",
+        "33208",
+        "33154",
+        "2759",
+        "131567"
+      ],
+      "source_file_info": {
+        "database": "Ensembl",
+        "provider": "community",
+        "release_date": "2018-01-01T00:00:00",
+        "url_path": "https://ftp.ebi.ac.uk/pub/ensemblorganisms/Mus_musculus/GCA_001632525.1/community/geneset/2018_01/genes.gff3.gz",
+        "last_modified": "2024-10-21T00:00:00",
+        "uncompressed_md5": "fa248039c8b3db4f4e0a6d886cc3b627"
+      },
+      "indexed_file_info": {
+        "bgzipped_path": "/10090/GCA_001632525.1/Ensembl_fa248039c8b3db4f4e0a6d886cc3b627.gff.gz",
+        "csi_path": "/10090/GCA_001632525.1/Ensembl_fa248039c8b3db4f4e0a6d886cc3b627.gff.gz.csi",
+        "uncompressed_md5": "55282f7d773c9ab9481833e227ef9180",
+        "file_size": 15665782,
+        "processed_at": "2025-10-07T18:45:51.489000",
+        "pipeline": {
+          "name": "sort_bgzip_tabix",
+          "version": "1.0.0",
+          "method": "sort | bgzip | tabix"
+        }
+      },
+      "features_summary": {
+        "attribute_keys": [
+          "Alias",
+          "ID",
+          "version",
+          "ccdsid",
+          "description",
+          "tag",
+          "rank",
+          "biotype",
+          "Name",
+          "transcript_id",
+          "exon_id",
+          "Parent",
+          "gene_id",
+          "constitutive",
+          "protein_id"
+        ],
+        "types": [
+          "C_gene_segment",
+          "gene_segment",
+          "J_gene_segment",
+          "lnc_RNA",
+          "pseudogene",
+          "scaffold",
+          "snRNA",
+          "rRNA",
+          "transcript",
+          "CDS",
+          "pseudogenic_transcript",
+          "snoRNA",
+          "mRNA",
+          "unconfirmed_transcript",
+          "miRNA",
+          "V_gene_segment",
+          "chromosome",
+          "five_prime_UTR",
+          "D_gene_segment",
+          "three_prime_UTR",
+          "scRNA",
+          "tRNA",
+          "exon",
+          "bidirectional_promoter_lncRNA",
+          "ncRNA",
+          "three_prime_overlapping_ncrna",
+          "gene",
+          "ncRNA_gene"
+        ],
+        "sources": [
+          "BALB_cJ_v1",
+          "mouse_genomes_project"
+        ],
+        "biotypes": [
+          "IG_C_pseudogene",
+          "protein_coding",
+          "lincRNA",
+          "3prime_overlapping_ncRNA",
+          "translated_unprocessed_pseudogene",
+          "TR_C_gene",
+          "IG_J_gene",
+          "retained_intron",
+          "unprocessed_pseudogene",
+          "IG_V_gene",
+          "TR_V_gene",
+          "pseudogene",
+          "IG_LV_gene",
+          "unitary_pseudogene",
+          "sense_intronic",
+          "sense_overlapping",
+          "snRNA",
+          "IG_C_gene",
+          "IG_D_pseudogene",
+          "unknown_likely_coding",
+          "rRNA",
+          "TR_V_pseudogene",
+          "IG_D_gene",
+          "transcribed_unitary_pseudogene",
+          "TEC",
+          "snoRNA",
+          "ribozyme",
+          "scaRNA",
+          "misc_RNA",
+          "non_stop_decay",
+          "IG_V_pseudogene",
+          "TR_J_gene",
+          "TR_J_pseudogene",
+          "miRNA",
+          "transcribed_processed_pseudogene",
+          "processed_transcript",
+          "translated_processed_pseudogene",
+          "Mt_tRNA",
+          "TR_D_gene",
+          "macro_lncRNA",
+          "polymorphic_pseudogene",
+          "antisense",
+          "bidirectional_promoter_lncRNA",
+          "sRNA",
+          "processed_pseudogene",
+          "nonsense_mediated_decay",
+          "transcribed_unprocessed_pseudogene"
+        ],
+        "types_missing_id": [
+          "exon",
+          "three_prime_UTR",
+          "five_prime_UTR"
+        ],
+        "root_type_counts": {
+          "chromosome": 20,
+          "gene": 22816,
+          "ncRNA_gene": 11104,
+          "pseudogene": 6371,
+          "bidirectional_promoter_lncRNA": 12,
+          "scaffold": 3804
+        },
+        "has_biotype": true,
+        "has_cds": true,
+        "has_exon": true
+      },
+      "features_statistics": {
+        "gene_category_stats": {
+          "coding": {
+            "total_count": 20708,
+            "length_stats": {
+              "min": 10,
+              "max": 2604803,
+              "mean": 50603.06
+            },
+            "biotype_counts": {
+              "ig_c_gene": 13,
+              "ig_d_gene": 6,
+              "ig_j_gene": 14,
+              "ig_lv_gene": 2,
+              "ig_v_gene": 104,
+              "polymorphic_pseudogene": 23,
+              "protein_coding": 20378,
+              "tr_c_gene": 4,
+              "tr_d_gene": 4,
+              "tr_j_gene": 70,
+              "tr_v_gene": 76,
+              "unknown_likely_coding": 14
+            },
+            "transcript_type_counts": {
+              "C_gene_segment": 23,
+              "D_gene_segment": 10,
+              "J_gene_segment": 84,
+              "V_gene_segment": 234,
+              "gene_segment": 2,
+              "lnc_RNA": 27375,
+              "mRNA": 50612,
+              "ncRNA": 1,
+              "pseudogenic_transcript": 18,
+              "transcript": 1180,
+              "unconfirmed_transcript": 8
+            }
+          },
+          "pseudogene": {
+            "total_count": 6371,
+            "length_stats": {
+              "min": 10,
+              "max": 2991592,
+              "mean": 4404.76
+            },
+            "biotype_counts": {
+              "ig_c_pseudogene": 1,
+              "ig_d_pseudogene": 4,
+              "ig_v_pseudogene": 84,
+              "processed_pseudogene": 5036,
+              "pseudogene": 122,
+              "tr_j_pseudogene": 10,
+              "tr_v_pseudogene": 26,
+              "transcribed_processed_pseudogene": 139,
+              "transcribed_unitary_pseudogene": 1,
+              "transcribed_unprocessed_pseudogene": 83,
+              "translated_unprocessed_pseudogene": 1,
+              "unitary_pseudogene": 13,
+              "unprocessed_pseudogene": 851
+            },
+            "transcript_type_counts": {
+              "lnc_RNA": 229,
+              "pseudogenic_transcript": 6359,
+              "unconfirmed_transcript": 1
+            }
+          },
+          "non_coding": {
+            "total_count": 13224,
+            "length_stats": {
+              "min": 35,
+              "max": 2040769,
+              "mean": 9037.42
+            },
+            "biotype_counts": {
+              "3prime_overlapping_ncrna": 2,
+              "antisense": 2115,
+              "bidirectional_promoter_lncrna": 12,
+              "lincrna": 2817,
+              "macro_lncrna": 1,
+              "mirna": 1769,
+              "misc_rna": 553,
+              "mt_trna": 10,
+              "polymorphic_pseudogene": 1,
+              "processed_transcript": 710,
+              "ribozyme": 22,
+              "rrna": 289,
+              "scarna": 50,
+              "sense_intronic": 242,
+              "sense_overlapping": 22,
+              "snorna": 1256,
+              "snrna": 1246,
+              "srna": 2,
+              "tec": 2105
+            },
+            "transcript_type_counts": {
+              "lnc_RNA": 8626,
+              "miRNA": 1769,
+              "ncRNA": 555,
+              "pseudogenic_transcript": 16,
+              "rRNA": 289,
+              "scRNA": 50,
+              "snRNA": 1248,
+              "snoRNA": 1256,
+              "tRNA": 10,
+              "three_prime_overlapping_ncrna": 3,
+              "transcript": 22,
+              "unconfirmed_transcript": 2158
+            }
+          }
+        },
+        "transcript_type_stats": {
+          "mRNA": {
+            "length_stats": {
+              "min": 57,
+              "max": 2602554,
+              "mean": 49728.72
+            },
+            "total_count": 50612,
+            "biotype_counts": {
+              "non_stop_decay": 15,
+              "nonsense_mediated_decay": 5033,
+              "polymorphic_pseudogene": 23,
+              "protein_coding": 45541
+            },
+            "associated_genes": {
+              "total_count": 20232,
+              "gene_categories": {
+                "coding": 20232
+              }
+            },
+            "exon_stats": {
+              "total_count": 483409,
+              "length": {
+                "min": 1,
+                "max": 26541,
+                "mean": 247.27
+              },
+              "concatenated_length": {
+                "min": 24,
+                "max": 106110,
+                "mean": 2361.73
+              }
+            },
+            "cds_stats": {
+              "total_count": 429830,
+              "length": {
+                "min": 1,
+                "max": 17106,
+                "mean": 157.9
+              },
+              "concatenated_length": {
+                "min": 3,
+                "max": 104925,
+                "mean": 1340.96
+              }
+            }
+          },
+          "lnc_RNA": {
+            "length_stats": {
+              "min": 11,
+              "max": 2403468,
+              "mean": 19921.99
+            },
+            "total_count": 36230,
+            "biotype_counts": {
+              "antisense": 3051,
+              "lincRNA": 4046,
+              "macro_lncRNA": 2,
+              "processed_transcript": 12689,
+              "retained_intron": 16109,
+              "ribozyme": 22,
+              "sense_intronic": 265,
+              "sense_overlapping": 46
+            },
+            "associated_genes": {
+              "total_count": 15560,
+              "gene_categories": {
+                "coding": 9476,
+                "non_coding": 5929,
+                "pseudogene": 155
+              }
+            },
+            "exon_stats": {
+              "total_count": 149687,
+              "length": {
+                "min": 1,
+                "max": 26542,
+                "mean": 303.24
+              },
+              "concatenated_length": {
+                "min": 11,
+                "max": 80552,
+                "mean": 1252.87
+              }
+            }
+          },
+          "pseudogenic_transcript": {
+            "length_stats": {
+              "min": 10,
+              "max": 2991592,
+              "mean": 4036.18
+            },
+            "total_count": 6393,
+            "biotype_counts": {
+              "IG_C_pseudogene": 1,
+              "IG_D_pseudogene": 4,
+              "IG_V_pseudogene": 84,
+              "TR_J_pseudogene": 10,
+              "TR_V_pseudogene": 26,
+              "processed_pseudogene": 5037,
+              "pseudogene": 138,
+              "transcribed_processed_pseudogene": 136,
+              "transcribed_unitary_pseudogene": 1,
+              "transcribed_unprocessed_pseudogene": 76,
+              "translated_processed_pseudogene": 10,
+              "translated_unprocessed_pseudogene": 1,
+              "unitary_pseudogene": 13,
+              "unprocessed_pseudogene": 856
+            },
+            "associated_genes": {
+              "total_count": 6388,
+              "gene_categories": {
+                "coding": 18,
+                "non_coding": 16,
+                "pseudogene": 6354
+              }
+            },
+            "exon_stats": {
+              "total_count": 9424,
+              "length": {
+                "min": 1,
+                "max": 5599,
+                "mean": 458.25
+              },
+              "concatenated_length": {
+                "min": 10,
+                "max": 10538,
+                "mean": 675.52
+              }
+            }
+          },
+          "unconfirmed_transcript": {
+            "length_stats": {
+              "min": 43,
+              "max": 214473,
+              "mean": 2533.76
+            },
+            "total_count": 2167,
+            "biotype_counts": {
+              "TEC": 2167
+            },
+            "associated_genes": {
+              "total_count": 2137,
+              "gene_categories": {
+                "coding": 8,
+                "non_coding": 2128,
+                "pseudogene": 1
+              }
+            },
+            "exon_stats": {
+              "total_count": 2496,
+              "length": {
+                "min": 2,
+                "max": 20085,
+                "mean": 1770.6
+              },
+              "concatenated_length": {
+                "min": 43,
+                "max": 73639,
+                "mean": 2039.41
+              }
+            }
+          },
+          "miRNA": {
+            "length_stats": {
+              "min": 39,
+              "max": 2040769,
+              "mean": 1268.88
+            },
+            "total_count": 1769,
+            "biotype_counts": {
+              "miRNA": 1769
+            },
+            "associated_genes": {
+              "total_count": 1769,
+              "gene_categories": {
+                "non_coding": 1769
+              }
+            },
+            "exon_stats": {
+              "total_count": 1789,
+              "length": {
+                "min": 2,
+                "max": 442,
+                "mean": 87.98
+              },
+              "concatenated_length": {
+                "min": 39,
+                "max": 442,
+                "mean": 88.98
+              }
+            }
+          },
+          "snoRNA": {
+            "length_stats": {
+              "min": 35,
+              "max": 12126,
+              "mean": 132.55
+            },
+            "total_count": 1256,
+            "biotype_counts": {
+              "snoRNA": 1256
+            },
+            "associated_genes": {
+              "total_count": 1256,
+              "gene_categories": {
+                "non_coding": 1256
+              }
+            },
+            "exon_stats": {
+              "total_count": 1261,
+              "length": {
+                "min": 1,
+                "max": 325,
+                "mean": 121.15
+              },
+              "concatenated_length": {
+                "min": 35,
+                "max": 325,
+                "mean": 121.63
+              }
+            }
+          },
+          "snRNA": {
+            "length_stats": {
+              "min": 54,
+              "max": 660,
+              "mean": 114.5
+            },
+            "total_count": 1248,
+            "biotype_counts": {
+              "sRNA": 2,
+              "snRNA": 1246
+            },
+            "associated_genes": {
+              "total_count": 1248,
+              "gene_categories": {
+                "non_coding": 1248
+              }
+            },
+            "exon_stats": {
+              "total_count": 1255,
+              "length": {
+                "min": 1,
+                "max": 200,
+                "mean": 113.02
+              },
+              "concatenated_length": {
+                "min": 54,
+                "max": 200,
+                "mean": 113.65
+              }
+            }
+          },
+          "transcript": {
+            "length_stats": {
+              "min": 750,
+              "max": 920324,
+              "mean": 76211.02
+            },
+            "total_count": 1202,
+            "biotype_counts": {
+              "bidirectional_promoter_lncRNA": 22,
+              "unknown_likely_coding": 1180
+            },
+            "associated_genes": {
+              "total_count": 1132,
+              "gene_categories": {
+                "coding": 1117,
+                "non_coding": 15
+              }
+            },
+            "exon_stats": {
+              "total_count": 21683,
+              "length": {
+                "min": 3,
+                "max": 12805,
+                "mean": 205.32
+              },
+              "concatenated_length": {
+                "min": 189,
+                "max": 100719,
+                "mean": 3703.72
+              }
+            },
+            "cds_stats": {
+              "total_count": 20990,
+              "length": {
+                "min": 1,
+                "max": 11555,
+                "mean": 162.21
+              },
+              "concatenated_length": {
+                "min": 186,
+                "max": 100716,
+                "mean": 2885.42
+              }
+            }
+          },
+          "ncRNA": {
+            "length_stats": {
+              "min": 56,
+              "max": 7176,
+              "mean": 253.15
+            },
+            "total_count": 556,
+            "biotype_counts": {
+              "misc_RNA": 556
+            },
+            "associated_genes": {
+              "total_count": 556,
+              "gene_categories": {
+                "coding": 1,
+                "non_coding": 555
+              }
+            },
+            "exon_stats": {
+              "total_count": 560,
+              "length": {
+                "min": 18,
+                "max": 466,
+                "mean": 232.72
+              },
+              "concatenated_length": {
+                "min": 56,
+                "max": 466,
+                "mean": 234.4
+              }
+            }
+          },
+          "rRNA": {
+            "length_stats": {
+              "min": 37,
+              "max": 730,
+              "mean": 114.01
+            },
+            "total_count": 289,
+            "biotype_counts": {
+              "rRNA": 289
+            },
+            "associated_genes": {
+              "total_count": 289,
+              "gene_categories": {
+                "non_coding": 289
+              }
+            },
+            "exon_stats": {
+              "total_count": 290,
+              "length": {
+                "min": 23,
+                "max": 148,
+                "mean": 111.44
+              },
+              "concatenated_length": {
+                "min": 37,
+                "max": 148,
+                "mean": 111.83
+              }
+            }
+          },
+          "V_gene_segment": {
+            "length_stats": {
+              "min": 249,
+              "max": 368939,
+              "mean": 2862.22
+            },
+            "total_count": 234,
+            "biotype_counts": {
+              "IG_V_gene": 139,
+              "TR_V_gene": 95
+            },
+            "associated_genes": {
+              "total_count": 180,
+              "gene_categories": {
+                "coding": 180
+              }
+            },
+            "exon_stats": {
+              "total_count": 466,
+              "length": {
+                "min": 1,
+                "max": 351,
+                "mean": 180.86
+              },
+              "concatenated_length": {
+                "min": 249,
+                "max": 566,
+                "mean": 360.18
+              }
+            },
+            "cds_stats": {
+              "total_count": 464,
+              "length": {
+                "min": 1,
+                "max": 351,
+                "mean": 172.68
+              },
+              "concatenated_length": {
+                "min": 249,
+                "max": 419,
+                "mean": 342.41
+              }
+            }
+          },
+          "J_gene_segment": {
+            "length_stats": {
+              "min": 38,
+              "max": 66,
+              "mean": 55.88
+            },
+            "total_count": 84,
+            "biotype_counts": {
+              "IG_J_gene": 14,
+              "TR_J_gene": 70
+            },
+            "associated_genes": {
+              "total_count": 84,
+              "gene_categories": {
+                "coding": 84
+              }
+            },
+            "exon_stats": {
+              "total_count": 84,
+              "length": {
+                "min": 38,
+                "max": 66,
+                "mean": 55.88
+              }
+            },
+            "cds_stats": {
+              "total_count": 84,
+              "length": {
+                "min": 37,
+                "max": 65,
+                "mean": 54.58
+              },
+              "concatenated_length": {
+                "min": 37,
+                "max": 65,
+                "mean": 54.58
+              }
+            }
+          },
+          "scRNA": {
+            "length_stats": {
+              "min": 76,
+              "max": 426,
+              "mean": 166.68
+            },
+            "total_count": 50,
+            "biotype_counts": {
+              "scaRNA": 50
+            },
+            "associated_genes": {
+              "total_count": 50,
+              "gene_categories": {
+                "non_coding": 50
+              }
+            },
+            "exon_stats": {
+              "total_count": 51,
+              "length": {
+                "min": 30,
+                "max": 414,
+                "mean": 157.65
+              },
+              "concatenated_length": {
+                "min": 76,
+                "max": 414,
+                "mean": 160.8
+              }
+            }
+          },
+          "C_gene_segment": {
+            "length_stats": {
+              "min": 314,
+              "max": 12839,
+              "mean": 3840.7
+            },
+            "total_count": 23,
+            "biotype_counts": {
+              "IG_C_gene": 18,
+              "TR_C_gene": 5
+            },
+            "associated_genes": {
+              "total_count": 17,
+              "gene_categories": {
+                "coding": 17
+              }
+            },
+            "exon_stats": {
+              "total_count": 79,
+              "length": {
+                "min": 21,
+                "max": 3333,
+                "mean": 348.04
+              },
+              "concatenated_length": {
+                "min": 314,
+                "max": 3795,
+                "mean": 1195.43
+              }
+            },
+            "cds_stats": {
+              "total_count": 76,
+              "length": {
+                "min": 6,
+                "max": 392,
+                "mean": 226.7
+              },
+              "concatenated_length": {
+                "min": 309,
+                "max": 1425,
+                "mean": 749.09
+              }
+            }
+          },
+          "tRNA": {
+            "length_stats": {
+              "min": 53,
+              "max": 71,
+              "mean": 66.6
+            },
+            "total_count": 10,
+            "biotype_counts": {
+              "Mt_tRNA": 10
+            },
+            "associated_genes": {
+              "total_count": 10,
+              "gene_categories": {
+                "non_coding": 10
+              }
+            },
+            "exon_stats": {
+              "total_count": 10,
+              "length": {
+                "min": 53,
+                "max": 71,
+                "mean": 66.6
+              }
+            }
+          },
+          "D_gene_segment": {
+            "length_stats": {
+              "min": 9,
+              "max": 29,
+              "mean": 15.1
+            },
+            "total_count": 10,
+            "biotype_counts": {
+              "IG_D_gene": 6,
+              "TR_D_gene": 4
+            },
+            "associated_genes": {
+              "total_count": 10,
+              "gene_categories": {
+                "coding": 10
+              }
+            },
+            "exon_stats": {
+              "total_count": 10,
+              "length": {
+                "min": 9,
+                "max": 29,
+                "mean": 15.1
+              }
+            },
+            "cds_stats": {
+              "total_count": 10,
+              "length": {
+                "min": 9,
+                "max": 29,
+                "mean": 15.1
+              },
+              "concatenated_length": {
+                "min": 9,
+                "max": 29,
+                "mean": 15.1
+              }
+            }
+          },
+          "three_prime_overlapping_ncrna": {
+            "length_stats": {
+              "min": 3773,
+              "max": 36471,
+              "mean": 14673.33
+            },
+            "total_count": 3,
+            "biotype_counts": {
+              "3prime_overlapping_ncRNA": 3
+            },
+            "associated_genes": {
+              "total_count": 2,
+              "gene_categories": {
+                "non_coding": 2
+              }
+            },
+            "exon_stats": {
+              "total_count": 6,
+              "length": {
+                "min": 126,
+                "max": 680,
+                "mean": 379.0
+              },
+              "concatenated_length": {
+                "min": 511,
+                "max": 883,
+                "mean": 758.0
+              }
+            }
+          },
+          "gene_segment": {
+            "length_stats": {
+              "min": 294,
+              "max": 952,
+              "mean": 623.0
+            },
+            "total_count": 2,
+            "biotype_counts": {
+              "IG_LV_gene": 2
+            },
+            "associated_genes": {
+              "total_count": 2,
+              "gene_categories": {
+                "coding": 2
+              }
+            },
+            "exon_stats": {
+              "total_count": 4,
+              "length": {
+                "min": 55,
+                "max": 294,
+                "mean": 161.5
+              },
+              "concatenated_length": {
+                "min": 294,
+                "max": 352,
+                "mean": 323.0
+              }
+            },
+            "cds_stats": {
+              "total_count": 4,
+              "length": {
+                "min": 55,
+                "max": 294,
+                "mean": 161.5
+              },
+              "concatenated_length": {
+                "min": 294,
+                "max": 352,
+                "mean": 323.0
+              }
+            }
+          }
+        }
+      },
+      "mapped_regions": [
+        "1",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "X"
+      ]
+    },
+    {
+      "annotation_id": "44907b464ec65fc7e1d2161b22b3a493",
+      "assembly_accession": "GCA_001624295.1",
+      "assembly_name": "AKR_J_v1",
+      "organism_name": "Mus musculus",
+      "taxid": "10090",
+      "taxon_lineage": [
+        "10090",
+        "862507",
+        "10088",
+        "39107",
+        "10066",
+        "337687",
+        "1963758",
+        "9989",
+        "314147",
+        "314146",
+        "1437010",
+        "9347",
+        "32525",
+        "40674",
+        "32524",
+        "32523",
+        "1338369",
+        "8287",
+        "117571",
+        "117570",
+        "7776",
+        "7742",
+        "89593",
+        "7711",
+        "33511",
+        "33213",
+        "6072",
+        "33208",
+        "33154",
+        "2759",
+        "131567"
+      ],
+      "source_file_info": {
+        "database": "Ensembl",
+        "provider": "community",
+        "release_date": "2018-01-01T00:00:00",
+        "url_path": "https://ftp.ebi.ac.uk/pub/ensemblorganisms/Mus_musculus/GCA_001624295.1/community/geneset/2018_01/genes.gff3.gz",
+        "last_modified": "2024-11-02T00:00:00",
+        "uncompressed_md5": "fb9c067905be32433b32d10a02f3d3c0"
+      },
+      "indexed_file_info": {
+        "bgzipped_path": "/10090/GCA_001624295.1/Ensembl_fb9c067905be32433b32d10a02f3d3c0.gff.gz",
+        "csi_path": "/10090/GCA_001624295.1/Ensembl_fb9c067905be32433b32d10a02f3d3c0.gff.gz.csi",
+        "uncompressed_md5": "44907b464ec65fc7e1d2161b22b3a493",
+        "file_size": 15655589,
+        "processed_at": "2025-10-07T18:45:51.489000",
+        "pipeline": {
+          "name": "sort_bgzip_tabix",
+          "version": "1.0.0",
+          "method": "sort | bgzip | tabix"
+        }
+      },
+      "features_summary": {
+        "attribute_keys": [
+          "Alias",
+          "ID",
+          "version",
+          "ccdsid",
+          "description",
+          "tag",
+          "rank",
+          "biotype",
+          "Name",
+          "transcript_id",
+          "exon_id",
+          "Parent",
+          "gene_id",
+          "constitutive",
+          "protein_id"
+        ],
+        "types": [
+          "C_gene_segment",
+          "gene_segment",
+          "J_gene_segment",
+          "lnc_RNA",
+          "pseudogene",
+          "scaffold",
+          "snRNA",
+          "rRNA",
+          "transcript",
+          "CDS",
+          "pseudogenic_transcript",
+          "snoRNA",
+          "mRNA",
+          "unconfirmed_transcript",
+          "miRNA",
+          "V_gene_segment",
+          "chromosome",
+          "five_prime_UTR",
+          "D_gene_segment",
+          "three_prime_UTR",
+          "scRNA",
+          "tRNA",
+          "exon",
+          "bidirectional_promoter_lncRNA",
+          "ncRNA",
+          "three_prime_overlapping_ncrna",
+          "gene",
+          "ncRNA_gene"
+        ],
+        "sources": [
+          "AKR_J_v1",
+          "mouse_genomes_project"
+        ],
+        "biotypes": [
+          "IG_C_pseudogene",
+          "protein_coding",
+          "lincRNA",
+          "3prime_overlapping_ncRNA",
+          "TR_C_gene",
+          "IG_J_gene",
+          "retained_intron",
+          "unprocessed_pseudogene",
+          "IG_V_gene",
+          "TR_V_gene",
+          "pseudogene",
+          "IG_LV_gene",
+          "unitary_pseudogene",
+          "sense_intronic",
+          "sense_overlapping",
+          "snRNA",
+          "IG_C_gene",
+          "IG_D_pseudogene",
+          "unknown_likely_coding",
+          "rRNA",
+          "TR_V_pseudogene",
+          "IG_D_gene",
+          "transcribed_unitary_pseudogene",
+          "TEC",
+          "snoRNA",
+          "ribozyme",
+          "scaRNA",
+          "misc_RNA",
+          "non_stop_decay",
+          "IG_V_pseudogene",
+          "TR_J_gene",
+          "TR_J_pseudogene",
+          "miRNA",
+          "transcribed_processed_pseudogene",
+          "processed_transcript",
+          "translated_processed_pseudogene",
+          "Mt_tRNA",
+          "TR_D_gene",
+          "macro_lncRNA",
+          "polymorphic_pseudogene",
+          "antisense",
+          "bidirectional_promoter_lncRNA",
+          "sRNA",
+          "processed_pseudogene",
+          "nonsense_mediated_decay",
+          "transcribed_unprocessed_pseudogene"
+        ],
+        "types_missing_id": [
+          "exon",
+          "three_prime_UTR",
+          "five_prime_UTR"
+        ],
+        "root_type_counts": {
+          "chromosome": 20,
+          "gene": 22760,
+          "ncRNA_gene": 11103,
+          "pseudogene": 6359,
+          "bidirectional_promoter_lncRNA": 11,
+          "scaffold": 5932
+        },
+        "has_biotype": true,
+        "has_cds": true,
+        "has_exon": true
+      },
+      "features_statistics": {
+        "gene_category_stats": {
+          "coding": {
+            "total_count": 20658,
+            "length_stats": {
+              "min": 10,
+              "max": 2758406,
+              "mean": 51475.56
+            },
+            "biotype_counts": {
+              "ig_c_gene": 12,
+              "ig_d_gene": 10,
+              "ig_j_gene": 14,
+              "ig_lv_gene": 2,
+              "ig_v_gene": 110,
+              "polymorphic_pseudogene": 21,
+              "protein_coding": 20309,
+              "tr_c_gene": 6,
+              "tr_d_gene": 4,
+              "tr_j_gene": 70,
+              "tr_v_gene": 87,
+              "unknown_likely_coding": 13
+            },
+            "transcript_type_counts": {
+              "C_gene_segment": 26,
+              "D_gene_segment": 14,
+              "J_gene_segment": 84,
+              "V_gene_segment": 267,
+              "gene_segment": 2,
+              "lnc_RNA": 27353,
+              "mRNA": 50523,
+              "ncRNA": 1,
+              "pseudogenic_transcript": 20,
+              "transcript": 1277,
+              "unconfirmed_transcript": 8
+            }
+          },
+          "pseudogene": {
+            "total_count": 6359,
+            "length_stats": {
+              "min": 10,
+              "max": 2080836,
+              "mean": 4435.56
+            },
+            "biotype_counts": {
+              "ig_c_pseudogene": 1,
+              "ig_d_pseudogene": 4,
+              "ig_v_pseudogene": 89,
+              "processed_pseudogene": 5026,
+              "pseudogene": 127,
+              "tr_j_pseudogene": 10,
+              "tr_v_pseudogene": 28,
+              "transcribed_processed_pseudogene": 142,
+              "transcribed_unitary_pseudogene": 1,
+              "transcribed_unprocessed_pseudogene": 77,
+              "unitary_pseudogene": 14,
+              "unprocessed_pseudogene": 840
+            },
+            "transcript_type_counts": {
+              "lnc_RNA": 232,
+              "pseudogenic_transcript": 6350,
+              "unconfirmed_transcript": 1
+            }
+          },
+          "non_coding": {
+            "total_count": 13216,
+            "length_stats": {
+              "min": 12,
+              "max": 2556005,
+              "mean": 9808.77
+            },
+            "biotype_counts": {
+              "3prime_overlapping_ncrna": 2,
+              "antisense": 2119,
+              "bidirectional_promoter_lncrna": 11,
+              "ig_d_gene": 1,
+              "lincrna": 2815,
+              "macro_lncrna": 1,
+              "mirna": 1778,
+              "misc_rna": 552,
+              "mt_trna": 8,
+              "processed_transcript": 709,
+              "ribozyme": 21,
+              "rrna": 285,
+              "scarna": 50,
+              "sense_intronic": 241,
+              "sense_overlapping": 22,
+              "snorna": 1256,
+              "snrna": 1244,
+              "srna": 2,
+              "tec": 2099
+            },
+            "transcript_type_counts": {
+              "lnc_RNA": 8642,
+              "miRNA": 1778,
+              "ncRNA": 554,
+              "pseudogenic_transcript": 17,
+              "rRNA": 285,
+              "scRNA": 50,
+              "snRNA": 1246,
+              "snoRNA": 1256,
+              "tRNA": 8,
+              "three_prime_overlapping_ncrna": 3,
+              "transcript": 21,
+              "unconfirmed_transcript": 2150
+            }
+          }
+        },
+        "transcript_type_stats": {
+          "mRNA": {
+            "length_stats": {
+              "min": 57,
+              "max": 2754142,
+              "mean": 50782.06
+            },
+            "total_count": 50523,
+            "biotype_counts": {
+              "non_stop_decay": 15,
+              "nonsense_mediated_decay": 5032,
+              "polymorphic_pseudogene": 19,
+              "protein_coding": 45457
+            },
+            "associated_genes": {
+              "total_count": 20170,
+              "gene_categories": {
+                "coding": 20170
+              }
+            },
+            "exon_stats": {
+              "total_count": 483288,
+              "length": {
+                "min": 1,
+                "max": 17484,
+                "mean": 246.77
+              },
+              "concatenated_length": {
+                "min": 24,
+                "max": 106434,
+                "mean": 2360.49
+              }
+            },
+            "cds_stats": {
+              "total_count": 429996,
+              "length": {
+                "min": 1,
+                "max": 17106,
+                "mean": 157.93
+              },
+              "concatenated_length": {
+                "min": 3,
+                "max": 105250,
+                "mean": 1344.09
+              }
+            }
+          },
+          "lnc_RNA": {
+            "length_stats": {
+              "min": 11,
+              "max": 2556005,
+              "mean": 20646.45
+            },
+            "total_count": 36227,
+            "biotype_counts": {
+              "antisense": 3058,
+              "lincRNA": 4050,
+              "macro_lncRNA": 2,
+              "processed_transcript": 12672,
+              "retained_intron": 16114,
+              "ribozyme": 21,
+              "sense_intronic": 264,
+              "sense_overlapping": 46
+            },
+            "associated_genes": {
+              "total_count": 15546,
+              "gene_categories": {
+                "coding": 9462,
+                "non_coding": 5928,
+                "pseudogene": 156
+              }
+            },
+            "exon_stats": {
+              "total_count": 149728,
+              "length": {
+                "min": 1,
+                "max": 44936,
+                "mean": 303.05
+              },
+              "concatenated_length": {
+                "min": 11,
+                "max": 80378,
+                "mean": 1252.53
+              }
+            }
+          },
+          "pseudogenic_transcript": {
+            "length_stats": {
+              "min": 10,
+              "max": 2080836,
+              "mean": 4133.14
+            },
+            "total_count": 6387,
+            "biotype_counts": {
+              "IG_C_pseudogene": 1,
+              "IG_D_pseudogene": 4,
+              "IG_V_pseudogene": 89,
+              "TR_J_pseudogene": 10,
+              "TR_V_pseudogene": 28,
+              "processed_pseudogene": 5027,
+              "pseudogene": 144,
+              "transcribed_processed_pseudogene": 141,
+              "transcribed_unitary_pseudogene": 1,
+              "transcribed_unprocessed_pseudogene": 71,
+              "translated_processed_pseudogene": 11,
+              "unitary_pseudogene": 14,
+              "unprocessed_pseudogene": 846
+            },
+            "associated_genes": {
+              "total_count": 6383,
+              "gene_categories": {
+                "coding": 20,
+                "non_coding": 17,
+                "pseudogene": 6346
+              }
+            },
+            "exon_stats": {
+              "total_count": 9450,
+              "length": {
+                "min": 1,
+                "max": 7497,
+                "mean": 455.4
+              },
+              "concatenated_length": {
+                "min": 10,
+                "max": 10682,
+                "mean": 673.79
+              }
+            }
+          },
+          "unconfirmed_transcript": {
+            "length_stats": {
+              "min": 43,
+              "max": 207366,
+              "mean": 2524.89
+            },
+            "total_count": 2159,
+            "biotype_counts": {
+              "TEC": 2159
+            },
+            "associated_genes": {
+              "total_count": 2129,
+              "gene_categories": {
+                "coding": 8,
+                "non_coding": 2120,
+                "pseudogene": 1
+              }
+            },
+            "exon_stats": {
+              "total_count": 2417,
+              "length": {
+                "min": 1,
+                "max": 38038,
+                "mean": 1821.68
+              },
+              "concatenated_length": {
+                "min": 43,
+                "max": 73394,
+                "mean": 2039.38
+              }
+            }
+          },
+          "miRNA": {
+            "length_stats": {
+              "min": 39,
+              "max": 84692,
+              "mean": 179.83
+            },
+            "total_count": 1778,
+            "biotype_counts": {
+              "miRNA": 1778
+            },
+            "associated_genes": {
+              "total_count": 1778,
+              "gene_categories": {
+                "non_coding": 1778
+              }
+            },
+            "exon_stats": {
+              "total_count": 1793,
+              "length": {
+                "min": 2,
+                "max": 442,
+                "mean": 88.2
+              },
+              "concatenated_length": {
+                "min": 39,
+                "max": 442,
+                "mean": 88.94
+              }
+            }
+          },
+          "transcript": {
+            "length_stats": {
+              "min": 750,
+              "max": 852277,
+              "mean": 74955.43
+            },
+            "total_count": 1298,
+            "biotype_counts": {
+              "bidirectional_promoter_lncRNA": 21,
+              "unknown_likely_coding": 1277
+            },
+            "associated_genes": {
+              "total_count": 1223,
+              "gene_categories": {
+                "coding": 1209,
+                "non_coding": 14
+              }
+            },
+            "exon_stats": {
+              "total_count": 23722,
+              "length": {
+                "min": 3,
+                "max": 12805,
+                "mean": 197.91
+              },
+              "concatenated_length": {
+                "min": 235,
+                "max": 100551,
+                "mean": 3616.94
+              }
+            },
+            "cds_stats": {
+              "total_count": 22988,
+              "length": {
+                "min": 1,
+                "max": 11555,
+                "mean": 163.85
+              },
+              "concatenated_length": {
+                "min": 210,
+                "max": 100548,
+                "mean": 2949.54
+              }
+            }
+          },
+          "snoRNA": {
+            "length_stats": {
+              "min": 35,
+              "max": 7995,
+              "mean": 128.67
+            },
+            "total_count": 1256,
+            "biotype_counts": {
+              "snoRNA": 1256
+            },
+            "associated_genes": {
+              "total_count": 1256,
+              "gene_categories": {
+                "non_coding": 1256
+              }
+            },
+            "exon_stats": {
+              "total_count": 1261,
+              "length": {
+                "min": 1,
+                "max": 325,
+                "mean": 121.31
+              },
+              "concatenated_length": {
+                "min": 35,
+                "max": 325,
+                "mean": 121.8
+              }
+            }
+          },
+          "snRNA": {
+            "length_stats": {
+              "min": 54,
+              "max": 6377,
+              "mean": 126.82
+            },
+            "total_count": 1246,
+            "biotype_counts": {
+              "sRNA": 2,
+              "snRNA": 1244
+            },
+            "associated_genes": {
+              "total_count": 1246,
+              "gene_categories": {
+                "non_coding": 1246
+              }
+            },
+            "exon_stats": {
+              "total_count": 1257,
+              "length": {
+                "min": 1,
+                "max": 200,
+                "mean": 112.58
+              },
+              "concatenated_length": {
+                "min": 54,
+                "max": 200,
+                "mean": 113.57
+              }
+            }
+          },
+          "ncRNA": {
+            "length_stats": {
+              "min": 56,
+              "max": 2639,
+              "mean": 238.65
+            },
+            "total_count": 555,
+            "biotype_counts": {
+              "misc_RNA": 555
+            },
+            "associated_genes": {
+              "total_count": 555,
+              "gene_categories": {
+                "coding": 1,
+                "non_coding": 554
+              }
+            },
+            "exon_stats": {
+              "total_count": 556,
+              "length": {
+                "min": 56,
+                "max": 466,
+                "mean": 234.06
+              },
+              "concatenated_length": {
+                "min": 56,
+                "max": 466,
+                "mean": 234.48
+              }
+            }
+          },
+          "rRNA": {
+            "length_stats": {
+              "min": 37,
+              "max": 148,
+              "mean": 111.98
+            },
+            "total_count": 285,
+            "biotype_counts": {
+              "rRNA": 285
+            },
+            "associated_genes": {
+              "total_count": 285,
+              "gene_categories": {
+                "non_coding": 285
+              }
+            },
+            "exon_stats": {
+              "total_count": 285,
+              "length": {
+                "min": 37,
+                "max": 148,
+                "mean": 111.98
+              }
+            }
+          },
+          "V_gene_segment": {
+            "length_stats": {
+              "min": 90,
+              "max": 1105480,
+              "mean": 12100.64
+            },
+            "total_count": 267,
+            "biotype_counts": {
+              "IG_V_gene": 158,
+              "TR_V_gene": 109
+            },
+            "associated_genes": {
+              "total_count": 197,
+              "gene_categories": {
+                "coding": 197
+              }
+            },
+            "exon_stats": {
+              "total_count": 529,
+              "length": {
+                "min": 2,
+                "max": 351,
+                "mean": 179.32
+              },
+              "concatenated_length": {
+                "min": 90,
+                "max": 566,
+                "mean": 355.29
+              }
+            },
+            "cds_stats": {
+              "total_count": 526,
+              "length": {
+                "min": 2,
+                "max": 351,
+                "mean": 172.12
+              },
+              "concatenated_length": {
+                "min": 90,
+                "max": 419,
+                "mean": 339.09
+              }
+            }
+          },
+          "J_gene_segment": {
+            "length_stats": {
+              "min": 38,
+              "max": 66,
+              "mean": 55.88
+            },
+            "total_count": 84,
+            "biotype_counts": {
+              "IG_J_gene": 14,
+              "TR_J_gene": 70
+            },
+            "associated_genes": {
+              "total_count": 84,
+              "gene_categories": {
+                "coding": 84
+              }
+            },
+            "exon_stats": {
+              "total_count": 84,
+              "length": {
+                "min": 38,
+                "max": 66,
+                "mean": 55.88
+              }
+            },
+            "cds_stats": {
+              "total_count": 84,
+              "length": {
+                "min": 37,
+                "max": 65,
+                "mean": 54.58
+              },
+              "concatenated_length": {
+                "min": 37,
+                "max": 65,
+                "mean": 54.58
+              }
+            }
+          },
+          "scRNA": {
+            "length_stats": {
+              "min": 76,
+              "max": 414,
+              "mean": 161.04
+            },
+            "total_count": 50,
+            "biotype_counts": {
+              "scaRNA": 50
+            },
+            "associated_genes": {
+              "total_count": 50,
+              "gene_categories": {
+                "non_coding": 50
+              }
+            },
+            "exon_stats": {
+              "total_count": 50,
+              "length": {
+                "min": 76,
+                "max": 414,
+                "mean": 161.04
+              }
+            }
+          },
+          "C_gene_segment": {
+            "length_stats": {
+              "min": 314,
+              "max": 11665,
+              "mean": 3759.54
+            },
+            "total_count": 26,
+            "biotype_counts": {
+              "IG_C_gene": 18,
+              "TR_C_gene": 8
+            },
+            "associated_genes": {
+              "total_count": 18,
+              "gene_categories": {
+                "coding": 18
+              }
+            },
+            "exon_stats": {
+              "total_count": 90,
+              "length": {
+                "min": 18,
+                "max": 3326,
+                "mean": 328.53
+              },
+              "concatenated_length": {
+                "min": 314,
+                "max": 3788,
+                "mean": 1137.23
+              }
+            },
+            "cds_stats": {
+              "total_count": 87,
+              "length": {
+                "min": 4,
+                "max": 392,
+                "mean": 215.71
+              },
+              "concatenated_length": {
+                "min": 309,
+                "max": 1425,
+                "mean": 721.81
+              }
+            }
+          },
+          "D_gene_segment": {
+            "length_stats": {
+              "min": 9,
+              "max": 29,
+              "mean": 16.36
+            },
+            "total_count": 14,
+            "biotype_counts": {
+              "IG_D_gene": 10,
+              "TR_D_gene": 4
+            },
+            "associated_genes": {
+              "total_count": 14,
+              "gene_categories": {
+                "coding": 14
+              }
+            },
+            "exon_stats": {
+              "total_count": 14,
+              "length": {
+                "min": 9,
+                "max": 29,
+                "mean": 16.36
+              }
+            },
+            "cds_stats": {
+              "total_count": 14,
+              "length": {
+                "min": 9,
+                "max": 29,
+                "mean": 16.36
+              },
+              "concatenated_length": {
+                "min": 9,
+                "max": 29,
+                "mean": 16.36
+              }
+            }
+          },
+          "tRNA": {
+            "length_stats": {
+              "min": 53,
+              "max": 71,
+              "mean": 65.88
+            },
+            "total_count": 8,
+            "biotype_counts": {
+              "Mt_tRNA": 8
+            },
+            "associated_genes": {
+              "total_count": 8,
+              "gene_categories": {
+                "non_coding": 8
+              }
+            },
+            "exon_stats": {
+              "total_count": 8,
+              "length": {
+                "min": 53,
+                "max": 71,
+                "mean": 65.88
+              }
+            }
+          },
+          "three_prime_overlapping_ncrna": {
+            "length_stats": {
+              "min": 3773,
+              "max": 35985,
+              "mean": 14511.33
+            },
+            "total_count": 3,
+            "biotype_counts": {
+              "3prime_overlapping_ncRNA": 3
+            },
+            "associated_genes": {
+              "total_count": 2,
+              "gene_categories": {
+                "non_coding": 2
+              }
+            },
+            "exon_stats": {
+              "total_count": 6,
+              "length": {
+                "min": 126,
+                "max": 680,
+                "mean": 379.0
+              },
+              "concatenated_length": {
+                "min": 511,
+                "max": 883,
+                "mean": 758.0
+              }
+            }
+          },
+          "gene_segment": {
+            "length_stats": {
+              "min": 294,
+              "max": 786,
+              "mean": 540.0
+            },
+            "total_count": 2,
+            "biotype_counts": {
+              "IG_LV_gene": 2
+            },
+            "associated_genes": {
+              "total_count": 2,
+              "gene_categories": {
+                "coding": 2
+              }
+            },
+            "exon_stats": {
+              "total_count": 4,
+              "length": {
+                "min": 29,
+                "max": 294,
+                "mean": 161.5
+              },
+              "concatenated_length": {
+                "min": 294,
+                "max": 352,
+                "mean": 323.0
+              }
+            },
+            "cds_stats": {
+              "total_count": 4,
+              "length": {
+                "min": 29,
+                "max": 294,
+                "mean": 161.5
+              },
+              "concatenated_length": {
+                "min": 294,
+                "max": 352,
+                "mean": 323.0
+              }
+            }
+          }
+        }
+      },
+      "mapped_regions": [
+        "1",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "X"
+      ]
+    }
+  ]
+}
