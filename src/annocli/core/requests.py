@@ -1,22 +1,26 @@
-import requests
-from typing import Dict, Any, List
 import json
+from typing import Any, Dict
 
-BASE_URL = 'https://genome.crg.es/annotrieve/api'
+import requests
 
-def get_annotations(taxids: list[int] = [],
-                    reference_only: bool = False,
-                    limit: int = 0,
-                    timeout: float = 30.0,
-                    offset: int = 0,
-                    api_version: str='v0') -> Dict[str, Any]:
+BASE_URL = "https://genome.crg.es/annotrieve/api"
+
+
+def get_annotations(
+    taxids: list[int] = [],
+    ref_only: bool = False,
+    limit: int = 0,
+    timeout: float = 30.0,
+    offset: int = 0,
+    api_version: str = "v0",
+) -> Dict[str, Any]:
 
     params: Dict[str, Any] = {"limit": limit, "offset": offset}
 
     if taxids:
         params["taxids"] = ",".join(str(t) for t in taxids)
 
-    if reference_only:
+    if ref_only:
         params["refseq_categories"] = "reference genome"
 
     try:
@@ -34,19 +38,21 @@ def get_annotations(taxids: list[int] = [],
         raise ValueError(f"Invalid JSON response: {e}")
 
 
-def get_assemblies(taxids: list[int] = [],
-                  reference_only: bool = False,
-                  limit: int = 0,
-                  timeout: float = 30.0,
-                  offset: int = 0,
-                  api_version: str='v0') -> Dict[str, Any]:
+def get_assemblies(
+    taxids: list[int] = [],
+    ref_only: bool = False,
+    limit: int = 0,
+    timeout: float = 30.0,
+    offset: int = 0,
+    api_version: str = "v0",
+) -> Dict[str, Any]:
 
     params: Dict[str, Any] = {"limit": limit, "offset": offset}
 
     if taxids:
         params["taxids"] = ",".join(str(t) for t in taxids)
 
-    if reference_only:
+    if ref_only:
         params["refseq_categories"] = "reference genome"
 
     try:
@@ -66,11 +72,11 @@ def get_assemblies(taxids: list[int] = [],
 
 def get_filename_from_url(url, base_name):
     """Generate filename as base_name with extension from URL."""
-    filename_part = url.split('/')[-1]
-    if '.' in filename_part:
-        ext = '.' + '.'.join(filename_part.split('.')[1:])
+    filename_part = url.split("/")[-1]
+    if "." in filename_part:
+        ext = "." + ".".join(filename_part.split(".")[1:])
     else:
-        ext = ''
+        ext = ""
     return f"{base_name}{ext}"
 
 
@@ -78,7 +84,6 @@ def download_file(url, filepath):
     """Download file from URL to filepath."""
     response = requests.get(url, stream=True)
     response.raise_for_status()
-    with open(filepath, 'wb') as f:
+    with open(filepath, "wb") as f:
         for chunk in response.iter_content(chunk_size=8192):
             f.write(chunk)
-
