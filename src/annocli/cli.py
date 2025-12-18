@@ -2,6 +2,7 @@ import argparse
 import os
 import sys
 
+from .core.helpers import rewrite_gff_seqids_from_assembly
 from .core.requests import (download_file, get_annotations, get_assemblies,
                             get_filename_from_url)
 
@@ -56,6 +57,26 @@ def main():
         default="annotation_downloads",
         help="Folder to save annotations",
     )
+
+    # Alias command
+    alias_parser = subparsers.add_parser(
+        "alias", help="Match alias between annotation and assembly"
+    )
+    alias_parser.add_argument(
+        "annotation",
+        help="Path to the annotation GFF file"
+    )
+    alias_parser.add_argument(
+        "assembly",
+        help="Path to the assembly FASTA file"
+    )
+    alias_parser.add_argument(
+        "--output",
+        default=None,
+        help="Optional output path for updated annotation file"
+    )
+
+
 
     args = parser.parse_args()
 
@@ -123,9 +144,9 @@ def main():
                         except Exception as e:
                             print(
                                 f"Failed to download annotation: {e}", file=sys.stderr
-                            )
+             )
 
-                if args.add_asm:
+            if args.add_asm:
                     assembly_info = assembly_dict.get(assembly_accession, {})
                     assembly_url = assembly_info.get("download_url", "NA")
 
@@ -150,6 +171,8 @@ def main():
                                     f"Failed to download assembly: {e}", file=sys.stderr
                                 )
 
+
+
         ### Preview
         elif args.mode == "prev":
             label_w = 20
@@ -159,6 +182,21 @@ def main():
             )
             print(f"{'Only reference:':<{label_w}} {args.ref_only}")
             print(f"{'Include assemblies:':<{label_w}} {args.add_asm}")
+    
+    elif args.command == 'alias':
+        if args.output is None:
+            base, ext = os.path.splitext(args.annotation)
+            if '.' in base:
+                name, subext = os.path.splitext(base)
+                args.output = f"{name}.aliasMatch{subext}{ext}"
+            else:
+                args.output = f"{base}.aliasMatch{ext}"
+        alias_mapping = rewrite_gff_seqids_from_assembly(
+            args.annotation,
+            args.assembly,
+            args.output,
+        )
+        print(alias_mapping)
 
     else:
         parser.print_help()
