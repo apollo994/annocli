@@ -185,12 +185,12 @@ def main():
     
     elif args.command == 'alias':
         if args.output is None:
-            base, ext = os.path.splitext(args.annotation)
-            if '.' in base:
-                name, subext = os.path.splitext(base)
-                args.output = f"{name}.aliasMatch{subext}{ext}"
-            else:
-                args.output = f"{base}.aliasMatch{ext}"
+
+            loc = -2 if args.annotation.endswith(".gz") else -1
+            extentions = args.annotation.split('.')
+            extentions.insert(loc, "aliasMatch")
+            args.output = ".".join(extentions)
+
         alias_mapping = rewrite_gff_seqids_from_assembly(
             args.annotation,
             args.assembly,
