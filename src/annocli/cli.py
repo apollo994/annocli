@@ -127,7 +127,7 @@ def main():
                 if source_url != "NA":
                     loc = -2 if source_url.endswith('.gz') else -1
                     ext = source_url.split('.')[loc:]
-                    source_filename = f"{annotation_name}.{".".join(ext)}"
+                    source_filename = f"{annotation_name}.{'.'.join(ext)}"
                     source_filepath = os.path.join(annotation_folder, source_filename)
 
                     if args.mode == "links":
@@ -197,7 +197,12 @@ def main():
             args.assembly,
             args.output,
         )
-        print(alias_mapping)
+        
+
+        alias_report = f"{args.output}.aliasMappings.tsv"
+        with open(alias_report, 'w') as alias_report_out:
+            for k,v in alias_mapping.items():
+                alias_report_out.write(f"{k}\t{v}\n")
 
     else:
         parser.print_help()
