@@ -125,7 +125,9 @@ def main():
                 )
 
                 if source_url != "NA":
-                    source_filename = get_filename_from_url(source_url, annotation_name)
+                    loc = -2 if source_url.endswith('.gz') else -1
+                    ext = source_url.split('.')[loc:]
+                    source_filename = f"{annotation_name}.{".".join(ext)}"
                     source_filepath = os.path.join(annotation_folder, source_filename)
 
                     if args.mode == "links":
@@ -146,10 +148,9 @@ def main():
                                 f"Failed to download annotation: {e}", file=sys.stderr
              )
 
-            if args.add_asm:
+                if args.add_asm:
                     assembly_info = assembly_dict.get(assembly_accession, {})
                     assembly_url = assembly_info.get("download_url", "NA")
-
                     # Download assembly file
                     if assembly_url != "NA":
                         assembly_filename = assembly_url.split("/")[-1]
