@@ -56,8 +56,15 @@ def rewrite_gff_seqids_from_assembly(
         current_name = parts[0]
         attr_field = parts[8]
         attrs = dict(kv.split("=", 1) for kv in attr_field.split(";") if "=" in kv)
-        alias = attrs.get("Alias")
-        names_mapping[current_name] = alias
+        alias = attrs.get("Alias",'NA')
+        if len(alias.split(',')) == 1: 
+            names_mapping[current_name] = alias
+        else:
+            aliases = alias.split(',')
+            for a in aliases:
+                if a in asm_names:
+                    names_mapping[current_name] = a
+
 
     # 3) Rewrite GFF
 
