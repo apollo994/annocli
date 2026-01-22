@@ -1,5 +1,6 @@
 # annocli
-annocli is a command-line tool to query and download genome annotations
+
+A command-line tool to query and download genome annotations from the CRG Annotrieve API.
 
 ## Installation
 
@@ -13,4 +14,9 @@ pip install -e .
 annocli --help
 ```
 
-This will display the help message for the CLI tool. 
+## Commands
+
+- `download`: Download annotations for given taxonomy IDs
+- `alias`: Match sequence IDs between annotation and assembly files
+
+For detailed usage examples, see [USAGE.md](USAGE.md). 
