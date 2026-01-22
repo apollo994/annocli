@@ -5,6 +5,8 @@ A command-line tool to query and download genome annotations from the [Annotriev
 ## Installation
 
 ```bash
+git clone git@github.com:apollo994/annocli.git
+cd annocli
 pip install -e .
 ```
 
