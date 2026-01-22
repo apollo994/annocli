@@ -15,7 +15,7 @@ def main():
 
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
-    # Download command
+    ##### Download command
     download_parser = subparsers.add_parser(
         "download", help="Download annotations for given taxids"
     )
@@ -58,7 +58,7 @@ def main():
         help="Folder to save annotations",
     )
 
-    # Alias command
+    ##### Alias command
     alias_parser = subparsers.add_parser(
         "alias", help="Match alias between annotation and assembly"
     )
