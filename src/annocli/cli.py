@@ -48,9 +48,9 @@ def main():
     download_parser.add_argument(
         "--limit", type=int, default=0, help="Limit number of results"
     )
-    download_parser.add_argument(
-        "--offset", type=int, default=0, help="Offset for results"
-    )
+    # download_parser.add_argument(
+    #     "--offset", type=int, default=0, help="Offset for results"
+    # )
     download_parser.add_argument(
         "-o",
         "--output",
@@ -85,7 +85,7 @@ def main():
         annotations_json = get_annotations(
             taxids=args.taxids,
             limit=args.limit,
-            offset=args.offset,
+            # offset=args.offset,
             ref_only=args.ref_only,
         )
 
@@ -94,7 +94,7 @@ def main():
             assemblies_json = get_assemblies(
                 taxids=args.taxids,
                 limit=args.limit,
-                offset=args.offset,
+                # offset=args.offset,
                 ref_only=args.ref_only,
             )
             assembly_dict = {
