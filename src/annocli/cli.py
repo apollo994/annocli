@@ -26,6 +26,12 @@ def main():
         help="Taxonomy IDs, can be species or larger group",
     )
     download_parser.add_argument(
+        "--mode",
+        choices=["dw", "prev", "links"],
+        default="dw",
+        help="'dw' download, 'prev' preview, 'links' print links (default: dw)",
+    )
+    download_parser.add_argument(
         "--ref_only",
         action="store_true",
         help="Download only annotations of ref_only assemblies",
@@ -34,49 +40,40 @@ def main():
         "--add_asm", action="store_true", help="Download also assemblies"
     )
     download_parser.add_argument(
-        "--mode",
-        choices=["dw", "prev", "links"],
-        default="dw",
-        help="'dw' download, 'prev' preview, 'links' print links (default: dw)",
+        "--fix_alias",
+        action="store_true",
+        help="Match sequence name with assembly (works only with --add_asm)",
     )
-    download_parser.add_argument(
-        "--preview", action="store_true", help="Only print number of annotations"
-    )
-    download_parser.add_argument(
-        "--links", action="store_true", help="Only print wget commands"
-    )
-    download_parser.add_argument(
-        "--limit", type=int, default=0, help="Limit number of results"
-    )
-    # download_parser.add_argument(
-    #     "--offset", type=int, default=0, help="Offset for results"
-    # )
     download_parser.add_argument(
         "-o",
         "--output",
         default="annotation_downloads",
         help="Folder to save annotations",
     )
+    # download_parser.add_argument(
+    #     "--preview", action="store_true", help="Only print number of annotations"
+    # )
+    # download_parser.add_argument(
+    #     "--links", action="store_true", help="Only print wget commands"
+    # )
+    # download_parser.add_argument(
+    #     "--offset", type=int, default=0, help="Offset for results"
+    # )
+    # download_parser.add_argument(
+    #     "--limit", type=int, default=0, help="Limit number of results"
+    # )
 
     ##### Alias command
     alias_parser = subparsers.add_parser(
         "alias", help="Match alias between annotation and assembly"
     )
-    alias_parser.add_argument(
-        "annotation",
-        help="Path to the annotation GFF file"
-    )
-    alias_parser.add_argument(
-        "assembly",
-        help="Path to the assembly FASTA file"
-    )
+    alias_parser.add_argument("annotation", help="Path to the annotation GFF file")
+    alias_parser.add_argument("assembly", help="Path to the assembly FASTA file")
     alias_parser.add_argument(
         "--output",
         default=None,
-        help="Optional output path for updated annotation file"
+        help="Optional output path for updated annotation file",
     )
-
-
 
     args = parser.parse_args()
 
@@ -84,7 +81,7 @@ def main():
 
         annotations_json = get_annotations(
             taxids=args.taxids,
-            limit=args.limit,
+            # limit=args.limit,
             # offset=args.offset,
             ref_only=args.ref_only,
         )
@@ -93,7 +90,7 @@ def main():
         if args.add_asm:
             assemblies_json = get_assemblies(
                 taxids=args.taxids,
-                limit=args.limit,
+                # limit=args.limit,
                 # offset=args.offset,
                 ref_only=args.ref_only,
             )
@@ -124,9 +121,11 @@ def main():
                     args.output, "_".join([organism_name, taxid]), assembly_accession
                 )
 
+                source_filepath = None
+
                 if source_url != "NA":
-                    loc = -2 if source_url.endswith('.gz') else -1
-                    ext = source_url.split('.')[loc:]
+                    loc = -2 if source_url.endswith(".gz") else -1
+                    ext = source_url.split(".")[loc:]
                     source_filename = f"{annotation_name}.{'.'.join(ext)}"
                     source_filepath = os.path.join(annotation_folder, source_filename)
 
@@ -146,7 +145,7 @@ def main():
                         except Exception as e:
                             print(
                                 f"Failed to download annotation: {e}", file=sys.stderr
-             )
+                            )
 
                 if args.add_asm:
                     assembly_info = assembly_dict.get(assembly_accession, {})
@@ -167,12 +166,43 @@ def main():
                                     f"Downloaded assembly to {assembly_filepath}",
                                     file=sys.stderr,
                                 )
+                                if args.fix_alias and source_filepath:
+
+                                    if source_filepath.endswith(".gz"):
+                                        extention = ".".join(
+                                            source_filepath.split(".")[-2:]
+                                        )
+
+                                    else:
+                                        extention = source_filepath.split(".")[-1]
+
+                                    alias_fixed_filepath = source_filepath.replace(
+                                        extention, f"aliasMatch.{extention}"
+                                    )
+
+                                    alias_report = (
+                                        f"{alias_fixed_filepath}.aliasMappings.tsv"
+                                    )
+
+                                    alias_mapping = rewrite_gff_seqids_from_assembly(
+                                        source_filepath,
+                                        assembly_filepath,
+                                        alias_fixed_filepath,
+                                    )
+
+                                    with open(alias_report, "w") as alias_report_out:
+                                        for k, v in alias_mapping.items():
+                                            alias_report_out.write(f"{k}\t{v}\n")
+
+                                    print(
+                                        f"Annotation matching assembly's aliases: {alias_fixed_filepath}",
+                                        file=sys.stderr,
+                                    )
+
                             except Exception as e:
                                 print(
                                     f"Failed to download assembly: {e}", file=sys.stderr
                                 )
-
-
 
         ### Preview
         elif args.mode == "prev":
@@ -183,12 +213,12 @@ def main():
             )
             print(f"{'Only reference:':<{label_w}} {args.ref_only}")
             print(f"{'Include assemblies:':<{label_w}} {args.add_asm}")
-    
-    elif args.command == 'alias':
+
+    elif args.command == "alias":
         if args.output is None:
 
             loc = -2 if args.annotation.endswith(".gz") else -1
-            extentions = args.annotation.split('.')
+            extentions = args.annotation.split(".")
             extentions.insert(loc, "aliasMatch")
             args.output = ".".join(extentions)
 
@@ -197,11 +227,10 @@ def main():
             args.assembly,
             args.output,
         )
-        
 
         alias_report = f"{args.output}.aliasMappings.tsv"
-        with open(alias_report, 'w') as alias_report_out:
-            for k,v in alias_mapping.items():
+        with open(alias_report, "w") as alias_report_out:
+            for k, v in alias_mapping.items():
                 alias_report_out.write(f"{k}\t{v}\n")
 
     else:
