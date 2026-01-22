@@ -2,10 +2,9 @@ import argparse
 import os
 import sys
 
-from .core.helpers import rewrite_gff_seqids_from_assembly
-from .core.requests import (download_file, get_annotations, get_assemblies,
-                            get_filename_from_url)
-
+from .core.alias_helpers import rewrite_gff_seqids_from_assembly
+from .core.requests import (download_file, get_annotations, get_assemblies)
+from .core.describe_helpers import print_annotation_summary
 
 def main():
     parser = argparse.ArgumentParser(
@@ -50,18 +49,6 @@ def main():
         default="annotation_downloads",
         help="Folder to save annotations",
     )
-    # download_parser.add_argument(
-    #     "--preview", action="store_true", help="Only print number of annotations"
-    # )
-    # download_parser.add_argument(
-    #     "--links", action="store_true", help="Only print wget commands"
-    # )
-    # download_parser.add_argument(
-    #     "--offset", type=int, default=0, help="Offset for results"
-    # )
-    # download_parser.add_argument(
-    #     "--limit", type=int, default=0, help="Limit number of results"
-    # )
 
     ##### Alias command
     alias_parser = subparsers.add_parser(
@@ -75,14 +62,28 @@ def main():
         help="Optional output path for updated annotation file",
     )
 
+    ##### Describe command
+    describe_parser = subparsers.add_parser(
+        "describe", help="Get information about features and biotypes availble")
+    describe_parser.add_argument(
+        "taxids",
+        nargs="+",
+        type=int,
+        help="Taxonomy IDs, can be species or larger group",
+    )
+    describe_parser.add_argument(
+        "--ref_only",
+        action="store_true",
+        help="Download only annotations of ref_only assemblies",
+    )
+    
+
     args = parser.parse_args()
 
     if args.command == "download":
 
         annotations_json = get_annotations(
             taxids=args.taxids,
-            # limit=args.limit,
-            # offset=args.offset,
             ref_only=args.ref_only,
         )
 
@@ -90,8 +91,6 @@ def main():
         if args.add_asm:
             assemblies_json = get_assemblies(
                 taxids=args.taxids,
-                # limit=args.limit,
-                # offset=args.offset,
                 ref_only=args.ref_only,
             )
             assembly_dict = {
@@ -232,6 +231,50 @@ def main():
         with open(alias_report, "w") as alias_report_out:
             for k, v in alias_mapping.items():
                 alias_report_out.write(f"{k}\t{v}\n")
+    
+    elif args.command == 'describe':
+        
+        call_res = annotations_json = get_annotations(
+            taxids=args.taxids,
+            ref_only=args.ref_only,
+        )
+        for i in call_res['results']:
+            def pretty_tree(x, indent=0):
+                sp = "  " * indent
+                if isinstance(x, dict):
+                    for k, v in x.items():
+                        if isinstance(v, (dict, list)):
+                            print(f"{sp}{k}:")
+                            pretty_tree(v, indent + 1)
+                        else:
+                            print(f"{sp}{k}: {v}")
+                elif isinstance(x, list):
+                    for item in x:
+                        if isinstance(item, (dict, list)):
+                            print(f"{sp}-")
+                            pretty_tree(item, indent + 1)
+                        else:
+                            print(f"{sp}- {item}")
+                else:
+                    print(f"{sp}{x}")
+            # pretty_tree(i['annotation_id'])
+            # pretty_tree(i['features_summary'])
+            print_annotation_summary(i)
+            print()
+            # print(json.dumps(i, indent=2, sort_keys=True, ensure_ascii=False))
+            # print(i['annotation_id'])
+            # print(i['features_summary']['attribute_keys'])
+            # print(i['features_summary']['types'])
+            # print(i['features_summary']['sources'])
+            # print(i['features_summary']['biotypes'])
+            # print(i['features_summary']['types_missing_id'])
+            # print(i['features_summary']['root_type_counts'])
+            # print(i['features_summary']['has_biotype'])
+            # print(i['features_summary']['has_cds'])
+            # print(i['features_summary']['has_exon'])
+            # print(i)
+            # print ()
+
 
     else:
         parser.print_help()
