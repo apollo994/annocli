@@ -141,3 +141,40 @@ The alias command:
 5. Generates a report of the mappings
 
 This ensures that the sequence IDs in the annotation match those in the assembly, which is important for tools that require consistent naming.
+
+## Describe Command
+
+The `describe` command provides information about features and biotypes available in annotations for specified taxonomy IDs.
+
+### Usage
+
+```bash
+annocli describe <taxids> [--ref_only]
+```
+
+### Parameters
+
+- `taxids`: Taxonomy IDs (required, one or more integers)
+- `--ref_only`: Show only annotations from reference genome assemblies (optional)
+
+### Example
+
+Get information about annotations for human (taxid 9606):
+
+```bash
+annocli describe 9606
+```
+
+### Output
+
+For each annotation, the command prints a detailed summary including:
+
+- Organism name and TaxID
+- Assembly accession and name
+- Database and URL
+- Release date
+- Feature availability (biotype, CDS, exon)
+- Lists of types, sources, biotypes, and missing IDs
+- Root type counts (features with no children)
+
+This helps users understand what features are available before downloading annotations.
