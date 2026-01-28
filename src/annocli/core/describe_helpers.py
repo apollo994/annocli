@@ -21,7 +21,9 @@ def print_annotation_summary(d: dict) -> None:
     print("-" * 60)
     print(line("Organism", d.get("organism_name")))
     print(line("TaxID", d.get("taxid")))
-    print(line("Assembly", f"{d.get('assembly_accession')}  ({d.get('assembly_name')})"))
+    print(
+        line("Assembly", f"{d.get('assembly_accession')}  ({d.get('assembly_name')})")
+    )
     print(line("Database", src.get("database")))
     print(line("URL", src.get("url_path")))
     print(line("Release date", src.get("release_date")))
