@@ -210,42 +210,7 @@ def main():
         )
         for i in call_res["results"]:
 
-            def pretty_tree(x, indent=0):
-                sp = "  " * indent
-                if isinstance(x, dict):
-                    for k, v in x.items():
-                        if isinstance(v, (dict, list)):
-                            print(f"{sp}{k}:")
-                            pretty_tree(v, indent + 1)
-                        else:
-                            print(f"{sp}{k}: {v}")
-                elif isinstance(x, list):
-                    for item in x:
-                        if isinstance(item, (dict, list)):
-                            print(f"{sp}-")
-                            pretty_tree(item, indent + 1)
-                        else:
-                            print(f"{sp}- {item}")
-                else:
-                    print(f"{sp}{x}")
-
-            # pretty_tree(i['annotation_id'])
-            # pretty_tree(i['features_summary'])
             print_annotation_summary(i)
-            print()
-            # print(json.dumps(i, indent=2, sort_keys=True, ensure_ascii=False))
-            # print(i['annotation_id'])
-            # print(i['features_summary']['attribute_keys'])
-            # print(i['features_summary']['types'])
-            # print(i['features_summary']['sources'])
-            # print(i['features_summary']['biotypes'])
-            # print(i['features_summary']['types_missing_id'])
-            # print(i['features_summary']['root_type_counts'])
-            # print(i['features_summary']['has_biotype'])
-            # print(i['features_summary']['has_cds'])
-            # print(i['features_summary']['has_exon'])
-            # print(i)
-            # print ()
 
     else:
         parser.print_help()
