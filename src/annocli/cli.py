@@ -4,7 +4,7 @@ import sys
 
 from .core.alias_helpers import rewrite_gff_seqids_from_assembly
 from .core.describe_helpers import print_annotation_summary
-from .core.requests import download_file, get_annotations, get_assemblies
+from .core.requests import make_request, download_file
 
 
 def main():
@@ -78,22 +78,30 @@ def main():
         action="store_true",
         help="Download only annotations of ref_only assemblies",
     )
+    describe_parser.add_argument(
+        "--tsv",
+        action="store_true",
+        help="Download only annotations of ref_only assemblies",
+    )
 
     args = parser.parse_args()
 
+
+    request_params = {}
+
+    if args.taxids:
+        request_params["taxids"] = args.taxids
+    if args.ref_only:
+        request_params["refseq_categories"] = "reference genome"
+
+
     if args.command == "download":
 
-        annotations_json = get_annotations(
-            taxids=args.taxids,
-            ref_only=args.ref_only,
-        )
+        annotations_json = make_request("/annotations", params=request_params)
 
         assembly_dict = {}
         if args.add_asm:
-            assemblies_json = get_assemblies(
-                taxids=args.taxids,
-                ref_only=args.ref_only,
-            )
+            assemblies_json = make_request("/assemblies", params=request_params)
             assembly_dict = {
                 asm["assembly_accession"]: asm
                 for asm in assemblies_json.get("results", [])
@@ -234,14 +242,15 @@ def main():
                 alias_report_out.write(f"{k}\t{v}\n")
 
     elif args.command == "describe":
+        
+        annotations_json = make_request("/annotations", params=request_params)
 
-        call_res = annotations_json = get_annotations(
-            taxids=args.taxids,
-            ref_only=args.ref_only,
-        )
-        for i in call_res["results"]:
+        for i in annotations_json["results"]:
 
             print_annotation_summary(i)
+
+            if args.tsv:
+                print("will do")
 
     else:
         parser.print_help()
