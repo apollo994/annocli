@@ -1,11 +1,12 @@
 from textwrap import indent
 
+
 def print_annotation_summary(d: dict) -> None:
     src = d.get("source_file_info", {}) or {}
     feats = d.get("features_summary", {}) or {}
 
     # small helpers
-    def line(k, v): 
+    def line(k, v):
         return f"{k:<18}: {v}"
 
     def join_list(xs, n=8):
@@ -13,7 +14,7 @@ def print_annotation_summary(d: dict) -> None:
         if len(xs) <= n:
             return ", ".join(map(str, xs))
         return ", ".join(map(str, xs[:n])) + f", … (+{len(xs)-n} more)"
-    
+
     annotation_id = d.get("annotation_id")
     print("-" * 60)
     print(f"Annotation summary (ID: {annotation_id})")
@@ -38,4 +39,3 @@ def print_annotation_summary(d: dict) -> None:
         print("Root type counts (features with no children)")
         print(indent("\n".join(f"- {k}: {v}" for k, v in rtc.items()), "  "))
         print("-" * 60)
-
