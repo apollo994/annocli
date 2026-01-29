@@ -3,8 +3,8 @@ import os
 import sys
 
 from .core.alias_helpers import rewrite_gff_seqids_from_assembly
-from .core.describe_helpers import print_annotation_summary
-from .core.requests import make_request, download_file
+from .core.summary_helpers import print_annotation_summary, build_tsv_report
+from .core.requests import download_file, make_request
 
 
 def main():
@@ -63,29 +63,27 @@ def main():
         help="Optional output path for updated annotation file",
     )
 
-    ##### Describe command
-    describe_parser = subparsers.add_parser(
-        "describe", help="Get information about features and biotypes availble"
+    ##### Summary command
+    summary_parser = subparsers.add_parser(
+        "summary", help="Get information about features and biotypes availble"
     )
-    describe_parser.add_argument(
+    summary_parser.add_argument(
         "taxids",
         nargs="+",
         type=int,
         help="Taxonomy IDs, can be species or larger group",
     )
-    describe_parser.add_argument(
+    summary_parser.add_argument(
         "--ref_only",
         action="store_true",
         help="Download only annotations of ref_only assemblies",
     )
-    describe_parser.add_argument(
+    summary_parser.add_argument(
         "--tsv",
-        action="store_true",
-        help="Download only annotations of ref_only assemblies",
+        help="Get annotation summary in tsv format",
     )
 
     args = parser.parse_args()
-
 
     request_params = {}
 
@@ -93,7 +91,6 @@ def main():
         request_params["taxids"] = args.taxids
     if args.ref_only:
         request_params["refseq_categories"] = "reference genome"
-
 
     if args.command == "download":
 
@@ -241,8 +238,8 @@ def main():
             for k, v in alias_mapping.items():
                 alias_report_out.write(f"{k}\t{v}\n")
 
-    elif args.command == "describe":
-        
+    elif args.command == "summary":
+
         annotations_json = make_request("/annotations", params=request_params)
 
         for i in annotations_json["results"]:
@@ -250,7 +247,25 @@ def main():
             print_annotation_summary(i)
 
             if args.tsv:
-                print("will do")
+                biotype_json = make_request(
+                    "/annotations/frequencies/biotype", params=request_params
+                )
+                feature_type_json = make_request(
+                    "/annotations/frequencies/feature_type", params=request_params
+                )
+                feature_source_json = make_request(
+                    "/annotations/frequencies/feature_source", params=request_params
+                )
+
+                build_tsv_report(args.tsv,
+                                 annotations_json = annotations_json,
+                                 biotype_json = biotype_json,
+                                 feature_source_json = feature_source_json,
+                                 feature_type_json = feature_type_json)
+
+                # print(biotype_json)
+                # print(feature_type_json)
+                # print(feature_source_json)
 
     else:
         parser.print_help()

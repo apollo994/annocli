@@ -142,14 +142,14 @@ The alias command:
 
 This ensures that the sequence IDs in the annotation match those in the assembly, which is important for tools that require consistent naming.
 
-## Describe Command
+## Summary Command
 
-The `describe` command provides information about features and biotypes available in annotations for specified taxonomy IDs.
+The `summary` command provides information about features and biotypes available in annotations for specified taxonomy IDs.
 
 ### Usage
 
 ```bash
-annocli describe <taxids> [--ref_only]
+annocli summary <taxids> [--ref_only]
 ```
 
 ### Parameters
@@ -162,7 +162,7 @@ annocli describe <taxids> [--ref_only]
 Get information about annotations for human (taxid 9606):
 
 ```bash
-annocli describe 9606
+annocli summary 9606
 ```
 
 ### Output
