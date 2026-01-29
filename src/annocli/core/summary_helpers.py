@@ -9,7 +9,7 @@ def make_summary_label(group: str, values):
     return [f"has_{group}.{v}" for v in values]
 
 
-def build_tsv_report(
+def build_summary_report(
     out_file,
     annotations_json={},
     biotype_json={},

@@ -3,8 +3,9 @@ import os
 import sys
 
 from .core.alias_helpers import rewrite_gff_seqids_from_assembly
-from .core.summary_helpers import print_annotation_summary, build_tsv_report
 from .core.requests import download_file, make_request
+from .core.summary_helpers import build_summary_report, print_annotation_summary
+from .core.stats_helpers import print_stats_summary, build_stats_report
 
 
 def main():
@@ -76,14 +77,35 @@ def main():
     summary_parser.add_argument(
         "--ref_only",
         action="store_true",
-        help="Download only annotations of ref_only assemblies",
+        help="Consider only annotations of reference assemblies",
     )
     summary_parser.add_argument(
         "--tsv",
         help="File to save annotation summary in tsv format",
     )
 
+    ##### Stats command
+    stats_parser = subparsers.add_parser("stats", help="Get summary statistics")
+    stats_parser.add_argument(
+        "taxids",
+        nargs="+",
+        type=int,
+        help="Taxonomy IDs, can be species or larger group",
+    )
+    stats_parser.add_argument(
+        "--ref_only",
+        action="store_true",
+        help="Consider only annotations of reference assemblies",
+    )
+    stats_parser.add_argument(
+        "--tsv",
+        help="File to save annotation summary in tsv format",
+    )
+
+    # build arg parser
     args = parser.parse_args()
+
+    ######
 
     request_params = {}
 
@@ -91,6 +113,7 @@ def main():
         request_params["taxids"] = args.taxids
     if args.ref_only:
         request_params["refseq_categories"] = "reference genome"
+    request_params["limit"] = 1000
 
     if args.command == "download":
 
@@ -243,25 +266,46 @@ def main():
         annotations_json = make_request("/annotations", params=request_params)
 
         for i in annotations_json["results"]:
-
+            print (i)
             print_annotation_summary(i)
 
-            if args.tsv:
-                biotype_json = make_request(
-                    "/annotations/frequencies/biotype", params=request_params
-                )
-                feature_type_json = make_request(
-                    "/annotations/frequencies/feature_type", params=request_params
-                )
-                feature_source_json = make_request(
-                    "/annotations/frequencies/feature_source", params=request_params
-                )
+        if args.tsv:
+            biotype_json = make_request(
+                "/annotations/frequencies/biotype", params=request_params
+            )
+            feature_type_json = make_request(
+                "/annotations/frequencies/feature_type", params=request_params
+            )
+            feature_source_json = make_request(
+                "/annotations/frequencies/feature_source", params=request_params
+            )
 
-                build_tsv_report(args.tsv,
-                                 annotations_json = annotations_json,
-                                 biotype_json = biotype_json,
-                                 feature_source_json = feature_source_json,
-                                 feature_type_json = feature_type_json)
+            build_summary_report(
+                args.tsv,
+                annotations_json=annotations_json,
+                biotype_json=biotype_json,
+                feature_source_json=feature_source_json,
+                feature_type_json=feature_type_json,
+            )
+    
+    elif args.command == "stats":
+
+        annotations_json = make_request("/annotations", params=request_params)
+        
+        for i in annotations_json["results"]:
+            print_stats_summary(i)
+
+        if args.tsv:
+            stats_request_params = request_params.copy()
+            stats_request_params.pop("limit", None) 
+            gene_stats_json = make_request("/annotations/gene-stats", params=stats_request_params)
+            trans_stats_json = make_request("/annotations/transcript-stats", params=stats_request_params)
+            build_stats_report(
+                args.tsv,
+                annotations_json=annotations_json,
+                gene_stats_json=gene_stats_json,
+                trans_stats_json=trans_stats_json
+            )
 
     else:
         parser.print_help()
