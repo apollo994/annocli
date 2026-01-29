@@ -20,6 +20,6 @@ annocli --help
 
 - [`download`](USAGE.md#download-command): Download annotations for given taxonomy IDs
 - [`alias`](USAGE.md#alias-command): Match sequence IDs between annotation and assembly files
-- [`describe`](USAGE.md#describe-command): Get information about features and biotypes available
+- [`summary`](USAGE.md#summary-command): Get information about features and biotypes available
 
 For detailed usage examples, see [USAGE.md](USAGE.md). 
