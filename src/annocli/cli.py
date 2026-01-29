@@ -80,7 +80,7 @@ def main():
     )
     summary_parser.add_argument(
         "--tsv",
-        help="Get annotation summary in tsv format",
+        help="File to save annotation summary in tsv format",
     )
 
     args = parser.parse_args()
@@ -262,10 +262,6 @@ def main():
                                  biotype_json = biotype_json,
                                  feature_source_json = feature_source_json,
                                  feature_type_json = feature_type_json)
-
-                # print(biotype_json)
-                # print(feature_type_json)
-                # print(feature_source_json)
 
     else:
         parser.print_help()

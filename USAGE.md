@@ -156,6 +156,7 @@ annocli summary <taxids> [--ref_only]
 
 - `taxids`: Taxonomy IDs (required, one or more integers)
 - `--ref_only`: Show only annotations from reference genome assemblies (optional)
+- `--tsv`: File to save annotation summary in tsv format (optional)
 
 ### Example
 
