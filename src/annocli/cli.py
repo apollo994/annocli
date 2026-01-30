@@ -108,12 +108,12 @@ def main():
     ######
 
     request_params = {}
+    request_params["limit"] = 1000
 
     if args.taxids:
         request_params["taxids"] = args.taxids
     if args.ref_only:
         request_params["refseq_categories"] = "reference genome"
-    request_params["limit"] = 1000
 
     if args.command == "download":
 
@@ -266,7 +266,6 @@ def main():
         annotations_json = make_request("/annotations", params=request_params)
 
         for i in annotations_json["results"]:
-            print (i)
             print_annotation_summary(i)
 
         if args.tsv:
