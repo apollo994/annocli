@@ -2,6 +2,53 @@ import csv
 from textwrap import indent
 from typing import Any, Mapping, Optional
 
+from .general_helpers import extract_nested_values
+from .requests import make_request
+
+
+def handle_stats_command(args, request_params):
+    """
+    Handle the stats command logic.
+
+    Args:
+        args: Parsed command-line arguments
+        request_params: Dictionary of request parameters
+    """
+    annotations_json = make_request("/annotations", params=request_params)
+
+    for annotation in annotations_json["results"]:
+        print_stats_summary(annotation)
+
+    if args.tsv:
+        fetch_and_build_stats_report(args.tsv, request_params, annotations_json)
+
+
+def fetch_and_build_stats_report(output_file, request_params, annotations_json):
+    """
+    Fetch statistics data and build stats report.
+
+    Args:
+        output_file: Path to output TSV file
+        request_params: Dictionary of request parameters
+        annotations_json: Already-fetched annotations data
+    """
+    stats_request_params = request_params.copy()
+    stats_request_params.pop("limit", None)
+
+    gene_stats_json = make_request(
+        "/annotations/gene-stats", params=stats_request_params
+    )
+    trans_stats_json = make_request(
+        "/annotations/transcript-stats", params=stats_request_params
+    )
+
+    build_stats_report(
+        output_file,
+        annotations_json=annotations_json,
+        gene_stats_json=gene_stats_json,
+        trans_stats_json=trans_stats_json,
+    )
+
 
 def build_gene_columns(gene_types):
     """
@@ -45,18 +92,6 @@ def buil_transcript_columns(transcript_types):
     return cols
 
 
-def get_dictinary_path(d, path, default="NA"):
-    cur = d
-    for k in path.split("."):
-        if not isinstance(cur, dict) or k not in cur:
-            return default
-        cur = cur[k]
-    return default if cur is None else cur
-
-
-def extract_values_list(stat_dict, paths, default="NA"):
-    return [get_dictinary_path(stat_dict, p, default) for p in paths]
-
 def drop_all_na_columns(header, rows, na="NA", keep_first_n=5):
     """
     Drops columns where every row has NA (or empty) in that column.
@@ -82,6 +117,7 @@ def drop_all_na_columns(header, rows, na="NA", keep_first_n=5):
     new_header = [h for j, h in enumerate(header) if keep[j]]
     new_rows = [[v for j, v in enumerate(r) if keep[j]] for r in rows]
     return new_header, new_rows
+
 
 def build_stats_report(
     out_file,
@@ -121,11 +157,11 @@ def build_stats_report(
             src.get("database", ""),
         ]
 
-        row.extend(extract_values_list(gene_stats, gene_cols))
-        row.extend(extract_values_list(trans_stats, trans_cols))
+        row.extend(extract_nested_values(gene_stats, gene_cols))
+        row.extend(extract_nested_values(trans_stats, trans_cols))
 
         rows.append(row)
-    
+
     # Drop cols where all rows are NA
     new_header, new_rows = drop_all_na_columns(header, rows)
 

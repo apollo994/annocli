@@ -1,11 +1,9 @@
 import argparse
-import os
-import sys
 
-from .core.alias_helpers import rewrite_gff_seqids_from_assembly
-from .core.requests import download_file, make_request
-from .core.summary_helpers import build_summary_report, print_annotation_summary
-from .core.stats_helpers import print_stats_summary, build_stats_report
+from .core.alias_helpers import handle_alias_command
+from .core.download_helpers import handle_download_command
+from .core.stats_helpers import handle_stats_command
+from .core.summary_helpers import handle_summary_command
 
 
 def main():
@@ -116,195 +114,16 @@ def main():
         request_params["refseq_categories"] = "reference genome"
 
     if args.command == "download":
-
-        annotations_json = make_request("/annotations", params=request_params)
-
-        assembly_dict = {}
-        if args.add_asm:
-            assemblies_json = make_request("/assemblies", params=request_params)
-            assembly_dict = {
-                asm["assembly_accession"]: asm
-                for asm in assemblies_json.get("results", [])
-            }
-
-        ### Download or Links
-        if args.mode in ["dw", "links"]:
-
-            if args.mode == "dw":
-                os.makedirs(args.output, exist_ok=True)
-
-            for result in annotations_json.get("results", []):
-
-                annotation_id = result.get("annotation_id", "NA")
-                organism_name = result.get("organism_name", "NA").replace(" ", "_")
-                taxid = result.get("taxid", "NA")
-                source_url = result.get("source_file_info", {}).get("url_path", "NA")
-                database = result.get("source_file_info", {}).get("database", "NA")
-                assembly_accession = result.get("assembly_accession", "NA")
-
-                annotation_name = "_".join(
-                    [organism_name, taxid, database, assembly_accession, annotation_id]
-                )
-                annotation_folder = os.path.join(
-                    args.output, "_".join([organism_name, taxid]), assembly_accession
-                )
-
-                source_filepath = None
-
-                if source_url != "NA":
-                    loc = -2 if source_url.endswith(".gz") else -1
-                    ext = source_url.split(".")[loc:]
-                    source_filename = f"{annotation_name}.{'.'.join(ext)}"
-                    source_filepath = os.path.join(annotation_folder, source_filename)
-
-                    if args.mode == "links":
-                        print(f"mkdir -p {annotation_folder}")
-                        print(f"wget {source_url} -O {source_filepath}")
-
-                    else:
-                        os.makedirs(annotation_folder, exist_ok=True)
-
-                        try:
-                            download_file(source_url, source_filepath)
-                            print(
-                                f"Downloaded annotation to {source_filepath}",
-                                file=sys.stderr,
-                            )
-                        except Exception as e:
-                            print(
-                                f"Failed to download annotation: {e}", file=sys.stderr
-                            )
-
-                if args.add_asm:
-                    assembly_info = assembly_dict.get(assembly_accession, {})
-                    assembly_url = assembly_info.get("download_url", "NA")
-                    # Download assembly file
-                    if assembly_url != "NA":
-                        assembly_filename = assembly_url.split("/")[-1]
-                        assembly_filepath = os.path.join(
-                            annotation_folder, assembly_filename
-                        )
-                        if args.mode == "links":
-                            print(f"wget {assembly_url} -O {assembly_filepath}")
-
-                        else:
-                            try:
-                                download_file(assembly_url, assembly_filepath)
-                                print(
-                                    f"Downloaded assembly to {assembly_filepath}",
-                                    file=sys.stderr,
-                                )
-                                if args.fix_alias and source_filepath:
-
-                                    if source_filepath.endswith(".gz"):
-                                        extention = ".".join(
-                                            source_filepath.split(".")[-2:]
-                                        )
-
-                                    else:
-                                        extention = source_filepath.split(".")[-1]
-
-                                    alias_fixed_filepath = source_filepath.replace(
-                                        extention, f"aliasMatch.{extention}"
-                                    )
-
-                                    alias_report = (
-                                        f"{alias_fixed_filepath}.aliasMappings.tsv"
-                                    )
-
-                                    alias_mapping = rewrite_gff_seqids_from_assembly(
-                                        source_filepath,
-                                        assembly_filepath,
-                                        alias_fixed_filepath,
-                                    )
-
-                                    with open(alias_report, "w") as alias_report_out:
-                                        for k, v in alias_mapping.items():
-                                            alias_report_out.write(f"{k}\t{v}\n")
-
-                                    print(
-                                        f"Annotation matching assembly's aliases: {alias_fixed_filepath}",
-                                        file=sys.stderr,
-                                    )
-
-                            except Exception as e:
-                                print(
-                                    f"Failed to download assembly: {e}", file=sys.stderr
-                                )
-
-        ### Preview
-        elif args.mode == "prev":
-            label_w = 20
-            print(f"{'Taxids:':<{label_w}} {args.taxids}")
-            print(
-                f"{'Annotations:':<{label_w}} {len(annotations_json.get('results', []))}"
-            )
-            print(f"{'Only reference:':<{label_w}} {args.ref_only}")
-            print(f"{'Include assemblies:':<{label_w}} {args.add_asm}")
+        handle_download_command(args, request_params)
 
     elif args.command == "alias":
-        if args.output is None:
-
-            loc = -2 if args.annotation.endswith(".gz") else -1
-            extentions = args.annotation.split(".")
-            extentions.insert(loc, "aliasMatch")
-            args.output = ".".join(extentions)
-
-        alias_mapping = rewrite_gff_seqids_from_assembly(
-            args.annotation,
-            args.assembly,
-            args.output,
-        )
-
-        alias_report = f"{args.output}.aliasMappings.tsv"
-        with open(alias_report, "w") as alias_report_out:
-            for k, v in alias_mapping.items():
-                alias_report_out.write(f"{k}\t{v}\n")
+        handle_alias_command(args)
 
     elif args.command == "summary":
+        handle_summary_command(args, request_params)
 
-        annotations_json = make_request("/annotations", params=request_params)
-
-        for i in annotations_json["results"]:
-            print_annotation_summary(i)
-
-        if args.tsv:
-            biotype_json = make_request(
-                "/annotations/frequencies/biotype", params=request_params
-            )
-            feature_type_json = make_request(
-                "/annotations/frequencies/feature_type", params=request_params
-            )
-            feature_source_json = make_request(
-                "/annotations/frequencies/feature_source", params=request_params
-            )
-
-            build_summary_report(
-                args.tsv,
-                annotations_json=annotations_json,
-                biotype_json=biotype_json,
-                feature_source_json=feature_source_json,
-                feature_type_json=feature_type_json,
-            )
-    
     elif args.command == "stats":
-
-        annotations_json = make_request("/annotations", params=request_params)
-        
-        for i in annotations_json["results"]:
-            print_stats_summary(i)
-
-        if args.tsv:
-            stats_request_params = request_params.copy()
-            stats_request_params.pop("limit", None) 
-            gene_stats_json = make_request("/annotations/gene-stats", params=stats_request_params)
-            trans_stats_json = make_request("/annotations/transcript-stats", params=stats_request_params)
-            build_stats_report(
-                args.tsv,
-                annotations_json=annotations_json,
-                gene_stats_json=gene_stats_json,
-                trans_stats_json=trans_stats_json
-            )
+        handle_stats_command(args, request_params)
 
     else:
         parser.print_help()

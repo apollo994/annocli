@@ -1,6 +1,53 @@
 import csv
 from textwrap import indent
 
+from .requests import make_request
+
+
+def handle_summary_command(args, request_params):
+    """
+    Handle the summary command logic.
+
+    Args:
+        args: Parsed command-line arguments
+        request_params: Dictionary of request parameters
+    """
+    annotations_json = make_request("/annotations", params=request_params)
+
+    for annotation in annotations_json["results"]:
+        print_annotation_summary(annotation)
+
+    if args.tsv:
+        fetch_and_build_summary_report(args.tsv, request_params, annotations_json)
+
+
+def fetch_and_build_summary_report(output_file, request_params, annotations_json):
+    """
+    Fetch frequency data and build summary report.
+
+    Args:
+        output_file: Path to output TSV file
+        request_params: Dictionary of request parameters
+        annotations_json: Already-fetched annotations data
+    """
+    biotype_json = make_request(
+        "/annotations/frequencies/biotype", params=request_params
+    )
+    feature_type_json = make_request(
+        "/annotations/frequencies/feature_type", params=request_params
+    )
+    feature_source_json = make_request(
+        "/annotations/frequencies/feature_source", params=request_params
+    )
+
+    build_summary_report(
+        output_file,
+        annotations_json=annotations_json,
+        biotype_json=biotype_json,
+        feature_source_json=feature_source_json,
+        feature_type_json=feature_type_json,
+    )
+
 
 def make_summary_label(group: str, values):
     """

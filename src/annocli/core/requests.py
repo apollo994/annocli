@@ -50,7 +50,7 @@ def make_request(
     params: Optional[Dict] = None,
     json_data: Optional[Dict] = None,
 ) -> Dict[str, Any]:
-    
+
     params = dict(params or {})
 
     response = core_request(endpoint, method, params, json_data)
@@ -61,11 +61,11 @@ def make_request(
 
     collected = len(response["results"])
     params["offset"] = collected
-    
+
     while collected < total:
         next_response = core_request(endpoint, method, params, json_data)
-        next_results = next_response.get("results", [])    
-    
+        next_results = next_response.get("results", [])
+
         if not next_results:
             break
 
@@ -76,7 +76,6 @@ def make_request(
     response["offset"] = 0
     response["total"] = total
     return response
-
 
 
 def get_filename_from_url(url, base_name):

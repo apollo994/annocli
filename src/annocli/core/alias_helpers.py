@@ -1,6 +1,30 @@
 import gzip
 import subprocess
 
+from .general_helpers import insert_suffix_before_extension, write_tsv_mapping
+
+
+def handle_alias_command(args):
+    """
+    Handle the alias command logic.
+
+    Args:
+        args: Parsed command-line arguments with annotation, assembly, and output
+    """
+    output_path = args.output
+
+    if output_path is None:
+        output_path = insert_suffix_before_extension(args.annotation, "aliasMatch")
+
+    alias_mapping = rewrite_gff_seqids_from_assembly(
+        args.annotation,
+        args.assembly,
+        output_path,
+    )
+
+    alias_report = f"{output_path}.aliasMappings.tsv"
+    write_tsv_mapping(alias_mapping, alias_report)
+
 
 def rewrite_gff_seqids_from_assembly(
     ann_gff_gz: str,
