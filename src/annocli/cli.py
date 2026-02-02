@@ -64,7 +64,7 @@ def main():
 
     ##### Summary command
     summary_parser = subparsers.add_parser(
-        "summary", help="Get information about features and biotypes availble"
+        "summary", help="Get information about features and biotypes available"
     )
     summary_parser.add_argument(
         "taxids",

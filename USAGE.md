@@ -1,6 +1,6 @@
 # annocli Usage Guide
 
-This guide provides detailed usage examples for the `download` and `alias` commands in annocli.
+This guide provides detailed usage examples for all commands in annocli.
 
 ## Download Command
 
@@ -11,13 +11,13 @@ The `download` command allows you to query and download genome annotations for s
 Download annotations for a single species:
 
 ```bash
-annocli download 9606
+annocli download 9646
 ```
 
 Download annotations for multiple taxids:
 
 ```bash
-annocli download 9606 10090 10116
+annocli download 9646 10090 10116
 ```
 
 ### Options
@@ -39,26 +39,26 @@ annocli download 9606 10090 10116
 
 #### Preview Mode
 
-Check how many annotations are available for human (taxid 9606):
+Check how many annotations are available for Giant Panda (taxid 9646):
 
 ```bash
-annocli download 9606 --mode prev
+annocli download 9646 --mode prev
 ```
 
 Output:
 ```
-Taxids:              [9606]
-Annotations:         45
+Taxids:              [9646]
+Annotations:         2
 Only reference:      False
 Include assemblies:  False
 ```
 
 #### Download with Assemblies
 
-Download annotations and assemblies for human, including alias matching:
+Download annotations and assemblies for Giant Panda, including alias matching:
 
 ```bash
-annocli download 9606 --add_asm --fix_alias
+annocli download 9646 --add_asm --fix_alias
 ```
 
 This will:
@@ -71,13 +71,13 @@ This will:
 Generate wget commands for downloading annotations:
 
 ```bash
-annocli download 9606 --mode links
+annocli download 9646 --mode links
 ```
 
 Output:
 ```
-mkdir -p annotation_downloads/Homo_sapiens_9606/GCF_000001405.40
-wget https://... -O annotation_downloads/Homo_sapiens_9606/GCF_000001405.40/Homo_sapiens_9606_RefSeq_GCF_000001405.40_109.20211119.gff3.gz
+mkdir -p annotation_downloads/Ailuropoda_melanoleuca_9646/GCF_000001234.56
+wget https://... -O annotation_downloads/Ailuropoda_melanoleuca_9646/GCF_000001234.56/Ailuropoda_melanoleuca_9646_RefSeq_GCF_000001234.56_109.20211119.gff3.gz
 ```
 
 #### Reference Only
@@ -85,7 +85,7 @@ wget https://... -O annotation_downloads/Homo_sapiens_9606/GCF_000001405.40/Homo
 Download only reference genome annotations:
 
 ```bash
-annocli download 9606 --ref_only
+annocli download 9646 --ref_only
 ```
 
 ### Output Structure
@@ -160,10 +160,10 @@ annocli summary <taxids> [--ref_only]
 
 ### Example
 
-Get information about annotations for human (taxid 9606):
+Get information about annotations for Giant Panda (taxid 9646):
 
 ```bash
-annocli summary 9606
+annocli summary 9646
 ```
 
 ### Output
@@ -179,3 +179,45 @@ For each annotation, the command prints a detailed summary including:
 - Root type counts (features with no children)
 
 This helps users understand what features are available before downloading annotations.
+
+## Stats Command
+
+The `stats` command provides summary statistics about gene and transcript features in annotations for specified taxonomy IDs. Unlike the `summary` command which focuses on metadata and biotypes, `stats` extracts quantitative information about feature characteristics such as gene and transcript lengths.
+
+### Usage
+
+```bash
+annocli stats <taxids> [--ref_only] [--tsv <file>]
+```
+
+### Parameters
+
+- `taxids`: Taxonomy IDs (required, one or more integers)
+- `--ref_only`: Consider only annotations from reference genome assemblies (optional)
+- `--tsv`: File to save annotation statistics in tsv format (optional)
+
+### Example
+
+Get statistics for Giant Panda (taxid 9646):
+
+```bash
+annocli stats 9646
+```
+
+Get statistics for reference genomes only and save to file:
+
+```bash
+annocli stats 9646 --ref_only --tsv panda_stats.tsv
+```
+
+### Output
+
+For each annotation, the command displays statistical information including:
+
+- Gene lengths and distributions
+- Transcript lengths and distributions
+- Feature counts (genes, transcripts, exons, CDS)
+- Statistical summaries (mean, min, max)
+
+This helps users understand the quantitative characteristics of the annotations before downloading them.
+
