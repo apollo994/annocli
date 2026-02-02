@@ -7,7 +7,9 @@ name = "annocli"
 version = "0.1.0"
 description = "A command-line tool to query and download genome annotations"
 authors = [{name = "Fabio Zanarello", email = "fzanarello@crg.eu"}]
-dependencies = []
+dependencies = [
+    "requests>=2.25.0",
+]
 
 [project.scripts]
 annocli = "annocli.cli:main"

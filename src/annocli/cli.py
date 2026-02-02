@@ -111,8 +111,8 @@ def main():
  
     request_params = {
         "limit": REQUEST_LIMIT,
-        **({"taxids": args.taxids} if args.taxids else {}),
-        **({"refseq_categories": "reference genome"} if args.ref_only else {}),
+        **({"taxids": args.taxids} if hasattr(args, 'taxids') and args.taxids else {}),
+        **({"refseq_categories": "reference genome"} if hasattr(args, 'ref_only') and args.ref_only else {}),
     }
 
     #####
