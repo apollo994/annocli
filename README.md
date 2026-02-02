@@ -24,3 +24,9 @@ annocli --help
 - [`stats`](USAGE.md#stats-command): Get summary statistics about gene and transcript features
 
 For detailed usage examples, see [USAGE.md](USAGE.md).
+
+## TODO
+- return json reponse
+- input gff file and get summary and statistics
+- python library
+- implement taxonview
