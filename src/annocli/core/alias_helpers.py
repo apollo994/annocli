@@ -1,6 +1,30 @@
 import gzip
 import subprocess
 
+from .general_helpers import insert_suffix_before_extension, write_tsv_mapping
+
+
+def handle_alias_command(args):
+    """
+    Handle the alias command logic.
+
+    Args:
+        args: Parsed command-line arguments with annotation, assembly, and output
+    """
+    output_path = args.output
+
+    if output_path is None:
+        output_path = insert_suffix_before_extension(args.annotation, "aliasMatch")
+
+    alias_mapping = rewrite_gff_seqids_from_assembly(
+        args.annotation,
+        args.assembly,
+        output_path,
+    )
+
+    alias_report = f"{output_path}.aliasMappings.tsv"
+    write_tsv_mapping(alias_mapping, alias_report)
+
 
 def rewrite_gff_seqids_from_assembly(
     ann_gff_gz: str,
@@ -10,7 +34,7 @@ def rewrite_gff_seqids_from_assembly(
     """
     Rewrite the 1st column (seqid) of a .gff3.gz using region Alias values, so that seqids
     match the sequence names present in the assembly FASTA (.fna.gz).
-    
+
     Returns:
       names_mapping (dict): mapping from original seqid -> alias (may be None if missing)
     """
@@ -26,7 +50,7 @@ def rewrite_gff_seqids_from_assembly(
 
     def _sh_quote(s: str) -> str:
         return "'" + s.replace("'", "'\"'\"'") + "'"
-    
+
     ann_zip = ann_gff_gz.endswith(".gz")
     asm_zip = asm_fna_gz.endswith(".gz")
     out_zip = out_gff_gz.endswith(".gz")
@@ -43,10 +67,11 @@ def rewrite_gff_seqids_from_assembly(
 
     # 2) Region lines via awk
     region_cmd = (
-        f"{ann_cat} {_sh_quote(ann_gff_gz)} | "
-        "awk -F'\t' '$3==\"region\" {print}'"
+        f"{ann_cat} {_sh_quote(ann_gff_gz)} | " "awk -F'\t' '$3==\"region\" {print}'"
     )
-    region_lines = [x for x in _run_bash(region_cmd).splitlines() if x and not x.startswith("#")]
+    region_lines = [
+        x for x in _run_bash(region_cmd).splitlines() if x and not x.startswith("#")
+    ]
 
     names_mapping = {}
     for region in region_lines:
@@ -56,23 +81,25 @@ def rewrite_gff_seqids_from_assembly(
         current_name = parts[0]
         attr_field = parts[8]
         attrs = dict(kv.split("=", 1) for kv in attr_field.split(";") if "=" in kv)
-        alias = attrs.get("Alias",'NA')
-        if len(alias.split(',')) == 1: 
+        alias = attrs.get("Alias", "NA")
+        if len(alias.split(",")) == 1:
             names_mapping[current_name] = alias
         else:
-            aliases = alias.split(',')
+            aliases = alias.split(",")
             for a in aliases:
                 if a in asm_names:
                     names_mapping[current_name] = a
-
 
     # 3) Rewrite GFF
 
     ann_open = gzip.open if ann_zip else open
     out_open = gzip.open if out_zip else open
 
-    with ann_open(ann_gff_gz, "rt", encoding="utf-8", errors="replace") as ann_in, \
-         out_open(out_gff_gz, "wt", encoding="utf-8", errors="replace") as ann_out:
+    with ann_open(
+        ann_gff_gz, "rt", encoding="utf-8", errors="replace"
+    ) as ann_in, out_open(
+        out_gff_gz, "wt", encoding="utf-8", errors="replace"
+    ) as ann_out:
 
         for line in ann_in:
             if line.startswith("#") or not line.strip():
@@ -96,4 +123,3 @@ def rewrite_gff_seqids_from_assembly(
                 ann_out.write("\t".join(cols) + "\n")
 
     return names_mapping
-

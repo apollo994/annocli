@@ -1,5 +1,6 @@
 # Project specific
 local_testing/
+annotation_downloads/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
