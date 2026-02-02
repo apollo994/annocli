@@ -104,14 +104,20 @@ def main():
     args = parser.parse_args()
 
     ######
+    
+    # Build API request parameters
 
-    request_params = {}
-    request_params["limit"] = 1000
+    REQUEST_LIMIT = 1000
+ 
+    request_params = {
+        "limit": REQUEST_LIMIT,
+        **({"taxids": args.taxids} if args.taxids else {}),
+        **({"refseq_categories": "reference genome"} if args.ref_only else {}),
+    }
 
-    if args.taxids:
-        request_params["taxids"] = args.taxids
-    if args.ref_only:
-        request_params["refseq_categories"] = "reference genome"
+    #####
+
+    # Execute desired command
 
     if args.command == "download":
         handle_download_command(args, request_params)

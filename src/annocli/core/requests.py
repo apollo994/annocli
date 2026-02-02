@@ -78,16 +78,6 @@ def make_request(
     return response
 
 
-def get_filename_from_url(url, base_name):
-    """Generate filename as base_name with extension from URL."""
-    filename_part = url.split("/")[-1]
-    if "." in filename_part:
-        ext = "." + ".".join(filename_part.split(".")[1:])
-    else:
-        ext = ""
-    return f"{base_name}{ext}"
-
-
 def download_file(url, filepath):
     """Download file from URL to filepath."""
     response = requests.get(url, stream=True)
