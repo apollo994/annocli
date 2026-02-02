@@ -1,5 +1,5 @@
 #!/bin/bash
-# smoke_test.sh - Quick smoke test for annocli commands
+# test.sh - Quick smoke test for annocli commands
 # Tests commands: download, summary, stats, and alias
 # Uses Giant Panda (taxid 9646) as test organism
 
