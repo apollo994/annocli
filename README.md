@@ -23,4 +23,4 @@ annocli --help
 - [`summary`](USAGE.md#summary-command): Get information about features and biotypes available
 - [`stats`](USAGE.md#stats-command): Get summary statistics about gene and transcript features
 
-For detailed usage examples, see [USAGE.md](USAGE.md). 
+For detailed usage examples, see [USAGE.md](USAGE.md).
