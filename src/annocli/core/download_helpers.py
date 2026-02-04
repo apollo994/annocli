@@ -70,6 +70,7 @@ def print_download_commands(
     source_filepath,
     assembly_url=None,
     assembly_filepath=None,
+    fix_alias=False,
 ):
     """
     Print wget commands for manual download (links mode).
@@ -81,11 +82,21 @@ def print_download_commands(
         assembly_url: Optional assembly file URL
         assembly_filepath: Optional target assembly file path
     """
-    print(f"mkdir -p {annotation_folder}")
-    print(f"wget {source_url} -O {source_filepath}")
+    make_folder = f"mkdir -p {annotation_folder}"
+    get_annotation = f"wget {source_url} -O {source_filepath}"
 
+    dw_command = f"{make_folder} && {get_annotation}"
     if assembly_url and assembly_filepath:
-        print(f"wget {assembly_url} -O {assembly_filepath}")
+        get_assembly = f"wget {assembly_url} -O {assembly_filepath}"
+        dw_command = f"{dw_command} && {get_assembly}"
+        if fix_alias:
+            alias_fixed_filepath = insert_suffix_before_extension(
+                source_filepath, "aliasMatch"
+            )
+            alias_command = f"annocli alias {source_filepath} {assembly_filepath} > {alias_fixed_filepath}"
+            dw_command = f"{dw_command} && {alias_command}"
+
+    print(dw_command)
 
 
 def download_annotation_file(source_url, source_filepath, annotation_folder):
@@ -198,13 +209,19 @@ def process_annotation_result(result, args, assembly_dict):
                     assembly_filepath = os.path.join(
                         annotation_folder, assembly_filename
                     )
+                else:
+                    print(
+                        f"[WARNING] Assembly not foind for: {source_filename}",
+                        file=sys.stderr,
+                    )
 
             print_download_commands(
                 annotation_folder,
                 source_url,
                 source_filepath,
                 assembly_url if assembly_url != "NA" else None,
-                assembly_filepath,
+                assembly_filepath if assembly_filepath != "NA" else None,
+                fix_alias = True if args.fix_alias else False,
             )
         else:
             download_annotation_file(source_url, source_filepath, annotation_folder)
