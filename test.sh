@@ -58,13 +58,21 @@ setup() {
     echo "Test organism: Giant Panda (taxid $TAXID)"
 }
 
-# Cleanup function
+# Cleanup function - only remove if tests passed
 cleanup() {
     print_header "Cleaning up"
     if [ -d "$TEST_DIR" ]; then
-        echo "Removing test directory: $TEST_DIR"
-        rm -rf "$TEST_DIR"
-        echo "Cleanup complete"
+        if [ $FAILED -eq 0 ]; then
+            echo "Removing test directory: $TEST_DIR"
+            rm -rf "$TEST_DIR"
+            echo "Cleanup complete"
+        else
+            echo -e "${YELLOW}Test directory preserved for debugging: $TEST_DIR${NC}"
+            echo -e "${YELLOW}Log files available:${NC}"
+            find "$TEST_DIR" -name "*.log" 2>/dev/null | while read -r log; do
+                echo "  - $log"
+            done
+        fi
     fi
 }
 
