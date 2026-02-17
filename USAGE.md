@@ -47,18 +47,18 @@ annocli download 9646 --mode prev
 
 Output:
 ```
-Taxids:              [9646]
-Annotations:         2
+Taxids:              [7460]
+Annotations:         3
 Only reference:      False
 Include assemblies:  False
 ```
 
 #### Download with Assemblies
 
-Download annotations and assemblies for Giant Panda, including alias matching:
+Download annotations and assemblies for Honey Bee, including alias matching:
 
 ```bash
-annocli download 9646 --add_asm --fix_alias
+annocli download 7460 --add_asm --fix_alias
 ```
 
 This will:
@@ -71,13 +71,13 @@ This will:
 Generate wget commands for downloading annotations:
 
 ```bash
-annocli download 9646 --mode links
+annocli download 7460 --mode links
 ```
 
 Output:
 ```
-mkdir -p annotation_downloads/Ailuropoda_melanoleuca_9646/GCF_000001234.56
-wget https://... -O annotation_downloads/Ailuropoda_melanoleuca_9646/GCF_000001234.56/Ailuropoda_melanoleuca_9646_RefSeq_GCF_000001234.56_109.20211119.gff3.gz
+mkdir -p annotation_downloads/Apis_mellifera_7460/GCF_000001234.56
+wget https://... -O annotation_downloads/Apis_mellifera_7460/GCF_000001234.56/Apis_mellifera_7460_RefSeq_GCF_000001234.56_109.20211119.gff3.gz
 ```
 
 #### Reference Only
@@ -85,7 +85,7 @@ wget https://... -O annotation_downloads/Ailuropoda_melanoleuca_9646/GCF_0000012
 Download only reference genome annotations:
 
 ```bash
-annocli download 9646 --ref_only
+annocli download 7460 --ref_only
 ```
 
 ### Output Structure
@@ -160,10 +160,10 @@ annocli summary <taxids> [--ref_only]
 
 ### Example
 
-Get information about annotations for Giant Panda (taxid 9646):
+Get information about annotations for Honey Bee (taxid 7460):
 
 ```bash
-annocli summary 9646
+annocli summary 7460
 ```
 
 ### Output
@@ -198,16 +198,16 @@ annocli stats <taxids> [--ref_only] [--tsv <file>]
 
 ### Example
 
-Get statistics for Giant Panda (taxid 9646):
+Get statistics for Honey Bee (taxid 7460):
 
 ```bash
-annocli stats 9646
+annocli stats 7460
 ```
 
 Get statistics for reference genomes only and save to file:
 
 ```bash
-annocli stats 9646 --ref_only --tsv panda_stats.tsv
+annocli stats 7460 --ref_only --tsv bee_stats.tsv
 ```
 
 ### Output
