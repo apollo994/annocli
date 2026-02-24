@@ -104,10 +104,10 @@ def download_annotation_file(source_url, source_filepath, annotation_folder):
 
     try:
         download_file(source_url, source_filepath)
-        print(f"Downloaded annotation to {source_filepath}", file=sys.stderr)
+        print(f"[INFO] Downloaded annotation to {source_filepath}", file=sys.stderr)
         return True
     except Exception as e:
-        print(f"Failed to download annotation: {e}", file=sys.stderr)
+        print(f"[ERROR] Failed to download annotation: {e}", file=sys.stderr)
         return False
 
 
@@ -132,7 +132,7 @@ def process_alias_fixing(source_filepath, assembly_filepath):
     write_tsv_mapping(alias_mapping, alias_report)
 
     print(
-        f"Annotation matching assembly's aliases: {alias_fixed_filepath}",
+        f"[INFO] Annotation matching assembly's aliases: {alias_fixed_filepath}",
         file=sys.stderr,
     )
 
@@ -152,14 +152,14 @@ def download_assembly_file(assembly_url, assembly_filepath, source_filepath, fix
     """
     try:
         download_file(assembly_url, assembly_filepath)
-        print(f"Downloaded assembly to {assembly_filepath}", file=sys.stderr)
+        print(f"[INFO] Downloaded assembly to {assembly_filepath}", file=sys.stderr)
 
         if fix_alias and source_filepath:
             process_alias_fixing(source_filepath, assembly_filepath)
 
         return True
     except Exception as e:
-        print(f"Failed to download assembly: {e}", file=sys.stderr)
+        print(f"[ERROR] Failed to download assembly: {e}", file=sys.stderr)
         return False
 
 
@@ -244,6 +244,10 @@ def handle_download_command(args, request_params):
         args: Parsed command-line arguments
         request_params: Dictionary of request parameters
     """
+    
+    if args.fix_alias and not args.add_asm:
+        print("[ERROR] --fix-alias requires --add-asm", file=sys.stderr)
+
     annotations_json, assembly_dict = fetch_annotations_and_assemblies(
         request_params, args.add_asm
     )
@@ -257,3 +261,5 @@ def handle_download_command(args, request_params):
 
     elif args.mode == "prev":
         print_preview(args, annotations_json)
+
+
