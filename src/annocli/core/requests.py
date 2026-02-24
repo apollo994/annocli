@@ -8,9 +8,8 @@ API_BASE_URL = "https://genome.crg.es/annotrieve/api/v0"
 
 def core_request(
     endpoint: str,
-    method: str = "GET",
+    method: str = "POST",
     params: Optional[Dict] = None,
-    json_data: Optional[Dict] = None,
 ) -> Dict[str, Any]:
     """
     Make a request to the Annotrieve API.
@@ -30,7 +29,7 @@ def core_request(
         if method == "GET":
             response = requests.get(url, params=params)
         elif method == "POST":
-            response = requests.post(url, json=json_data)
+            response = requests.post(url, json=params)
         else:
             raise ValueError(f"Unsupported method: {method}")
 
@@ -46,14 +45,13 @@ def core_request(
 
 def make_request(
     endpoint: str,
-    method: str = "GET",
-    params: Optional[Dict] = None,
-    json_data: Optional[Dict] = None,
+    method: str = "POST",
+    params: Optional[Dict] = None
 ) -> Dict[str, Any]:
 
     params = dict(params or {})
 
-    response = core_request(endpoint, method, params, json_data)
+    response = core_request(endpoint, method, params)
     total = response.get("total", None)
 
     if not total:
@@ -63,7 +61,7 @@ def make_request(
     params["offset"] = collected
 
     while collected < total:
-        next_response = core_request(endpoint, method, params, json_data)
+        next_response = core_request(endpoint, method, params)
         next_results = next_response.get("results", [])
 
         if not next_results:

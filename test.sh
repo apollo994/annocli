@@ -1,9 +1,9 @@
 #!/bin/bash
-# smoke_test.sh - Quick smoke test for annocli commands
+# test.sh - Quick test for annocli commands
 # Tests commands: download, summary, stats, and alias
-# Uses Giant Panda (taxid 9646) as test organism
+# Uses Honey Bee (taxid 7460) as test organism
 
-set -e  # Exit on error (but we'll handle errors ourselves)
+set -e  # Exit on error 
 set -o pipefail
 
 # Colors for output
@@ -19,8 +19,8 @@ FAILED=0
 SKIPPED=0
 
 # Test directory
-TEST_DIR="/tmp/annocli_smoke_test_$$"
-TAXID=9646  # Giant Panda
+TEST_DIR="/tmp/annocli_test_$$"
+TAXID=7460  # Honey Bee
 
 # Helper functions
 print_header() {
@@ -55,16 +55,24 @@ setup() {
     print_header "Setting up test environment"
     mkdir -p "$TEST_DIR"
     echo "Test directory: $TEST_DIR"
-    echo "Test organism: Giant Panda (taxid $TAXID)"
+    echo "Test organism: Honey Bee (taxid $TAXID)"
 }
 
-# Cleanup function
+# Cleanup function - only remove if tests passed
 cleanup() {
     print_header "Cleaning up"
     if [ -d "$TEST_DIR" ]; then
-        echo "Removing test directory: $TEST_DIR"
-        rm -rf "$TEST_DIR"
-        echo "Cleanup complete"
+        if [ $FAILED -eq 0 ]; then
+            echo "Removing test directory: $TEST_DIR"
+            rm -rf "$TEST_DIR"
+            echo "Cleanup complete"
+        else
+            echo -e "${YELLOW}Test directory preserved for debugging: $TEST_DIR${NC}"
+            echo -e "${YELLOW}Log files available:${NC}"
+            find "$TEST_DIR" -name "*.log" 2>/dev/null | while read -r log; do
+                echo "  - $log"
+            done
+        fi
     fi
 }
 
@@ -258,7 +266,7 @@ report_results() {
 
 # Main execution
 main() {
-    print_header "annocli Smoke Test Suite"
+    print_header "annocli Test Suite"
     echo "Testing all four commands with minimal API load"
     echo ""
     

@@ -8,6 +8,7 @@ A command-line tool to query and download genome annotations from the [Annotriev
 git clone https://github.com/apollo994/annocli.git
 cd annocli
 pip install -e .
+./test.sh
 ```
 
 ## Usage
@@ -24,9 +25,3 @@ annocli --help
 - [`stats`](USAGE.md#stats-command): Get summary statistics about gene and transcript features
 
 For detailed usage examples, see [USAGE.md](USAGE.md).
-
-## TODO
-- return json reponse
-- input gff file and get summary and statistics
-- python library
-- implement taxonview
