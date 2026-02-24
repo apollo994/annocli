@@ -1,10 +1,17 @@
 # annocli Usage Guide
 
-This guide provides detailed usage examples for all commands in annocli.
+This guide provides detailed usage examples annocli commands.
+
+- [`download`](USAGE.md#download-command): Download annotations from Annotrive 
+- [`alias`](USAGE.md#alias-command): Match sequence IDs between annotation and assembly files
+- [`summary`](USAGE.md#summary-command): Get information about features and biotypes available
+- [`stats`](USAGE.md#stats-command): Get summary statistics about gene and transcript features
 
 ## Input Methods
 
-Commands that accept annotations (`download`, `summary`, `stats`) support four input methods.
+`download`, `summary` and `stats` support two types of input.
+- [NCBI taxonomic identifier](https://www.ncbi.nlm.nih.gov/taxonomy)
+- [Annotrive annotation ID](https://genome.crg.es/annotrieve/)
 At least one must be provided, and taxid inputs and annotation ID inputs are mutually exclusive.
 
 | Option | Description |
@@ -84,7 +91,7 @@ annocli download --taxids 7460 --add-asm --fix-alias
 annocli download --taxids 7460 --mode links
 ```
 
-#### Reference Only
+#### Reference Annotations Only
 
 ```bash
 annocli download --taxids 7460 --ref-only
