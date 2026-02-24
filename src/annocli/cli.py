@@ -3,7 +3,7 @@ import sys
 
 from .core.alias_helpers import handle_alias_command
 from .core.download_helpers import handle_download_command
-from .core.general_helpers import validate_taxids
+from .core.general_helpers import resolve_input_ids, validate_taxids, validate_annotation_ids
 from .core.stats_helpers import handle_stats_command
 from .core.summary_helpers import handle_summary_command
 
@@ -21,10 +21,22 @@ def main():
         "download", help="Download annotations for given taxids"
     )
     download_parser.add_argument(
-        "taxids",
+        "--taxids",
         nargs="+",
-        type=int,
         help="Taxonomy IDs, can be species or larger group",
+    )
+    download_parser.add_argument(
+        "--taxids-file",
+        help="Path to file with taxonomy IDs, one per line",
+    )
+    download_parser.add_argument(
+        "--annotation-ids",
+        nargs="+",
+        help="Annotation ID from Annotrieve (md5 checksum)",
+    )
+    download_parser.add_argument(
+        "--annotation-ids-file",
+        help="Path to file with annotation IDs from Annotrieve, one per line",
     )
     download_parser.add_argument(
         "--mode",
@@ -69,10 +81,22 @@ def main():
         "summary", help="Get information about features and biotypes available"
     )
     summary_parser.add_argument(
-        "taxids",
+        "--taxids",
         nargs="+",
-        type=int,
         help="Taxonomy IDs, can be species or larger group",
+    )
+    summary_parser.add_argument(
+        "--taxids-file",
+        help="Path to file with taxonomy IDs, one per line",
+    )
+    summary_parser.add_argument(
+        "--annotation-ids",
+        nargs="+",
+        help="Annotation ID from Annotrieve (md5 checksum)",
+    )
+    summary_parser.add_argument(
+        "--annotation-ids-file",
+        help="Path to file with annotation IDs from Annotrieve, one per line",
     )
     summary_parser.add_argument(
         "--ref-only",
@@ -87,10 +111,22 @@ def main():
     ##### Stats command
     stats_parser = subparsers.add_parser("stats", help="Get summary statistics")
     stats_parser.add_argument(
-        "taxids",
+        "--taxids",
         nargs="+",
-        type=int,
         help="Taxonomy IDs, can be species or larger group",
+    )
+    stats_parser.add_argument(
+        "--taxids-file",
+        help="Path to file with taxonomy IDs, one per line",
+    )
+    stats_parser.add_argument(
+        "--annotation-ids",
+        nargs="+",
+        help="Annotation ID from Annotrieve (md5 checksum)",
+    )
+    stats_parser.add_argument(
+        "--annotation-ids-file",
+        help="Path to file with annotation IDs from Annotrieve, one per line",
     )
     stats_parser.add_argument(
         "--ref-only",
@@ -113,16 +149,17 @@ def main():
  
     request_params = {
         "limit": REQUEST_LIMIT,
-        **({"taxids": args.taxids} if hasattr(args, 'taxids') and args.taxids else {}),
         **({"refseq_categories": "reference genome"} if hasattr(args, 'ref_only') and args.ref_only else {}),
     }
 
-    if hasattr(args, "taxids") and args.taxids:
-        valid_taxids = validate_taxids(args.taxids)
-        if not valid_taxids:
-            print("[INFO] No valid taxids provided. Exiting.", file=sys.stderr)
-            return
-        request_params["taxids"] = ",".join(str(t) for t in valid_taxids)
+    if args.command in ("download", "summary", "stats"):
+        input_mode, ids = resolve_input_ids(args)
+        if input_mode == "taxids":
+            valid_ids = validate_taxids(ids)
+            request_params["taxids"] = ",".join(valid_ids)
+        else:
+            valid_ids = validate_annotation_ids(ids)
+            request_params["md5_checksums"] = ",".join(valid_ids)
 
     #####
 

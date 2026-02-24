@@ -23,10 +23,20 @@ def fetch_annotations_and_assemblies(request_params, include_assemblies):
 
     assembly_dict = {}
     if include_assemblies:
-        assemblies_json = make_request("/assemblies", params=request_params)
-        assembly_dict = {
-            asm["assembly_accession"]: asm for asm in assemblies_json.get("results", [])
-        }
+        assembly_accessions = list({
+            r["assembly_accession"]
+            for r in annotations_json.get("results", [])
+            if r.get("assembly_accession")
+        })
+        if assembly_accessions:
+            assemblies_json = make_request(
+                "/assemblies",
+                params={"assembly_accessions": ",".join(assembly_accessions)},
+            )
+            assembly_dict = {
+                asm["assembly_accession"]: asm
+                for asm in assemblies_json.get("results", [])
+            }
 
     return annotations_json, assembly_dict
 
@@ -130,7 +140,6 @@ def process_alias_fixing(source_filepath, assembly_filepath):
         source_filepath: Path to annotation file
         assembly_filepath: Path to assembly file
     """
-    extention = get_extension_string(source_filepath)
     alias_fixed_filepath = insert_suffix_before_extension(source_filepath, "aliasMatch")
     alias_report = f"{alias_fixed_filepath}.aliasMappings.tsv"
 
@@ -247,7 +256,6 @@ def print_preview(args, annotations_json):
         annotations_json: JSON response with annotation data
     """
     label_w = 20
-    print(f"{'Taxids:':<{label_w}} {args.taxids}")
     print(f"{'Annotations:':<{label_w}} {len(annotations_json.get('results', []))}")
     print(f"{'Only reference:':<{label_w}} {args.ref_only}")
     print(f"{'Include assemblies:':<{label_w}} {args.add_asm}")

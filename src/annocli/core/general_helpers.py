@@ -5,6 +5,8 @@ This module contains common helper functions extracted from various
 helper modules to avoid code duplication and improve maintainability.
 """
 
+import sys
+from .requests import core_request
 
 def get_file_extension_parts(filepath):
     """
@@ -164,6 +166,90 @@ def extract_nested_values(dictionary, paths, default="NA"):
     return [get_nested_dict_value(dictionary, path, default) for path in paths]
 
 
+def read_ids_from_file(filepath):
+    """
+    Read IDs from a plain-text file, one entry per line.
+
+    Args:
+        filepath: Path to the file
+
+    Returns:
+        List of non-empty stripped strings
+    """
+    with open(filepath) as f:
+        return [line.strip() for line in f if line.strip()]
+
+
+def resolve_input_ids(args):
+    """
+    Resolve and validate input IDs from all provided sources.
+
+    Taxid sources (--taxids + --taxids-file) and annotation ID sources
+    (--annotation-ids + --annotation-ids-file) are mutually exclusive.
+    At least one source must be provided.
+
+    Args:
+        args: Parsed command-line arguments
+
+    Returns:
+        Tuple of (mode, ids) where mode is "taxids" or "annotation_ids"
+        and ids is a deduplicated list of taxids or annotation_ids
+
+    Raises:
+        SystemExit: If no inputs provided or both modes used simultaneously
+    """
+
+    taxids = list(getattr(args, "taxids", None) or [])
+    if getattr(args, "taxids_file", None):
+        taxids += read_ids_from_file(args.taxids_file)
+
+    annotation_ids = list(getattr(args, "annotation_ids", None) or [])
+    if getattr(args, "annotation_ids_file", None):
+        annotation_ids += read_ids_from_file(args.annotation_ids_file)
+
+    if taxids and annotation_ids:
+        print(
+            "[ERROR] --taxids/--taxids-file and --annotation-ids/--annotation-ids-file "
+            "are mutually exclusive. Provide only one input mode.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    if not taxids and not annotation_ids:
+        print(
+            "[ERROR] No input provided. Supply --taxids, --taxids-file, "
+            "--annotation-ids, or --annotation-ids-file.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    if taxids:
+        return ("taxids", list(dict.fromkeys(taxids)))
+    return ("annotation_ids", list(dict.fromkeys(annotation_ids)))
+
+def validate_annotation_ids(annotation_ids):
+    """
+    Query each annotation id individually and report if found or not.
+
+    Args:
+        annotation_ids: List of annotation id taxids to validate
+
+    Returns:
+        List of annotation ids found
+    """
+    import sys
+
+    valid = []
+    for id in annotation_ids:
+        response = core_request("/annotations", params={"limit": 1, "md5_checksums": id})
+        total = response.get("total", 0)
+        if total == 0:
+            print(f"[WARNING] annotation id {id}: no annotations found, skipping", file=sys.stderr)
+        else:
+            print(f"[INFO] annotation id {id}: found", file=sys.stderr)
+            valid.append(id)
+    return valid
+
 def validate_taxids(taxids):
     """
     Query each taxid individually and report how many annotation entries were found.
@@ -172,13 +258,11 @@ def validate_taxids(taxids):
     Taxids with zero results are warned about and excluded from the returned list.
 
     Args:
-        taxids: List of integer taxids to validate
+        taxids: List of taxids to validate
 
     Returns:
-        List of taxids (int) for which at least one annotation exists
+        List of taxids for which at least one annotation exists
     """
-    import sys
-    from .requests import core_request
 
     valid = []
     for taxid in taxids:
