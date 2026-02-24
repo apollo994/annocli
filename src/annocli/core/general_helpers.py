@@ -185,7 +185,7 @@ def validate_taxids(taxids):
         response = core_request("/annotations", params={"limit": 1, "taxids": taxid})
         total = response.get("total", 0)
         if total == 0:
-            print(f"[INFO] taxid {taxid}: no annotations found, skipping", file=sys.stderr)
+            print(f"[WRNING] taxid {taxid}: no annotations found, skipping", file=sys.stderr)
         else:
             print(f"[INFO] taxid {taxid}: {total} annotation(s) found", file=sys.stderr)
             valid.append(taxid)
