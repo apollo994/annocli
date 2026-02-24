@@ -247,6 +247,7 @@ def handle_download_command(args, request_params):
     
     if args.fix_alias and not args.add_asm:
         print("[ERROR] --fix-alias requires --add-asm", file=sys.stderr)
+        return
 
     annotations_json, assembly_dict = fetch_annotations_and_assemblies(
         request_params, args.add_asm

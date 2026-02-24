@@ -1,7 +1,9 @@
 import argparse
+import sys
 
 from .core.alias_helpers import handle_alias_command
 from .core.download_helpers import handle_download_command
+from .core.general_helpers import validate_taxids
 from .core.stats_helpers import handle_stats_command
 from .core.summary_helpers import handle_summary_command
 
@@ -114,6 +116,13 @@ def main():
         **({"taxids": args.taxids} if hasattr(args, 'taxids') and args.taxids else {}),
         **({"refseq_categories": "reference genome"} if hasattr(args, 'ref_only') and args.ref_only else {}),
     }
+
+    if hasattr(args, "taxids") and args.taxids:
+        valid_taxids = validate_taxids(args.taxids)
+        if not valid_taxids:
+            print("[INFO] No valid taxids provided. Exiting.", file=sys.stderr)
+            return
+        request_params["taxids"] = ",".join(str(t) for t in valid_taxids)
 
     #####
 
