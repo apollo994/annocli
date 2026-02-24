@@ -27,11 +27,11 @@ annocli download 9646 10090 10116
   - `prev`: Preview the number of available annotations
   - `links`: Print wget commands instead of downloading
 
-- `--ref_only`: Download only annotations from reference genome assemblies
+- `--ref-only`: Download only annotations from reference genome assemblies
 
-- `--add_asm`: Also download the corresponding assembly files
+- `--add-asm`: Also download the corresponding assembly files
 
-- `--fix_alias`: Match sequence names with assembly (requires `--add_asm`)
+- `--fix-alias`: Match sequence names with assembly (requires `--add-asm`)
 
 - `-o, --output`: Specify output folder (default: `annotation_downloads`)
 
@@ -58,7 +58,7 @@ Include assemblies:  False
 Download annotations and assemblies for Honey Bee, including alias matching:
 
 ```bash
-annocli download 7460 --add_asm --fix_alias
+annocli download 7460 --add-asm --fix-alias
 ```
 
 This will:
@@ -85,7 +85,7 @@ wget https://... -O annotation_downloads/Apis_mellifera_7460/GCF_000001234.56/Ap
 Download only reference genome annotations:
 
 ```bash
-annocli download 7460 --ref_only
+annocli download 7460 --ref-only
 ```
 
 ### Output Structure
@@ -97,9 +97,9 @@ annotation_downloads/
 ├── Organism_name_taxid/
 │   └── Assembly_accession/
 │       ├── annotation_file.gff3.gz
-│       ├── assembly_file.fna.gz (if --add_asm)
-│       ├── annotation_file.aliasMatch.gff3.gz (if --fix_alias)
-│       └── annotation_file.aliasMatch.gff3.gz.aliasMappings.tsv (if --fix_alias)
+│       ├── assembly_file.fna.gz (if --add-asm)
+│       ├── annotation_file.aliasMatch.gff3.gz (if --fix-alias)
+│       └── annotation_file.aliasMatch.gff3.gz.aliasMappings.tsv (if --fix-alias)
 ```
 
 ## Alias Command
@@ -149,13 +149,13 @@ The `summary` command provides information about features and biotypes available
 ### Usage
 
 ```bash
-annocli summary <taxids> [--ref_only]
+annocli summary <taxids> [--ref-only]
 ```
 
 ### Parameters
 
 - `taxids`: Taxonomy IDs (required, one or more integers)
-- `--ref_only`: Show only annotations from reference genome assemblies (optional)
+- `--ref-only`: Show only annotations from reference genome assemblies (optional)
 - `--tsv`: File to save annotation summary in tsv format (optional)
 
 ### Example
@@ -187,13 +187,13 @@ The `stats` command provides summary statistics about gene and transcript featur
 ### Usage
 
 ```bash
-annocli stats <taxids> [--ref_only] [--tsv <file>]
+annocli stats <taxids> [--ref-only] [--tsv <file>]
 ```
 
 ### Parameters
 
 - `taxids`: Taxonomy IDs (required, one or more integers)
-- `--ref_only`: Consider only annotations from reference genome assemblies (optional)
+- `--ref-only`: Consider only annotations from reference genome assemblies (optional)
 - `--tsv`: File to save annotation statistics in tsv format (optional)
 
 ### Example
@@ -207,7 +207,7 @@ annocli stats 7460
 Get statistics for reference genomes only and save to file:
 
 ```bash
-annocli stats 7460 --ref_only --tsv bee_stats.tsv
+annocli stats 7460 --ref-only --tsv bee_stats.tsv
 ```
 
 ### Output

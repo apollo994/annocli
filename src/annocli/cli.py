@@ -33,17 +33,17 @@ def main():
         help="'dw' download, 'prev' preview, 'links' print links (default: dw)",
     )
     download_parser.add_argument(
-        "--ref_only",
+        "--ref-only",
         action="store_true",
-        help="Download only annotations of ref_only assemblies",
+        help="Download only annotations of reference assemblies",
     )
     download_parser.add_argument(
-        "--add_asm", action="store_true", help="Download also assemblies"
+        "--add-asm", action="store_true", help="Download also assemblies"
     )
     download_parser.add_argument(
-        "--fix_alias",
+        "--fix-alias",
         action="store_true",
-        help="Match sequence name with assembly (works only with --add_asm)",
+        help="Match sequence name with assembly (works only with --add-asm)",
     )
     download_parser.add_argument(
         "-o",
@@ -75,7 +75,7 @@ def main():
         help="Taxonomy IDs, can be species or larger group",
     )
     summary_parser.add_argument(
-        "--ref_only",
+        "--ref-only",
         action="store_true",
         help="Consider only annotations of reference assemblies",
     )
@@ -93,7 +93,7 @@ def main():
         help="Taxonomy IDs, can be species or larger group",
     )
     stats_parser.add_argument(
-        "--ref_only",
+        "--ref-only",
         action="store_true",
         help="Consider only annotations of reference assemblies",
     )

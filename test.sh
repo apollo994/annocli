@@ -94,20 +94,20 @@ test_download() {
     
     # Test 1.2: Links mode
     print_test "Download - Links mode"
-    if OUTPUT=$(annocli download $TAXID --mode links --ref_only 2>&1); then
+    if OUTPUT=$(annocli download $TAXID --mode links --ref-only 2>&1); then
         if echo "$OUTPUT" | grep -q "wget" || echo "$OUTPUT" | grep -q "mkdir"; then
             pass "Links mode works correctly"
         else
             fail "Links mode output format unexpected" "Expected 'wget' or 'mkdir' commands in output"
         fi
     else
-        fail "Links mode failed" "Command: annocli download $TAXID --mode links --ref_only"
+        fail "Links mode failed" "Command: annocli download $TAXID --mode links --ref-only"
     fi
     
     # Test 1.3: Actual download with assembly
     print_test "Download - Actual download with assembly"
     DOWNLOAD_DIR="$TEST_DIR/downloads"
-    if annocli download $TAXID --ref_only --add_asm -o "$DOWNLOAD_DIR" 2>&1 | tee "$TEST_DIR/download.log"; then
+    if annocli download $TAXID --ref-only --add-asm -o "$DOWNLOAD_DIR" 2>&1 | tee "$TEST_DIR/download.log"; then
         # Check if files were downloaded (check for both .gff.gz and .gff3.gz)
         GFF_FILES=$(find "$DOWNLOAD_DIR" \( -name "*.gff.gz" -o -name "*.gff3.gz" \) 2>/dev/null | wc -l)
         FNA_FILES=$(find "$DOWNLOAD_DIR" -name "*.fna.gz" 2>/dev/null | wc -l)
@@ -131,27 +131,27 @@ test_summary() {
     
     # Test 2.1: Basic summary
     print_test "Summary - Basic output"
-    if OUTPUT=$(annocli summary $TAXID --ref_only 2>&1); then
+    if OUTPUT=$(annocli summary $TAXID --ref-only 2>&1); then
         if echo "$OUTPUT" | grep -q -i "organism\|assembly\|taxid\|feature"; then
             pass "Summary basic output works correctly"
         else
             fail "Summary output format unexpected" "Expected organism/assembly/feature information"
         fi
     else
-        fail "Summary command failed" "Command: annocli summary $TAXID --ref_only"
+        fail "Summary command failed" "Command: annocli summary $TAXID --ref-only"
     fi
     
     # Test 2.2: TSV output
     print_test "Summary - TSV export"
     TSV_FILE="$TEST_DIR/summary.tsv"
-    if annocli summary $TAXID --ref_only --tsv "$TSV_FILE" 2>&1 > /dev/null; then
+    if annocli summary $TAXID --ref-only --tsv "$TSV_FILE" 2>&1 > /dev/null; then
         if [ -f "$TSV_FILE" ] && [ -s "$TSV_FILE" ]; then
             pass "Summary TSV export successful"
         else
             fail "Summary TSV file not created or empty" "Expected file: $TSV_FILE"
         fi
     else
-        fail "Summary TSV export failed" "Command: annocli summary $TAXID --ref_only --tsv $TSV_FILE"
+        fail "Summary TSV export failed" "Command: annocli summary $TAXID --ref-only --tsv $TSV_FILE"
     fi
 }
 
@@ -161,7 +161,7 @@ test_stats() {
     
     # Test 3.1: Basic stats
     print_test "Stats - Basic output"
-    if OUTPUT=$(annocli stats $TAXID --ref_only 2>&1); then
+    if OUTPUT=$(annocli stats $TAXID --ref-only 2>&1); then
         # Stats output should contain some statistical information
         if [ -n "$OUTPUT" ]; then
             pass "Stats basic output works correctly"
@@ -169,20 +169,20 @@ test_stats() {
             fail "Stats output is empty" "Expected statistical information"
         fi
     else
-        fail "Stats command failed" "Command: annocli stats $TAXID --ref_only"
+        fail "Stats command failed" "Command: annocli stats $TAXID --ref-only"
     fi
     
     # Test 3.2: TSV output
     print_test "Stats - TSV export"
     TSV_FILE="$TEST_DIR/stats.tsv"
-    if annocli stats $TAXID --ref_only --tsv "$TSV_FILE" 2>&1 > /dev/null; then
+    if annocli stats $TAXID --ref-only --tsv "$TSV_FILE" 2>&1 > /dev/null; then
         if [ -f "$TSV_FILE" ] && [ -s "$TSV_FILE" ]; then
             pass "Stats TSV export successful"
         else
             fail "Stats TSV file not created or empty" "Expected file: $TSV_FILE"
         fi
     else
-        fail "Stats TSV export failed" "Command: annocli stats $TAXID --ref_only --tsv $TSV_FILE"
+        fail "Stats TSV export failed" "Command: annocli stats $TAXID --ref-only --tsv $TSV_FILE"
     fi
 }
 
