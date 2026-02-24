@@ -162,3 +162,31 @@ def extract_nested_values(dictionary, paths, default="NA"):
         [10, 55]
     """
     return [get_nested_dict_value(dictionary, path, default) for path in paths]
+
+
+def validate_taxids(taxids):
+    """
+    Query each taxid individually and report how many annotation entries were found.
+
+    Prints an [INFO] message per taxid with the number of annotations found.
+    Taxids with zero results are warned about and excluded from the returned list.
+
+    Args:
+        taxids: List of integer taxids to validate
+
+    Returns:
+        List of taxids (int) for which at least one annotation exists
+    """
+    import sys
+    from .requests import core_request
+
+    valid = []
+    for taxid in taxids:
+        response = core_request("/annotations", params={"limit": 1, "taxids": taxid})
+        total = response.get("total", 0)
+        if total == 0:
+            print(f"[WRNING] taxid {taxid}: no annotations found, skipping", file=sys.stderr)
+        else:
+            print(f"[INFO] taxid {taxid}: {total} annotation(s) found", file=sys.stderr)
+            valid.append(taxid)
+    return valid
