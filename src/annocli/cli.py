@@ -1,6 +1,5 @@
 import argparse
-import sys
-
+from importlib.metadata import version, PackageNotFoundError
 from .core.alias_helpers import handle_alias_command
 from .core.download_helpers import handle_download_command
 from .core.general_helpers import resolve_input_ids, validate_taxids, validate_annotation_ids
@@ -8,11 +7,17 @@ from .core.stats_helpers import handle_stats_command
 from .core.summary_helpers import handle_summary_command
 
 
+try:
+    __version__ = version("annocli")
+except PackageNotFoundError:
+    __version__ = "unknown"
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="annocli: command-line tool to query and download genome annotations"
     )
-    parser.add_argument("--version", action="version", version="annocli 0.1.0")
+    parser.add_argument("--version", action="version", version=f"annocli {__version__}")
 
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
