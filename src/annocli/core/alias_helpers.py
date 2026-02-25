@@ -25,6 +25,17 @@ def handle_alias_command(args):
     alias_report = f"{output_path}.aliasMappings.tsv"
     write_tsv_mapping(alias_mapping, alias_report)
 
+def _run_bash(cmd: str) -> str:
+    return subprocess.run(
+        ["bash", "-lc", cmd],
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    ).stdout
+
+def _sh_quote(s: str) -> str:
+    return "'" + s.replace("'", "'\"'\"'") + "'"
 
 def rewrite_gff_seqids_from_assembly(
     ann_gff_gz: str,
@@ -38,18 +49,6 @@ def rewrite_gff_seqids_from_assembly(
     Returns:
       names_mapping (dict): mapping from original seqid -> alias (may be None if missing)
     """
-
-    def _run_bash(cmd: str) -> str:
-        return subprocess.run(
-            ["bash", "-lc", cmd],
-            check=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-        ).stdout
-
-    def _sh_quote(s: str) -> str:
-        return "'" + s.replace("'", "'\"'\"'") + "'"
 
     ann_zip = ann_gff_gz.endswith(".gz")
     asm_zip = asm_fna_gz.endswith(".gz")
@@ -67,7 +66,7 @@ def rewrite_gff_seqids_from_assembly(
 
     # 2) Region lines via awk
     region_cmd = (
-        f"{ann_cat} {_sh_quote(ann_gff_gz)} | " "awk -F'\t' '$3==\"region\" {print}'"
+        f"{ann_cat} {_sh_quote(ann_gff_gz)} | " "awk -F'\t' '$9~/Alias/ {print}'"
     )
     region_lines = [
         x for x in _run_bash(region_cmd).splitlines() if x and not x.startswith("#")
