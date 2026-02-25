@@ -1,53 +1,79 @@
 # annocli Usage Guide
 
-This guide provides detailed usage examples for all commands in annocli.
+This guide provides detailed usage examples annocli commands.
+
+- [`download`](USAGE.md#download-command): Download annotations from Annotrive 
+- [`alias`](USAGE.md#alias-command): Match sequence IDs between annotation and assembly files
+- [`summary`](USAGE.md#summary-command): Get information about features and biotypes available
+- [`stats`](USAGE.md#stats-command): Get summary statistics about gene and transcript features
+
+## Input Methods
+
+`download`, `summary` and `stats` support two types of input.
+- [NCBI taxonomic identifier](https://www.ncbi.nlm.nih.gov/taxonomy)
+- [Annotrive annotation ID](https://genome.crg.es/annotrieve/)
+At least one must be provided, and taxid inputs and annotation ID inputs are mutually exclusive.
+
+| Option | Description |
+|--------|-------------|
+| `--taxids` | One or more taxonomy IDs (space-separated integers) |
+| `--taxids-file` | Path to a plain-text file with one taxonomy ID per line |
+| `--annotation-ids` | One or more Annotrieve annotation IDs (md5 checksums, space-separated) |
+| `--annotation-ids-file` | Path to a plain-text file with one annotation ID per line |
+
+**Examples:**
+
+```bash
+# By taxid(s)
+annocli download --taxids 9646
+annocli download --taxids 9646 10090 10116
+
+# By taxids file
+annocli download --taxids-file my_taxids.txt
+
+# By annotation ID(s)
+annocli download --annotation-ids 1d7a323a9ccc520dc1dba53fd58466fd
+
+# By annotation IDs file
+annocli download --annotation-ids-file my_annotation_ids.txt
+```
 
 ## Download Command
 
-The `download` command allows you to query and download genome annotations for specified taxonomy IDs (taxids).
+The `download` command queries and downloads genome annotations.
 
 ### Basic Usage
 
-Download annotations for a single species:
-
 ```bash
-annocli download 9646
-```
-
-Download annotations for multiple taxids:
-
-```bash
-annocli download 9646 10090 10116
+annocli download --taxids <taxid> [options]
+annocli download --annotation-ids <annotation_id> [options]
 ```
 
 ### Options
 
+- `--taxids`: Taxonomy IDs (space-separated)
+- `--taxids-file`: Path to file with taxonomy IDs, one per line
+- `--annotation-ids`: Annotation IDs from Annotrieve (md5 checksums, space-separated)
+- `--annotation-ids-file`: Path to file with annotation IDs, one per line
 - `--mode`: Choose the operation mode
   - `dw` (default): Download files
   - `prev`: Preview the number of available annotations
   - `links`: Print wget commands instead of downloading
-
-- `--ref_only`: Download only annotations from reference genome assemblies
-
-- `--add_asm`: Also download the corresponding assembly files
-
-- `--fix_alias`: Match sequence names with assembly (requires `--add_asm`)
-
+- `--ref-only`: Download only annotations from reference genome assemblies
+- `--add-asm`: Also download the corresponding assembly files
+- `--fix-alias`: Match sequence names with assembly (requires `--add-asm`)
 - `-o, --output`: Specify output folder (default: `annotation_downloads`)
 
 ### Examples
 
 #### Preview Mode
 
-Check how many annotations are available for Giant Panda (taxid 9646):
-
 ```bash
-annocli download 9646 --mode prev
+annocli download --taxids 9646 --mode prev
 ```
 
 Output:
 ```
-Taxids:              [7460]
 Annotations:         3
 Only reference:      False
 Include assemblies:  False
@@ -55,51 +81,38 @@ Include assemblies:  False
 
 #### Download with Assemblies
 
-Download annotations and assemblies for Honey Bee, including alias matching:
-
 ```bash
-annocli download 7460 --add_asm --fix_alias
+annocli download --taxids 7460 --add-asm --fix-alias
 ```
-
-This will:
-- Download annotation GFF files
-- Download corresponding assembly FASTA files
-- Create alias-matched versions of the annotations where sequence IDs match the assembly
 
 #### Download Links Only
 
-Generate wget commands for downloading annotations:
+```bash
+annocli download --taxids 7460 --mode links
+```
+
+#### Reference Annotations Only
 
 ```bash
-annocli download 7460 --mode links
+annocli download --taxids 7460 --ref-only
 ```
 
-Output:
-```
-mkdir -p annotation_downloads/Apis_mellifera_7460/GCF_000001234.56
-wget https://... -O annotation_downloads/Apis_mellifera_7460/GCF_000001234.56/Apis_mellifera_7460_RefSeq_GCF_000001234.56_109.20211119.gff3.gz
-```
-
-#### Reference Only
-
-Download only reference genome annotations:
+#### By Annotation ID
 
 ```bash
-annocli download 7460 --ref_only
+annocli download --annotation-ids 1d7a323a9ccc520dc1dba53fd58466fd
 ```
 
 ### Output Structure
-
-Downloaded files are organized as:
 
 ```
 annotation_downloads/
 ├── Organism_name_taxid/
 │   └── Assembly_accession/
 │       ├── annotation_file.gff3.gz
-│       ├── assembly_file.fna.gz (if --add_asm)
-│       ├── annotation_file.aliasMatch.gff3.gz (if --fix_alias)
-│       └── annotation_file.aliasMatch.gff3.gz.aliasMappings.tsv (if --fix_alias)
+│       ├── assembly_file.fna.gz (if --add-asm)
+│       ├── annotation_file.aliasMatch.gff3.gz (if --fix-alias)
+│       └── annotation_file.aliasMatch.gff3.gz.aliasMappings.tsv (if --fix-alias)
 ```
 
 ## Alias Command
@@ -120,8 +133,6 @@ annocli alias <annotation_file> <assembly_file> [--output <output_file>]
 
 ### Example
 
-Match aliases between an annotation and assembly:
-
 ```bash
 annocli alias annotation.gff3.gz assembly.fna.gz
 ```
@@ -132,92 +143,80 @@ This will create:
 
 ### How It Works
 
-The alias command:
-
 1. Extracts sequence names from the assembly FASTA file
 2. Parses the "region" lines in the GFF annotation to find Alias attributes
 3. Creates a mapping from original sequence IDs to their aliases
 4. Rewrites the GFF file with matched sequence IDs
 5. Generates a report of the mappings
 
-This ensures that the sequence IDs in the annotation match those in the assembly, which is important for tools that require consistent naming.
-
 ## Summary Command
 
-The `summary` command provides information about features and biotypes available in annotations for specified taxonomy IDs.
+The `summary` command provides information about features and biotypes available in annotations.
 
 ### Usage
 
 ```bash
-annocli summary <taxids> [--ref_only]
+annocli summary --taxids <taxid> [--ref-only] [--tsv <file>]
+annocli summary --annotation-ids <annotation_id> [--tsv <file>]
 ```
 
-### Parameters
+### Options
 
-- `taxids`: Taxonomy IDs (required, one or more integers)
-- `--ref_only`: Show only annotations from reference genome assemblies (optional)
+- `--taxids`: Taxonomy IDs (space-separated)
+- `--taxids-file`: Path to file with taxonomy IDs, one per line
+- `--annotation-ids`: Annotation IDs from Annotrieve (md5 checksums, space-separated)
+- `--annotation-ids-file`: Path to file with annotation IDs, one per line
+- `--ref-only`: Show only annotations from reference genome assemblies (optional)
 - `--tsv`: File to save annotation summary in tsv format (optional)
 
-### Example
-
-Get information about annotations for Honey Bee (taxid 7460):
+### Examples
 
 ```bash
-annocli summary 7460
+annocli summary --taxids 7460
+
+annocli summary --taxids 7460 --ref-only
+
+annocli summary --annotation-ids 1d7a323a9ccc520dc1dba53fd58466fd
+
+annocli summary --taxids 7460 --ref-only --tsv summary.tsv
 ```
 
 ### Output
 
-For each annotation, the command prints a detailed summary including:
-
-- Organism name and TaxID
-- Assembly accession and name
-- Database and URL
-- Release date
-- Feature availability (biotype, CDS, exon)
-- Lists of types, sources, biotypes, and missing IDs
-- Root type counts (features with no children)
-
-This helps users understand what features are available before downloading annotations.
+For each annotation, prints a detailed summary including organism name, TaxID, assembly accession, database, release date, feature availability (biotype, CDS, exon), and root type counts.
 
 ## Stats Command
 
-The `stats` command provides summary statistics about gene and transcript features in annotations for specified taxonomy IDs. Unlike the `summary` command which focuses on metadata and biotypes, `stats` extracts quantitative information about feature characteristics such as gene and transcript lengths.
+The `stats` command provides quantitative statistics about gene and transcript features in annotations.
 
 ### Usage
 
 ```bash
-annocli stats <taxids> [--ref_only] [--tsv <file>]
+annocli stats --taxids <taxid> [--ref-only] [--tsv <file>]
+annocli stats --annotation-ids <annotation_id> [--tsv <file>]
 ```
 
-### Parameters
+### Options
 
-- `taxids`: Taxonomy IDs (required, one or more integers)
-- `--ref_only`: Consider only annotations from reference genome assemblies (optional)
+- `--taxids`: Taxonomy IDs (space-separated)
+- `--taxids-file`: Path to file with taxonomy IDs, one per line
+- `--annotation-ids`: Annotation IDs from Annotrieve (md5 checksums, space-separated)
+- `--annotation-ids-file`: Path to file with annotation IDs, one per line
+- `--ref-only`: Consider only annotations from reference genome assemblies (optional)
 - `--tsv`: File to save annotation statistics in tsv format (optional)
 
-### Example
-
-Get statistics for Honey Bee (taxid 7460):
+### Examples
 
 ```bash
-annocli stats 7460
-```
+annocli stats --taxids 7460
 
-Get statistics for reference genomes only and save to file:
+annocli stats --taxids 7460 --ref-only --tsv bee_stats.tsv
 
-```bash
-annocli stats 7460 --ref_only --tsv bee_stats.tsv
+annocli stats --annotation-ids 1d7a323a9ccc520dc1dba53fd58466fd
 ```
 
 ### Output
 
-For each annotation, the command displays statistical information including:
+For each annotation, displays gene and transcript statistics including lengths, distributions, feature counts, and statistical summaries (mean, min, max).
 
-- Gene lengths and distributions
-- Transcript lengths and distributions
-- Feature counts (genes, transcripts, exons, CDS)
-- Statistical summaries (mean, min, max)
-
-This helps users understand the quantitative characteristics of the annotations before downloading them.
 
