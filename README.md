@@ -7,17 +7,15 @@ A command-line tool to query and download genome annotations from the [Annotriev
 ```bash
 git clone https://github.com/apollo994/annocli.git
 cd annocli
-pip install -e .
+pip install .
 ./test.sh
 ```
 
-## Usage
+## Commands
 
 ```bash
-annocli --help
+annocli {COMMAND} --help
 ```
-
-## Commands
 
 - [`download`](USAGE.md#download-command): Download annotations for given taxonomy IDs
 - [`alias`](USAGE.md#alias-command): Match sequence IDs between annotation and assembly files
