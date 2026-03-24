@@ -248,6 +248,9 @@ def validate_annotation_ids(annotation_ids):
         else:
             print(f"[INFO] annotation id {id}: found", file=sys.stderr)
             valid.append(id)
+    if not valid:
+        print("[ERROR] No valid annotation IDs found. Exiting.", file=sys.stderr)
+        sys.exit(1)
     return valid
 
 def validate_taxids(taxids):
@@ -273,4 +276,7 @@ def validate_taxids(taxids):
         else:
             print(f"[INFO] taxid {taxid}: {total} annotation(s) found", file=sys.stderr)
             valid.append(taxid)
+    if not valid:
+        print("[ERROR] No valid annotation IDs found. Exiting.", file=sys.stderr)
+        sys.exit(1)
     return valid
