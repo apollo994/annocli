@@ -1,7 +1,5 @@
 # annocli
 
-"dev branch"
-
 A command-line tool to query and download genome annotations from the [Annotrieve API](https://genome.crg.es/annotrieve/).
 
 ## Installation
