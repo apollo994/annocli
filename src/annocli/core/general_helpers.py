@@ -32,30 +32,6 @@ def get_file_extension_parts(filepath):
     return filepath.split(".")[loc:]
 
 
-def get_extension_string(filepath):
-    """
-    Get file extension as a string, handling compressed files.
-
-    Args:
-        filepath: File path or URL string
-
-    Returns:
-        Extension string (e.g., 'gff3.gz' or 'gff3')
-
-    Examples:
-        >>> get_extension_string("file.gff3.gz")
-        'gff3.gz'
-        >>> get_extension_string("file.gff3")
-        'gff3'
-        >>> get_extension_string("/path/to/annotation.gtf.gz")
-        'gtf.gz'
-    """
-    if filepath.endswith(".gz"):
-        return ".".join(filepath.split(".")[-2:])
-    else:
-        return filepath.split(".")[-1]
-
-
 def write_tsv_mapping(mapping_dict, output_path):
     """
     Write a dictionary to a TSV file (key-value pairs).

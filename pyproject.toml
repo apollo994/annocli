@@ -4,12 +4,21 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "annocli"
-version = "1.0.2"
+version = "1.0.3"
 description = "A command-line tool to query and download genome annotations"
 authors = [{name = "Fabio Zanarello", email = "fzanarello@crg.eu"}]
 dependencies = [
     "requests>=2.25.0",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "responses>=0.25",
+]
+
 [project.scripts]
 annocli = "annocli.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -13,7 +13,8 @@ except PackageNotFoundError:
     __version__ = "unknown"
 
 
-def main():
+def build_parser():
+    """Build and return the annocli argument parser."""
     parser = argparse.ArgumentParser(
         description="annocli: command-line tool to query and download genome annotations"
     )
@@ -143,19 +144,26 @@ def main():
         help="File to save annotation summary in tsv format",
     )
 
-    # build arg parser
+    return parser
+
+
+def build_request_params(args, limit=1000):
+    """Build API request parameters from parsed CLI args."""
+    return {
+        "limit": limit,
+        **(
+            {"refseq_categories": "reference genome"}
+            if hasattr(args, "ref_only") and args.ref_only
+            else {}
+        ),
+    }
+
+
+def main():
+    parser = build_parser()
     args = parser.parse_args()
 
-    ######
-    
-    # Build API request parameters
-
-    REQUEST_LIMIT = 1000
- 
-    request_params = {
-        "limit": REQUEST_LIMIT,
-        **({"refseq_categories": "reference genome"} if hasattr(args, 'ref_only') and args.ref_only else {}),
-    }
+    request_params = build_request_params(args)
 
     if args.command in ("download", "summary", "stats"):
         input_mode, ids = resolve_input_ids(args)
@@ -165,10 +173,6 @@ def main():
         else:
             valid_ids = validate_annotation_ids(ids)
             request_params["md5_checksums"] = ",".join(valid_ids)
-
-    #####
-
-    # Execute desired command
 
     if args.command == "download":
         handle_download_command(args, request_params)
