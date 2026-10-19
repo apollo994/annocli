@@ -23,6 +23,8 @@ def fetch_annotation_report(request_params, include_assemblies):
         List of annotation row dictionaries
     """
     params = dict(request_params or {})
+    # /annotations/report streams every matching row and ignores pagination
+    params.pop("limit", None)
     if include_assemblies:
         params["selected_fields"] = "assembly_download_url"
     return fetch_tsv_report(params)
@@ -218,12 +220,18 @@ def process_annotation_result(result, args):
         else:
             download_annotation_file(source_url, source_filepath, annotation_folder)
 
-    if args.add_asm and args.mode != "links" and assembly_url:
-        assembly_filename = assembly_url.split("/")[-1]
-        assembly_filepath = os.path.join(annotation_folder, assembly_filename)
-        download_assembly_file(
-            assembly_url, assembly_filepath, source_filepath, args.fix_alias
-        )
+    if args.add_asm and args.mode != "links":
+        if assembly_url:
+            assembly_filename = assembly_url.split("/")[-1]
+            assembly_filepath = os.path.join(annotation_folder, assembly_filename)
+            download_assembly_file(
+                assembly_url, assembly_filepath, source_filepath, args.fix_alias
+            )
+        else:
+            print(
+                f"[WARNING] Assembly not found for: {annotation_name}",
+                file=sys.stderr,
+            )
 
 
 def print_preview(args, annotation_rows):

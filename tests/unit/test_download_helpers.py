@@ -28,6 +28,15 @@ def test_fetch_annotation_report_with_assemblies(mock_fetch):
     )
 
 
+@patch("annocli.core.download_helpers.fetch_tsv_report")
+def test_fetch_annotation_report_drops_limit(mock_fetch):
+    mock_fetch.return_value = []
+    request_params = {"taxids": "7460", "limit": 1000}
+    fetch_annotation_report(request_params, include_assemblies=False)
+    mock_fetch.assert_called_once_with({"taxids": "7460"})
+    assert request_params["limit"] == 1000
+
+
 def test_build_annotation_paths_flat_tsv_fields(tmp_path):
     result = {
         "annotation_id": "abc",
@@ -66,7 +75,7 @@ def test_process_annotation_result_dw_with_assembly(
 @patch("annocli.core.download_helpers.download_annotation_file")
 @patch("annocli.core.download_helpers.download_assembly_file")
 def test_process_annotation_result_skips_empty_assembly_url(
-    mock_asm, mock_ann, sample_tsv_row, tmp_path
+    mock_asm, mock_ann, sample_tsv_row, tmp_path, capsys
 ):
     sample_tsv_row["assembly_download_url"] = ""
     args = Namespace(
@@ -78,6 +87,7 @@ def test_process_annotation_result_skips_empty_assembly_url(
     process_annotation_result(sample_tsv_row, args)
     mock_ann.assert_called_once()
     mock_asm.assert_not_called()
+    assert "Assembly not found for" in capsys.readouterr().err
 
 
 @patch("annocli.core.download_helpers.print_download_commands")
