@@ -11,5 +11,14 @@ dependencies = [
     "requests>=2.25.0",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "responses>=0.25",
+]
+
 [project.scripts]
 annocli = "annocli.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

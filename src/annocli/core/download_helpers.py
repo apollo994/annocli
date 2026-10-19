@@ -2,43 +2,30 @@ import os
 import sys
 
 from .alias_helpers import rewrite_gff_seqids_from_assembly
-from .general_helpers import (get_extension_string, get_file_extension_parts,
+from .general_helpers import (get_file_extension_parts,
                               insert_suffix_before_extension,
                               write_tsv_mapping)
-from .requests import download_file, make_request
+from .requests import download_file, fetch_tsv_report
 
 
-def fetch_annotations_and_assemblies(request_params, include_assemblies):
+def fetch_annotation_report(request_params, include_assemblies):
     """
-    Fetch annotations and optionally assemblies from the API.
+    Fetch annotation rows from /annotations/report as TSV.
+
+    When include_assemblies is True, requests the assembly_download_url
+    extended column so assembly FASTA URLs are present on each row.
 
     Args:
         request_params: Dictionary of request parameters
-        include_assemblies: Boolean indicating whether to fetch assemblies
+        include_assemblies: Whether to include assembly download URLs
 
     Returns:
-        Tuple of (annotations_json, assembly_dict)
+        List of annotation row dictionaries
     """
-    annotations_json = make_request("/annotations", params=request_params)
-
-    assembly_dict = {}
+    params = dict(request_params or {})
     if include_assemblies:
-        assembly_accessions = list({
-            r["assembly_accession"]
-            for r in annotations_json.get("results", [])
-            if r.get("assembly_accession")
-        })
-        if assembly_accessions:
-            assemblies_json = make_request(
-                "/assemblies",
-                params={"assembly_accessions": ",".join(assembly_accessions)},
-            )
-            assembly_dict = {
-                asm["assembly_accession"]: asm
-                for asm in assemblies_json.get("results", [])
-            }
-
-    return annotations_json, assembly_dict
+        params["selected_fields"] = "assembly_download_url"
+    return fetch_tsv_report(params)
 
 
 def build_annotation_paths(result, output_dir):
@@ -46,17 +33,17 @@ def build_annotation_paths(result, output_dir):
     Build file paths and names for annotation files.
 
     Args:
-        result: Annotation result dictionary
+        result: Annotation result dictionary (flat TSV row)
         output_dir: Base output directory
 
     Returns:
         Dictionary with annotation_name, annotation_folder, organism_name, taxid, assembly_accession
     """
-    annotation_id = result.get("annotation_id", "NA")
-    organism_name = result.get("organism_name", "NA").replace(" ", "_")
-    taxid = result.get("taxid", "NA")
-    database = result.get("source_file_info", {}).get("database", "NA")
-    assembly_accession = result.get("assembly_accession", "NA")
+    annotation_id = result.get("annotation_id") or "NA"
+    organism_name = (result.get("organism_name") or "NA").replace(" ", "_")
+    taxid = result.get("taxid") or "NA"
+    database = result.get("database") or "NA"
+    assembly_accession = result.get("assembly_accession") or "NA"
 
     annotation_name = "_".join(
         [organism_name, taxid, database, assembly_accession, annotation_id]
@@ -183,21 +170,20 @@ def download_assembly_file(assembly_url, assembly_filepath, source_filepath, fix
         return False
 
 
-def process_annotation_result(result, args, assembly_dict):
+def process_annotation_result(result, args):
     """
-    Process a single annotation result for download or link generation.
+    Process a single annotation TSV row for download or link generation.
 
     Args:
-        result: Annotation result dictionary
+        result: Annotation row dictionary from /annotations/report
         args: Command-line arguments
-        assembly_dict: Dictionary of assembly information
     """
-    source_url = result.get("source_file_info", {}).get("url_path", "NA")
+    source_url = result.get("source_url") or "NA"
+    assembly_url = (result.get("assembly_download_url") or "").strip() or None
 
     paths = build_annotation_paths(result, args.output)
     annotation_folder = paths["annotation_folder"]
     annotation_name = paths["annotation_name"]
-    assembly_accession = paths["assembly_accession"]
 
     source_filepath = None
 
@@ -207,20 +193,17 @@ def process_annotation_result(result, args, assembly_dict):
         source_filepath = os.path.join(annotation_folder, source_filename)
 
         if args.mode == "links":
-            assembly_url = None
             assembly_filepath = None
 
             if args.add_asm:
-                assembly_info = assembly_dict.get(assembly_accession, {})
-                assembly_url = assembly_info.get("download_url", "NA")
-                if assembly_url != "NA":
+                if assembly_url:
                     assembly_filename = assembly_url.split("/")[-1]
                     assembly_filepath = os.path.join(
                         annotation_folder, assembly_filename
                     )
                 else:
                     print(
-                        f"[WARNING] Assembly not foind for: {source_filename}",
+                        f"[WARNING] Assembly not found for: {source_filename}",
                         file=sys.stderr,
                     )
 
@@ -228,35 +211,31 @@ def process_annotation_result(result, args, assembly_dict):
                 annotation_folder,
                 source_url,
                 source_filepath,
-                assembly_url if assembly_url != "NA" else None,
-                assembly_filepath if assembly_filepath != "NA" else None,
-                fix_alias = True if args.fix_alias else False,
+                assembly_url if args.add_asm else None,
+                assembly_filepath,
+                fix_alias=True if args.fix_alias else False,
             )
         else:
             download_annotation_file(source_url, source_filepath, annotation_folder)
 
-    if args.add_asm and args.mode != "links":
-        assembly_info = assembly_dict.get(assembly_accession, {})
-        assembly_url = assembly_info.get("download_url", "NA")
-
-        if assembly_url != "NA":
-            assembly_filename = assembly_url.split("/")[-1]
-            assembly_filepath = os.path.join(annotation_folder, assembly_filename)
-            download_assembly_file(
-                assembly_url, assembly_filepath, source_filepath, args.fix_alias
-            )
+    if args.add_asm and args.mode != "links" and assembly_url:
+        assembly_filename = assembly_url.split("/")[-1]
+        assembly_filepath = os.path.join(annotation_folder, assembly_filename)
+        download_assembly_file(
+            assembly_url, assembly_filepath, source_filepath, args.fix_alias
+        )
 
 
-def print_preview(args, annotations_json):
+def print_preview(args, annotation_rows):
     """
     Print preview information about the download operation.
 
     Args:
         args: Command-line arguments
-        annotations_json: JSON response with annotation data
+        annotation_rows: List of annotation TSV row dictionaries
     """
     label_w = 20
-    print(f"{'Annotations:':<{label_w}} {len(annotations_json.get('results', []))}")
+    print(f"{'Annotations:':<{label_w}} {len(annotation_rows)}")
     print(f"{'Only reference:':<{label_w}} {args.ref_only}")
     print(f"{'Include assemblies:':<{label_w}} {args.add_asm}")
 
@@ -269,23 +248,19 @@ def handle_download_command(args, request_params):
         args: Parsed command-line arguments
         request_params: Dictionary of request parameters
     """
-    
+
     if args.fix_alias and not args.add_asm:
         print("[ERROR] --fix-alias requires --add-asm", file=sys.stderr)
         return
 
-    annotations_json, assembly_dict = fetch_annotations_and_assemblies(
-        request_params, args.add_asm
-    )
+    annotation_rows = fetch_annotation_report(request_params, args.add_asm)
 
     if args.mode in ["dw", "links"]:
         if args.mode == "dw":
             os.makedirs(args.output, exist_ok=True)
 
-        for result in annotations_json.get("results", []):
-            process_annotation_result(result, args, assembly_dict)
+        for result in annotation_rows:
+            process_annotation_result(result, args)
 
     elif args.mode == "prev":
-        print_preview(args, annotations_json)
-
-
+        print_preview(args, annotation_rows)

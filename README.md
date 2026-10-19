@@ -11,6 +11,32 @@ pip install .
 ./test.sh
 ```
 
+For development (includes pytest):
+
+```bash
+pip install -e ".[dev]"
+```
+
+## Testing
+
+Unit and component tests (mocked, no network):
+
+```bash
+pytest
+```
+
+End-to-end tests against the live Annotrieve API:
+
+```bash
+pytest -m e2e
+```
+
+The existing bash suite remains available and unchanged:
+
+```bash
+./test.sh
+```
+
 ## Commands
 
 ```bash

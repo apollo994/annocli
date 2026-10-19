@@ -1,5 +1,6 @@
+import csv
 import json
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 import requests
 
@@ -74,6 +75,31 @@ def make_request(
     response["offset"] = 0
     response["total"] = total
     return response
+
+
+def fetch_tsv_report(params: Optional[Dict] = None) -> List[Dict[str, str]]:
+    """
+    POST /annotations/report and parse the streamed TSV into row dicts.
+
+    Args:
+        params: Filter body (taxids, md5_checksums, selected_fields, etc.)
+
+    Returns:
+        List of column-keyed row dictionaries
+    """
+    url = f"{API_BASE_URL}/annotations/report"
+    params = dict(params or {})
+
+    try:
+        response = requests.post(url, json=params, stream=True)
+        response.raise_for_status()
+        response.encoding = response.encoding or "utf-8"
+        lines = (
+            line for line in response.iter_lines(decode_unicode=True) if line
+        )
+        return list(csv.DictReader(lines, delimiter="\t"))
+    except requests.exceptions.RequestException as e:
+        raise ValueError(f"Request failed: {e}")
 
 
 def download_file(url, filepath):
