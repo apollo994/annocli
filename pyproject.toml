@@ -1,12 +1,31 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "annocli"
 version = "1.0.3"
 description = "A command-line tool to query and download genome annotations"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{name = "Fabio Zanarello", email = "fzanarello@crg.eu"}]
+keywords = ["genome", "annotation", "gff", "bioinformatics", "annotrieve", "cli"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
 dependencies = [
     "requests>=2.25.0",
 ]
@@ -16,6 +35,12 @@ dev = [
     "pytest>=7.0",
     "responses>=0.25",
 ]
+
+[project.urls]
+Homepage = "https://github.com/apollo994/annocli"
+Repository = "https://github.com/apollo994/annocli"
+Documentation = "https://github.com/apollo994/annocli/blob/main/USAGE.md"
+Issues = "https://github.com/apollo994/annocli/issues"
 
 [project.scripts]
 annocli = "annocli.cli:main"
