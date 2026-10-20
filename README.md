@@ -1,5 +1,9 @@
 # annocli
 
+[![PyPI](https://img.shields.io/pypi/v/annocli)](https://pypi.org/project/annocli/)
+[![Python versions](https://img.shields.io/pypi/pyversions/annocli)](https://pypi.org/project/annocli/)
+[![Tests](https://github.com/apollo994/annocli/actions/workflows/tests.yml/badge.svg)](https://github.com/apollo994/annocli/actions/workflows/tests.yml)
+
 A command-line tool to query and download genome annotations from the [Annotrieve API](https://genome.crg.es/annotrieve/).
 
 ## Installation
