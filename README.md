@@ -40,6 +40,10 @@ annocli {COMMAND} --help
 
 For detailed usage examples, see [USAGE.md](https://github.com/apollo994/annocli/blob/main/USAGE.md).
 
+## Agent skill
+
+[`skills/annotrieve/`](skills/annotrieve/SKILL.md) is a skill that lets AI agents query, filter, compare and download Annotrieve annotations via annocli, the Annotrieve API and the gene-name search (annotrieve-xrefs). Install it by copying the folder into your agent skill directory (e.g. `~/.claude/skills/` for claude code).
+
 ## Testing
 
 Unit and component tests (mocked, no network):
