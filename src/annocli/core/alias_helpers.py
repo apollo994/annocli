@@ -6,13 +6,16 @@ Resolution is a ladder. Each tier only looks at the seqids earlier tiers could
 not resolve, and no tier is allowed to rename on an ambiguous guess:
 
     tier 0  the seqid is already an assembly name  -> nothing to do
-    tier 1  Alias attribute of a GFF ``region`` feature
+    tier 1  Alias attribute of a sequence-level GFF feature (``region``,
+            ``chromosome``, ``scaffold``, ``supercontig``, ``contig``)
     tier 2  local name normalisation (INSDC version suffix, ``chr`` prefix,
             mitochondrion spellings, case)
 
-Tier 1 is what Ensembl and NCBI annotations provide. Tier 2 exists because some
-producers (TOGA, lifted-over or bespoke GFFs) ship no ``region`` features at
-all, leaving tier 1 with nothing to work with.
+Tier 1 is what Ensembl and NCBI annotations provide: NCBI describes each
+sequence with a ``region`` feature, Ensembl with ``chromosome``, ``scaffold`` or
+``supercontig``. Tier 2 exists because some producers (TOGA, lifted-over or
+bespoke GFFs) ship no sequence-level features at all, leaving tier 1 with
+nothing to work with.
 """
 
 import gzip
@@ -26,6 +29,12 @@ from .general_helpers import insert_suffix_before_extension, write_tsv_mapping
 _VERSION_SUFFIX = re.compile(r"\.\d+$")
 
 _MITOCHONDRION = {"m", "mt", "mito", "mitochondrion"}
+
+# GFF feature types that describe a whole sequence, so their Alias attribute
+# names that sequence. Other features (gene, mRNA, ...) also carry Alias, but
+# there it holds gene synonyms, which could collide with short assembly names
+# such as 'X', '1' or 'MT' and must not be read as sequence names.
+_SEQUENCE_FEATURE_TYPES = {"region", "chromosome", "scaffold", "supercontig", "contig"}
 
 
 def handle_alias_command(args):
@@ -115,14 +124,15 @@ def scan_annotation(ann_path, asm_names):
 
     Returns:
         seqids (list): distinct column 1 values, in order of first appearance
-        region_aliases (dict): seqid -> alias, for tier 1
+        seq_aliases (dict): seqid -> alias, for tier 1
 
-    An Alias is only accepted from a ``region`` feature, and only if it names a
-    sequence that is actually present in the assembly.
+    An Alias is only accepted from a sequence-level feature (see
+    _SEQUENCE_FEATURE_TYPES), and only if it names a sequence that is actually
+    present in the assembly. The first such Alias found for a seqid wins.
     """
     seqids = []
     seen = set()
-    region_aliases = {}
+    seq_aliases = {}
 
     with _open_text(ann_path, "rt") as annotation:
         for line in annotation:
@@ -138,7 +148,7 @@ def scan_annotation(ann_path, asm_names):
                 seen.add(seqid)
                 seqids.append(seqid)
 
-            if cols[2] != "region":
+            if cols[2] not in _SEQUENCE_FEATURE_TYPES or seqid in seq_aliases:
                 continue
 
             alias = _parse_attributes(cols[8]).get("Alias")
@@ -148,10 +158,10 @@ def scan_annotation(ann_path, asm_names):
             for candidate in alias.split(","):
                 candidate = candidate.strip()
                 if candidate in asm_names:
-                    region_aliases[seqid] = candidate
+                    seq_aliases[seqid] = candidate
                     break
 
-    return seqids, region_aliases
+    return seqids, seq_aliases
 
 
 def _build_normalised_index(asm_names):
@@ -240,7 +250,7 @@ def _resolve_by_normalisation(unresolved, asm_names, claimed):
     return mapping
 
 
-def resolve_seqids(seqids, asm_names, region_aliases):
+def resolve_seqids(seqids, asm_names, seq_aliases):
     """
     Walk the resolution ladder and return the renames to apply.
 
@@ -255,7 +265,7 @@ def resolve_seqids(seqids, asm_names, region_aliases):
         if seqid in asm_names:
             continue  # tier 0: already correct
 
-        alias = region_aliases.get(seqid)  # tier 1
+        alias = seq_aliases.get(seqid)  # tier 1
         if alias:
             mapping[seqid] = alias
         else:
@@ -334,8 +344,8 @@ def rewrite_gff_seqids_from_assembly(
         the seqids that were actually renamed
     """
     asm_names = read_assembly_names(asm_fna_gz)
-    seqids, region_aliases = scan_annotation(ann_gff_gz, asm_names)
-    names_mapping, _unresolved = resolve_seqids(seqids, asm_names, region_aliases)
+    seqids, seq_aliases = scan_annotation(ann_gff_gz, asm_names)
+    names_mapping, _unresolved = resolve_seqids(seqids, asm_names, seq_aliases)
     rewrite_gff(ann_gff_gz, out_gff_gz, names_mapping)
 
     return names_mapping
